@@ -1,0 +1,42 @@
+name: Validate Aramyst Assets
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - manifest.json
+      - ASSET_MANIFEST.csv
+      - docs/ASSET_MANIFEST.md
+      - docs/SOURCE_OF_TRUTH.md
+      - schemas/asset-manifest.schema.json
+      - scripts/validate_manifest.py
+      - pages/**
+      - .github/workflows/validate-assets.yml
+  pull_request:
+    paths:
+      - manifest.json
+      - ASSET_MANIFEST.csv
+      - docs/ASSET_MANIFEST.md
+      - docs/SOURCE_OF_TRUTH.md
+      - schemas/asset-manifest.schema.json
+      - scripts/validate_manifest.py
+      - pages/**
+      - .github/workflows/validate-assets.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate manifests and page registry
+        run: python scripts/validate_manifest.py
