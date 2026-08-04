@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/JamesJedi420/aramyst-book-assets/schemas/asset-manifest.schema.json",
+  "title": "Aramyst Asset Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["project", "assets", "pages"],
+  "properties": {
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "format", "width_inches", "height_inches", "dpi", "github_repository", "google_drive_root_id"],
+      "properties": {
+        "id": {"const": "aramyst-book-assets"},
+        "title": {"type": "string", "minLength": 1},
+        "format": {"const": "fixed-layout"},
+        "width_inches": {"const": 6},
+        "height_inches": {"const": 9},
+        "dpi": {"const": 300},
+        "github_repository": {"const": "JamesJedi420/aramyst-book-assets"},
+        "google_drive_root_id": {"const": "1IBbWIFfAuJpB7I9jc7yrjb461mPnuGnq"}
+      }
+    },
+    "assets": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/asset"}
+    },
+    "pages": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/page"}
+    }
+  },
+  "$defs": {
+    "status": {
+      "enum": ["planned", "briefed", "in-progress", "review", "approved", "exported", "published", "superseded", "archived"]
+    },
+    "category": {
+      "enum": ["cover", "map", "character", "faction", "location", "symbol", "typography", "prompt", "reference", "misc"]
+    },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["asset_id", "title", "category", "context", "purpose", "subjects", "required_dimensions", "status", "version", "drive_file_id", "drive_url", "drive_path", "github_source_path", "github_export_path", "prompt_reference_path", "owner", "dependencies", "approval", "notes"],
+      "properties": {
+        "asset_id": {"type": "string", "pattern": "^AST-(COVER|MAP|CHAR|FACT|LOC|SYM|TYPE|PROMPT|REF|MISC)-[0-9]{3}$"},
+        "title": {"type": "string", "minLength": 1},
+        "category": {"$ref": "#/$defs/category"},
+        "context": {"type": "string", "minLength": 1},
+        "purpose": {"type": "string", "minLength": 1},
+        "subjects": {"type": "string", "minLength": 1},
+        "required_dimensions": {"type": "string", "minLength": 1},
+        "status": {"$ref": "#/$defs/status"},
+        "version": {"type": "string", "pattern": "^v[0-9]{3}$"},
+        "drive_file_id": {"type": "string"},
+        "drive_url": {"type": "string"},
+        "drive_path": {"type": "string"},
+        "github_source_path": {"type": "string"},
+        "github_export_path": {"type": "string"},
+        "prompt_reference_path": {"type": "string"},
+        "owner": {"type": "string", "minLength": 1},
+        "dependencies": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "approval": {"type": "string", "minLength": 1},
+        "notes": {"type": "string"}
+      }
+    },
+    "page": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["page_number", "page_slug", "file_path", "asset_id", "status", "version"],
+      "properties": {
+        "page_number": {"type": "integer", "minimum": 1, "maximum": 999},
+        "page_slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "file_path": {"type": "string", "pattern": "^pages/[0-9]{3}_[a-z0-9]+(?:-[a-z0-9]+)*\\.[a-z0-9.]+$"},
+        "asset_id": {"type": "string", "pattern": "^AST-"},
+        "status": {"$ref": "#/$defs/status"},
+        "version": {"type": "string", "pattern": "^v[0-9]{3}$"}
+      }
+    }
+  }
+}
