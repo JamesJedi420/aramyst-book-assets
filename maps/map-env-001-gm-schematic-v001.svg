@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000" viewBox="0 0 1500 1000">
+  <title>MAP-ENV-001 GM Controlled Local Schematic v001</title>
+  <desc>North-up, non-metric candidate local schematic. Only GEO-000003, GEO-000004, GEO-000007, GEO-000009 and ROUTE-000001 through ROUTE-000004 / GXR-000010 through GXR-000013 are in scope. ROUTE-000001 and ROUTE-000002 line geometry and sight lines are PROPOSED. ROUTE-000003 and ROUTE-000004 remain non-geometric. No wall footprint, terrain, distance, travel time, scale, road width, choke point, or unregistered geography is established.</desc>
+  <style>
+    .title{font:700 28px sans-serif}.sub{font:15px sans-serif}.section{font:700 16px sans-serif}.label{font:700 14px sans-serif}.body{font:13px sans-serif}.tiny{font:11px sans-serif}
+    .frame{fill:none;stroke:#111;stroke-width:2}.anchor{fill:#fff;stroke:#111;stroke-width:2}.context{fill:#fff;stroke:#111;stroke-width:2;stroke-dasharray:9 7}
+    .problem{fill:none;stroke:#555;stroke-width:2;stroke-dasharray:7 7}.route1{fill:none;stroke:#111;stroke-width:4;stroke-dasharray:13 8}.route2{fill:none;stroke:#111;stroke-width:4;stroke-dasharray:3 7}
+    .sight{fill:none;stroke:#555;stroke-width:2;stroke-dasharray:5 5}.abstract{fill:#fff;stroke:#111;stroke-width:2;stroke-dasharray:4 4}.rule{stroke:#111;stroke-width:1.5}.elev{stroke:#555;stroke-width:2;stroke-dasharray:8 6}
+  </style>
+  <rect x="0" y="0" width="1500" height="1000" fill="#fff"/>
+  <text x="60" y="48" class="title">MAP-ENV-001 — GM Controlled Local Schematic v001</text>
+  <text x="60" y="76" class="sub">CANDIDATE GEOMETRY • NORTH-UP • NON-METRIC • NO SCALE • NO TERRAIN • NO WALL FOOTPRINT • UNKNOWN SPACE LEFT BLANK</text>
+
+  <rect x="60" y="105" width="980" height="830" class="frame"/>
+  <text x="72" y="129" class="tiny">LOCAL DESIGN WINDOW ONLY — NOT A SETTLEMENT BOUNDARY, PROPERTY PLAN, OR SURVEY</text>
+
+  <!-- North arrow -->
+  <line x1="995" y1="174" x2="995" y2="132" class="rule"/>
+  <path d="M995 120 L986 140 L1004 140 Z" fill="#111"/>
+  <text x="989" y="195" class="label">N</text>
+
+  <!-- GEO-000003 Keep anchor: anchor only, not footprint -->
+  <circle cx="460" cy="250" r="58" class="anchor"/>
+  <text x="460" y="238" text-anchor="middle" class="label">GEO-000003</text>
+  <text x="460" y="258" text-anchor="middle" class="body">Current Keep / fortified height</text>
+  <text x="460" y="279" text-anchor="middle" class="tiny">ANCHOR ONLY — footprint unknown</text>
+
+  <!-- Functional principal gate endpoint; deliberately detached from any wall face -->
+  <rect x="438" y="333" width="44" height="44" transform="rotate(45 460 355)" class="abstract"/>
+  <line x1="460" y1="308" x2="460" y2="333" class="sight"/>
+  <text x="490" y="350" class="label">Principal gate endpoint role</text>
+  <text x="490" y="369" class="tiny">diagrammatic interface; compass face NOT ESTABLISHED</text>
+
+  <!-- GEO-000007 Tarl Yard context: no route line -->
+  <circle cx="245" cy="300" r="50" class="context"/>
+  <text x="245" y="292" text-anchor="middle" class="label">GEO-000007</text>
+  <text x="245" y="312" text-anchor="middle" class="body">Tarl Yard context</text>
+  <text x="245" y="331" text-anchor="middle" class="tiny">outside-wall works sector</text>
+  <text x="120" y="380" class="tiny">ROUTE-000004 / GXR-000013: RELATIONAL ONLY — NO PHYSICAL LINE</text>
+
+  <!-- GEO-000004 Last-Bell House anchor: no footprint -->
+  <circle cx="705" cy="555" r="60" class="anchor"/>
+  <text x="705" y="541" text-anchor="middle" class="label">GEO-000004</text>
+  <text x="705" y="562" text-anchor="middle" class="body">Last-Bell House</text>
+  <text x="705" y="583" text-anchor="middle" class="tiny">ANCHOR ONLY — footprint/frontage unknown</text>
+
+  <!-- Exterior threshold/lamp interface; not a building-face claim -->
+  <polygon points="760,520 772,532 760,544 748,532" class="abstract"/>
+  <text x="785" y="530" class="label">Threshold / lamp interface</text>
+  <text x="785" y="548" class="tiny">exterior evidence marker; building face NOT ESTABLISHED</text>
+  <polygon points="754,610 766,622 754,634 742,622" class="abstract"/>
+  <text x="780" y="621" class="tiny">Service access: unresolved nearby functional connection — NO ROUTE LINE</text>
+
+  <!-- GEO-000009 design problem area, not a boundary -->
+  <ellipse cx="535" cy="700" rx="185" ry="190" class="problem"/>
+  <text x="535" y="875" text-anchor="middle" class="label">GEO-000009 — Lower Road Approach</text>
+  <text x="535" y="895" text-anchor="middle" class="tiny">dashed area = local design problem area, NOT corridor boundary</text>
+
+  <!-- PROPOSED ROUTE-000001 candidate: distinct from ROUTE-000002 -->
+  <path d="M470 842 C468 775 452 710 458 650 C463 593 448 522 454 466 C457 430 459 398 460 377" class="route1"/>
+  <text x="335" y="596" class="label">PROPOSED ROUTE-000001</text>
+  <text x="335" y="615" class="tiny">Lower Road Approach ↔ principal gate access</text>
+
+  <!-- PROPOSED ROUTE-000002 candidate: separate path; no shared segment or junction asserted -->
+  <path d="M590 828 C600 770 610 724 628 681 C650 630 675 596 748 540" class="route2"/>
+  <text x="660" y="698" class="label">PROPOSED ROUTE-000002</text>
+  <text x="660" y="717" class="tiny">Lower Road Approach ↔ Last-Bell access</text>
+
+  <!-- Observation point for gate -->
+  <circle cx="458" cy="570" r="10" class="anchor"/>
+  <text x="405" y="554" class="label">O-G</text>
+  <path d="M458 560 L460 377" class="sight"/>
+  <text x="310" y="535" class="tiny">PROPOSED positive sight line to principal-gate endpoint</text>
+
+  <!-- Observation point for lamp -->
+  <circle cx="640" cy="655" r="10" class="anchor"/>
+  <text x="653" y="650" class="label">O-L</text>
+  <path d="M648 648 L752 538" class="sight"/>
+  <text x="680" y="642" class="tiny">PROPOSED positive sight line to threshold/lamp interface</text>
+
+  <!-- Relative elevation only -->
+  <line x1="390" y1="790" x2="390" y2="430" class="elev"/>
+  <path d="M390 414 L380 435 L400 435 Z" fill="#555"/>
+  <text x="195" y="770" class="tiny">RELATIONAL ELEVATION ONLY:</text>
+  <text x="195" y="788" class="tiny">Keep/principal-gate approach generally higher</text>
+  <text x="195" y="806" class="tiny">than Lower Road Approach. No grade or contour implied.</text>
+
+  <!-- Explicit non-geometric ROUTE-000003 annotation -->
+  <text x="600" y="430" class="tiny">ROUTE-000003 / GXR-000012:</text>
+  <text x="600" y="448" class="tiny">administrative/custody relationship only — PHYSICAL PATH NOT ESTABLISHED</text>
+
+  <!-- Right-side control panel -->
+  <text x="1080" y="130" class="section">CONTROL NOTES</text>
+  <text x="1080" y="165" class="body">Candidate geometry only</text>
+  <text x="1080" y="188" class="tiny">• ROUTE-000001 and ROUTE-000002 remain RELATIONAL ONLY</text>
+  <text x="1080" y="207" class="tiny">  until this local layout is approved.</text>
+  <text x="1080" y="234" class="tiny">• The two candidate routes do not share a segment or junction.</text>
+  <text x="1080" y="253" class="tiny">  This is a proposal, not a rule for future revisions.</text>
+  <text x="1080" y="280" class="tiny">• O-G and O-L are positive proposed observation positions.</text>
+  <text x="1080" y="299" class="tiny">  No claim is made that other points can or cannot see either target.</text>
+  <text x="1080" y="326" class="tiny">• No occlusion model is supplied. Unknown blockers are not invented.</text>
+  <text x="1080" y="353" class="tiny">• Zero choke points is the current candidate result.</text>
+  <text x="1080" y="372" class="tiny">  No choke point is added for dramatic or investigative convenience.</text>
+  <text x="1080" y="399" class="tiny">• Principal-gate marker is a functional endpoint, not a wall-face claim.</text>
+  <text x="1080" y="426" class="tiny">• Last-Bell marker is an anchor, not a footprint/property boundary.</text>
+  <text x="1080" y="453" class="tiny">• Tarl Yard is contextual only; ROUTE-000004 is not drawn.</text>
+  <text x="1080" y="480" class="tiny">• ROUTE-000003 remains operationally established but physically unknown.</text>
+  <text x="1080" y="507" class="tiny">• No numeric distance, travel time, road width, map scale, grid, or hex.</text>
+  <text x="1080" y="534" class="tiny">• No terrain, vegetation, ditch, ravine, bridge, ford, stream, or extra structure.</text>
+  <text x="1080" y="561" class="tiny">• Unknown local space is intentionally blank.</text>
+  <text x="1080" y="588" class="tiny">• No B2, Mystara, or external-source arrangement supplies geometry.</text>
+
+  <text x="1080" y="638" class="section">LINE LEGEND</text>
+  <line x1="1080" y1="670" x2="1160" y2="670" class="route1"/>
+  <text x="1175" y="675" class="tiny">PROPOSED ROUTE-000001</text>
+  <line x1="1080" y1="704" x2="1160" y2="704" class="route2"/>
+  <text x="1175" y="709" class="tiny">PROPOSED ROUTE-000002</text>
+  <line x1="1080" y1="738" x2="1160" y2="738" class="sight"/>
+  <text x="1175" y="743" class="tiny">PROPOSED positive sight line</text>
+  <circle cx="1090" cy="777" r="10" class="anchor"/>
+  <text x="1112" y="782" class="tiny">GEO anchor / observation marker</text>
+  <circle cx="1090" cy="813" r="18" class="context"/>
+  <text x="1118" y="818" class="tiny">relational context only</text>
+
+  <text x="1080" y="870" class="section">REVIEW QUESTION</text>
+  <text x="1080" y="898" class="tiny">Approve, reject, or modify the candidate ROUTE-000001/000002 shapes</text>
+  <text x="1080" y="916" class="tiny">and O-G / O-L positive visibility relationships. No other geometry advances.</text>
+</svg>
