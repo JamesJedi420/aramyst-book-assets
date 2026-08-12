@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000" viewBox="0 0 1500 1000">
+<title>MAP-REG-001 GM Reference Vector Draft v001</title>
+<desc>Approximate non-metric sector draft based only on approved GEO tolerance boxes. No roads, river courses, terrain, March boundary, distances, or travel scale are mapped.</desc>
+<style>
+.title{font:700 28px sans-serif} .sub{font:15px sans-serif} .small{font:13px sans-serif}
+.tiny{font:11px sans-serif} .label{font:700 14px sans-serif} .section{font:700 15px sans-serif}
+.box{fill:none;stroke:#111;stroke-width:2;stroke-dasharray:9 7} .frame{fill:none;stroke:#111;stroke-width:2}
+.marker{fill:#fff;stroke:#111;stroke-width:2} .rule{stroke:#111;stroke-width:1.5}
+</style>
+<rect x="0" y="0" width="1500" height="1000" fill="#fff"/>
+<text x="70" y="45" class="title">MAP-REG-001 — GM Reference Vector Draft v001</text>
+<text x="70" y="73" class="sub">NORTH-UP • APPROXIMATE SECTORS • NOT TO SCALE • ROUTE LINES NOT MAPPED • MARCH BOUNDARY UNKNOWN</text>
+<rect x="70" y="105" width="850" height="820" class="frame"/>
+<text x="80" y="127" class="small">VIEW WINDOW ONLY — NOT GEO-000002 EXTENT OR BORDER</text>
+<line x1="878" y1="172" x2="878" y2="130" class="rule"/>
+<path d="M 878 120 L 870 137 L 886 137 Z" fill="#111"/>
+<text x="873" y="195" class="label">N</text>
+<rect x="393.0" y="416.6" width="68.0" height="82.0" class="box"/>
+<circle cx="427.0" cy="457.6" r="5.5" class="marker"/>
+<line x1="418.0" y1="457.6" x2="436.0" y2="457.6" class="rule"/>
+<line x1="427.0" y1="448.6" x2="427.0" y2="466.6" class="rule"/>
+<text x="399.0" y="434.6" class="label">GEO-000003</text>
+<rect x="478.0" y="523.2" width="110.5" height="114.8" class="box"/>
+<circle cx="537.5" cy="580.6" r="5.5" class="marker"/>
+<line x1="528.5" y1="580.6" x2="546.5" y2="580.6" class="rule"/>
+<line x1="537.5" y1="571.6" x2="537.5" y2="589.6" class="rule"/>
+<text x="484.0" y="541.2" class="label">GEO-000004</text>
+<rect x="682.0" y="351.0" width="170.0" height="246.0" class="box"/>
+<circle cx="767.0" cy="474.0" r="5.5" class="marker"/>
+<line x1="758.0" y1="474.0" x2="776.0" y2="474.0" class="rule"/>
+<line x1="767.0" y1="465.0" x2="767.0" y2="483.0" class="rule"/>
+<text x="688.0" y="369.0" class="label">GEO-000006</text>
+<rect x="274.0" y="383.8" width="102.0" height="106.6" class="box"/>
+<circle cx="325.0" cy="441.2" r="5.5" class="marker"/>
+<line x1="316.0" y1="441.2" x2="334.0" y2="441.2" class="rule"/>
+<line x1="325.0" y1="432.2" x2="325.0" y2="450.2" class="rule"/>
+<text x="280.0" y="401.8" class="label">GEO-000007</text>
+<rect x="197.5" y="662.6" width="144.5" height="164.0" class="box"/>
+<circle cx="274.0" cy="744.6" r="5.5" class="marker"/>
+<line x1="265.0" y1="744.6" x2="283.0" y2="744.6" class="rule"/>
+<line x1="274.0" y1="735.6" x2="274.0" y2="753.6" class="rule"/>
+<text x="203.5" y="680.6" class="label">GEO-000008</text>
+<rect x="410.0" y="506.8" width="110.5" height="106.6" class="box"/>
+<circle cx="461.0" cy="556.0" r="5.5" class="marker"/>
+<line x1="452.0" y1="556.0" x2="470.0" y2="556.0" class="rule"/>
+<line x1="461.0" y1="547.0" x2="461.0" y2="565.0" class="rule"/>
+<text x="416.0" y="524.8" class="label">GEO-000009</text>
+<text x="223.0" y="851.2" class="tiny">GEO-000010 crossing context only — RELATIONAL ONLY; no watercourse line</text>
+<text x="537.5" y="777.4" class="small">UNMAPPED / NOT ESTABLISHED SPACE</text>
+<text x="537.5" y="800.4" class="tiny">Blank space is unknown, not empty canon.</text>
+<text x="955" y="112" class="section">GEOMETRY AUTHORITY</text>
+<text x="955" y="136" class="small">MAP-REG-001 Geometry Specification v001 — CONTROLLING</text>
+<text x="955" y="155" class="tiny">Drive ID 1HKS3TPvCenAKeqC77glZtgT2xXwUwogkDv3AVL8OEdE</text>
+
+<text x="955" y="196" class="section">APPROVED APPROXIMATE ANCHORS</text><text x="955" y="222" class="label">GEO-000003</text>
+<text x="1060" y="222" class="small">Current Keep / Older Fortified Height</text>
+<text x="973" y="239" class="tiny">tolerance x 38–46; y 38–48 • presentation marker 42,43</text>
+<text x="955" y="274" class="label">GEO-000004</text>
+<text x="1060" y="274" class="small">Last-Bell House</text>
+<text x="973" y="291" class="tiny">tolerance x 48–61; y 51–65 • presentation marker 55,58</text>
+<text x="955" y="326" class="label">GEO-000006</text>
+<text x="1060" y="326" class="small">East Hale</text>
+<text x="973" y="343" class="tiny">tolerance x 72–92; y 30–60 • presentation marker 82,45</text>
+<text x="955" y="378" class="label">GEO-000007</text>
+<text x="1060" y="378" class="small">Tarl Yard</text>
+<text x="973" y="395" class="tiny">tolerance x 24–36; y 34–47 • presentation marker 30,41</text>
+<text x="955" y="430" class="label">GEO-000008</text>
+<text x="1060" y="430" class="small">Orne Ferry</text>
+<text x="973" y="447" class="tiny">tolerance x 15–32; y 68–88 • presentation marker 24,78</text>
+<text x="955" y="482" class="label">GEO-000009</text>
+<text x="1060" y="482" class="small">Lower Road Approach</text>
+<text x="973" y="499" class="tiny">tolerance x 40–53; y 49–62 • presentation marker 46,55</text>
+<text x="955" y="540" class="section">HELD GEOGRAPHY</text>
+<text x="955" y="565" class="small">GEO-000002 — First-Playable March: RELATIONAL ONLY; boundary/extent unknown</text>
+<text x="955" y="587" class="small">GEO-000005 — Venn House: RELATIONAL ONLY; unplaced</text>
+<text x="955" y="609" class="small">GEO-000010 — Unnamed Watercourse: RELATIONAL ONLY; crossing context only</text>
+
+<text x="955" y="652" class="section">ROUTE TOPOLOGY — NON-GEOMETRIC</text>
+<text x="955" y="677" class="small">000001/000002: Keep ↔ Lower Approach ↔ Last-Bell topology only</text>
+<text x="955" y="699" class="small">000003: institutional/custody relationship only</text>
+<text x="955" y="721" class="small">000004: Keep ↔ Tarl Yard works/service relationship only</text>
+<text x="955" y="743" class="small">000005/000006: regional attachments unresolved</text>
+<text x="955" y="765" class="small">000007: ferry crossing relationship only; no watercourse line</text>
+
+<text x="955" y="808" class="section">INTENTIONALLY ABSENT</text>
+<text x="955" y="833" class="small">Road geometry • hydrography • terrain / contours • March border</text>
+<text x="955" y="855" class="small">Distances • travel times • scale bar • decorative filler • external geometry</text>
+
+<text x="955" y="899" class="tiny">Tolerance boxes are the approved geometry claim. Marker centroids and labels are presentation-only.</text>
+</svg>
