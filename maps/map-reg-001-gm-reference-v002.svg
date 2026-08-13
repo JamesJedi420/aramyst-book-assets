@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+<title>MAP-REG-001 GM Reference Vector Draft v002</title>
+<desc>Corrected GM-facing approximate geometry draft. Uses only approved GEO tolerance boxes from MAP-REG-001 Geometry Specification v001. No roads, route geometry, watercourse line, terrain, March boundary, distance, travel time, scale bar, Venn House placement, or invented route junctions are mapped.</desc>
+<style>
+  .title{font:700 28px sans-serif}.sub{font:15px sans-serif}.small{font:13px sans-serif}.tiny{font:11px sans-serif}.label{font:700 14px sans-serif}.section{font:700 15px sans-serif}
+  .frame{fill:#fff;stroke:#111;stroke-width:2}.tol{fill:#f7f7f7;stroke:#111;stroke-width:2;stroke-dasharray:9 7}.marker{fill:#fff;stroke:#111;stroke-width:2}.rule{stroke:#111;stroke-width:1.5}.panel{fill:#fff;stroke:#111;stroke-width:1.4}
+</style>
+<rect width="1600" height="1000" fill="#fff"/>
+<text x="70" y="44" class="title">MAP-REG-001 — GM Reference Vector Draft v002</text>
+<text x="70" y="72" class="sub">GM REFERENCE • NORTH-UP • APPROXIMATE TOLERANCE AREAS • NOT TO SCALE • ROUTE LINES NOT MAPPED • MARCH BOUNDARY UNKNOWN</text>
+<text x="70" y="95" class="tiny">Internal development alias: Aramyst. Geometry authority approved 2026-08-12. Draft v002 acceptance audit: 2026-08-13.</text>
+
+<!-- normalized 0–100 viewing frame: x = 80 + 9u; y = 120 + 8v -->
+<rect x="80" y="120" width="900" height="800" class="frame"/>
+<text x="92" y="144" class="small">VIEW WINDOW ONLY — NOT GEO-000002 EXTENT OR BORDER — normalized 0–100 design frame, non-metric</text>
+<line x1="940" y1="195" x2="940" y2="153" class="rule"/>
+<path d="M940 143 L932 160 L948 160 Z" fill="#111"/>
+<text x="935" y="218" class="label">N</text>
+
+<!-- GEO-000003 x38–46 y38–48 -->
+<rect x="422" y="424" width="72" height="80" class="tol"/>
+<circle cx="458" cy="464" r="5.5" class="marker"/>
+<line x1="449" y1="464" x2="467" y2="464" class="rule"/><line x1="458" y1="455" x2="458" y2="473" class="rule"/>
+<text x="428" y="443" class="label">GEO-000003</text><text x="428" y="486" class="tiny">Keep / Older Fortified Height</text>
+
+<!-- GEO-000004 x48–61 y51–65 -->
+<rect x="512" y="528" width="117" height="112" class="tol"/>
+<circle cx="570.5" cy="584" r="5.5" class="marker"/>
+<line x1="561.5" y1="584" x2="579.5" y2="584" class="rule"/><line x1="570.5" y1="575" x2="570.5" y2="593" class="rule"/>
+<text x="518" y="548" class="label">GEO-000004</text><text x="518" y="618" class="tiny">Last-Bell House</text>
+
+<!-- GEO-000006 x72–92 y30–60 -->
+<rect x="728" y="360" width="180" height="240" class="tol"/>
+<circle cx="818" cy="480" r="5.5" class="marker"/>
+<line x1="809" y1="480" x2="827" y2="480" class="rule"/><line x1="818" y1="471" x2="818" y2="489" class="rule"/>
+<text x="734" y="380" class="label">GEO-000006</text><text x="734" y="404" class="small">East Hale</text><text x="734" y="425" class="tiny">eastward sector only</text>
+
+<!-- GEO-000007 x24–36 y34–47 -->
+<rect x="296" y="392" width="108" height="104" class="tol"/>
+<circle cx="350" cy="444" r="5.5" class="marker"/>
+<line x1="341" y1="444" x2="359" y2="444" class="rule"/><line x1="350" y1="435" x2="350" y2="453" class="rule"/>
+<text x="302" y="412" class="label">GEO-000007</text><text x="302" y="477" class="tiny">Tarl Yard</text>
+
+<!-- GEO-000008 x15–32 y68–88 -->
+<rect x="215" y="664" width="153" height="160" class="tol"/>
+<circle cx="291.5" cy="744" r="5.5" class="marker"/>
+<line x1="282.5" y1="744" x2="300.5" y2="744" class="rule"/><line x1="291.5" y1="735" x2="291.5" y2="753" class="rule"/>
+<text x="221" y="684" class="label">GEO-000008</text><text x="221" y="708" class="small">Orne Ferry</text><text x="221" y="785" class="tiny">GEO-000010: crossing context only</text><text x="221" y="801" class="tiny">no watercourse course or bank orientation</text>
+
+<!-- GEO-000009 x40–53 y49–62 -->
+<rect x="440" y="512" width="117" height="104" class="tol"/>
+<circle cx="498.5" cy="564" r="5.5" class="marker"/>
+<line x1="489.5" y1="564" x2="507.5" y2="564" class="rule"/><line x1="498.5" y1="555" x2="498.5" y2="573" class="rule"/>
+<text x="446" y="532" class="label">GEO-000009</text><text x="446" y="598" class="tiny">Lower Road Approach</text>
+
+<text x="610" y="760" class="small">UNMAPPED / NOT ESTABLISHED SPACE</text>
+<text x="610" y="781" class="tiny">Blank space is unknown; no terrain, settlement, route, or boundary is implied.</text>
+
+<!-- right-side control panels -->
+<rect x="1020" y="120" width="520" height="800" class="panel"/>
+<text x="1040" y="150" class="section">GEOMETRY AUTHORITY</text>
+<text x="1040" y="174" class="small">MAP-REG-001 Geometry Specification v001 — CONTROLLING</text>
+<text x="1040" y="194" class="tiny">ATLAS-REG-DATA-001 GEO v002 amendments; SD-REG-001–004</text>
+
+<text x="1040" y="235" class="section">APPROVED APPROXIMATE GEOGRAPHY</text>
+<text x="1040" y="260" class="small">GEO-000003  x38–46; y38–48  Keep / Older Fortified Height</text>
+<text x="1040" y="282" class="small">GEO-000004  x48–61; y51–65  Last-Bell House</text>
+<text x="1040" y="304" class="small">GEO-000006  x72–92; y30–60  East Hale</text>
+<text x="1040" y="326" class="small">GEO-000007  x24–36; y34–47  Tarl Yard</text>
+<text x="1040" y="348" class="small">GEO-000008  x15–32; y68–88  Orne Ferry</text>
+<text x="1040" y="370" class="small">GEO-000009  x40–53; y49–62  Lower Road Approach</text>
+<text x="1040" y="393" class="tiny">Dashed rectangles are the only mapped geometry claim. Markers/labels are presentation-only.</text>
+
+<text x="1040" y="435" class="section">HELD / RELATIONAL ONLY</text>
+<text x="1040" y="460" class="small">GEO-000002 — First-Playable March: boundary and extent unknown</text>
+<text x="1040" y="482" class="small">GEO-000005 — Venn House: UNPLACED; no geographic pin or connector</text>
+<text x="1040" y="504" class="small">GEO-000010 — Unnamed Watercourse: crossing context only; no course</text>
+
+<text x="1040" y="546" class="section">ROUTE TOPOLOGY — NON-GEOMETRIC ONLY</text>
+<text x="1040" y="571" class="small">ROUTE-000001: Lower Road Approach ↔ Keep principal-gate access</text>
+<text x="1040" y="593" class="small">ROUTE-000002: Lower Road Approach ↔ Last-Bell House access</text>
+<text x="1040" y="615" class="small">ROUTE-000003: Last-Bell ↔ Keep institutional/custody relationship</text>
+<text x="1040" y="637" class="small">ROUTE-000004: Keep ↔ Tarl Yard works/service relationship</text>
+<text x="1040" y="659" class="small">ROUTE-000005: East Hale → March regional network; attachment unresolved</text>
+<text x="1040" y="681" class="small">ROUTE-000006: Orne Ferry → March regional network; attachment unresolved</text>
+<text x="1040" y="703" class="small">ROUTE-000007: Ferry crossing at GEO-000008/GEO-000010; bank nodes unresolved</text>
+<text x="1040" y="725" class="tiny">No route is drawn in the map frame. These statements preserve topology only.</text>
+
+<text x="1040" y="767" class="section">INTENTIONALLY ABSENT</text>
+<text x="1040" y="792" class="small">Road geometry • continuous hydrography • terrain / contours • March border</text>
+<text x="1040" y="814" class="small">Distances • travel times • scale bar • Venn placement • route junctions</text>
+<text x="1040" y="836" class="small">Decorative settlements/sites • neighboring polities • external-source geometry</text>
+
+<text x="1040" y="878" class="section">ACCEPTANCE STATUS</text>
+<text x="1040" y="903" class="small">v002: PASS — independence/no-invention gate, 2026-08-13</text>
+
+<text x="70" y="955" class="tiny">INDEPENDENCE NOTICE: Derived only from approved GEO tolerance areas and relational ROUTE/GXR records. No B2/Mystara or other external map geometry used.</text>
+<text x="70" y="977" class="tiny">PLAYER-FACING DERIVATIVE: NOT STARTED. This GM draft must remain the review-stage authority until separately released.</text>
+</svg>
