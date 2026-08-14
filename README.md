@@ -1,8 +1,8 @@
 # Aramyst Book Assets
 
-Asset repository for the Aramyst book project.
+Production-asset repository for the standalone Aramyst TTRPG project. “Aramyst” is a temporary development alias; the final publication/setting title remains unresolved.
 
-This repository stores source assets, working references, prompts, and export-ready files used during book development and production.
+This repository stores source assets, working references, prompts, and export-ready files used during development and production.
 
 ## Folder Structure
 
@@ -37,6 +37,8 @@ map-western-realm-print-v002.svg
 symbol-moon-seal-transparent-v001.png
 prompt-character-portrait-template-v001.md
 ```
+
+The `aramyst` slug in existing development examples is a temporary project alias, not an approved publication-final title slug. Do not invent or propagate a successor title slug before that naming decision is approved.
 
 ## Asset Status Tags
 
