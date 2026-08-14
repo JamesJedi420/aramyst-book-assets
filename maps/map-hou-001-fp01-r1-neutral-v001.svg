@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000" viewBox="0 0 1500 1000">
+<rect width="1500" height="1000" fill="white"/>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#111}
+.room{fill:none;stroke:#111;stroke-width:2}
+.ext{fill:none;stroke:#111;stroke-width:2;stroke-dasharray:8 6}
+.branch{fill:none;stroke:#111;stroke-width:2;stroke-dasharray:8 6}
+.small{font-size:14px}
+.label{font-size:22px;font-weight:700;text-anchor:middle}
+.sub{font-size:16px;text-anchor:middle}
+.tag{font-size:14px;font-weight:700}
+</style>
+<text x="55" y="55" font-size="34" font-weight="700">ARAMYST — MAP-HOU-001-FP01-R1</text>
+<text x="55" y="90" font-size="22">Last-Bell House — neutral non-metric physical floorplan candidate</text>
+<text x="55" y="120" font-size="16" font-weight="700">CANDIDATE / NOT ESTABLISHED • NO SCALE • NO COMPASS ORIENTATION • HOU-PD-012 HOLDS REMAIN</text>
+
+<!-- principal enclosed mass: single-line boundaries only -->
+<rect class="room" x="470" y="180" width="300" height="180"/>
+<rect class="room" x="770" y="180" width="250" height="250"/>
+<rect class="room" x="470" y="360" width="300" height="300"/>
+<rect class="room" x="770" y="430" width="250" height="105"/>
+<rect class="room" x="770" y="535" width="250" height="125"/>
+<rect class="room" x="350" y="430" width="120" height="140"/>
+<rect class="room" x="350" y="300" width="120" height="130"/>
+
+<!-- exterior / yard functions -->
+<rect class="ext" x="120" y="390" width="230" height="220"/>
+<rect class="ext" x="340" y="590" width="140" height="90"/>
+<rect class="ext" x="500" y="720" width="300" height="160"/>
+<rect class="ext" x="1080" y="500" width="220" height="220"/>
+<rect class="ext" x="1080" y="190" width="220" height="150"/>
+
+<!-- labels -->
+<text class="label" x="620" y="255">Witness Room</text><text class="sub" x="620" y="285">CONTROLLED / SENSITIVE</text>
+<text class="label" x="895" y="270">Record Room</text><text class="sub" x="895" y="300">CONTROLLED / SENSITIVE</text>
+<text class="label" x="620" y="485">Petition Hall</text><text class="sub" x="620" y="515">PUBLIC / PROCEDURAL</text><text class="sub" x="620" y="545">principal distribution point</text>
+<text class="label" x="895" y="465">Guest Hall</text><text class="sub" x="895" y="495">RECEIVED / CONDITIONAL</text>
+<text class="label" x="895" y="590">Kitchen &amp; Winter Store</text><text class="sub" x="895" y="620">HOUSEHOLD / SERVICE</text>
+<text class="label" x="410" y="485">Threshold Porch</text><text class="sub" x="410" y="515">PUBLIC / EXTERIOR</text>
+<text class="label" x="410" y="345">Bell Stair</text><text class="sub" x="410" y="375">PUBLIC NOTICE / HOUSE OPERATION</text>
+<text class="label" x="235" y="470">Street Court</text><text class="sub" x="235" y="500">PUBLIC / EXTERIOR</text>
+<text class="label" x="410" y="625">Lamp Niche</text><text class="sub" x="410" y="652">PUBLIC / EXTERIOR FIXTURE</text>
+<text class="label" x="650" y="785">Burial Court</text><text class="sub" x="650" y="815">BURIAL / KIN-CONTROLLED</text><text class="sub" x="650" y="842">NOT GENERAL CIRCULATION</text>
+<text class="label" x="1190" y="585">Service Yard</text><text class="sub" x="1190" y="615">YARD / SERVICE EXTERIOR</text>
+<text class="label" x="1190" y="235">Back Archive Loft</text><text class="sub" x="1190" y="265">CONTROLLED / SENSITIVE</text><text class="sub" x="1190" y="295">secondary level • exclusive Record access</text>
+
+<!-- candidate controlled openings / relationships -->
+<circle cx="350" cy="500" r="7" fill="white" stroke="#111" stroke-width="2"/><text class="tag" x="365" y="506">GD-004</text>
+<circle cx="470" cy="500" r="7" fill="white" stroke="#111" stroke-width="2"/>
+<circle cx="620" cy="360" r="7" fill="white" stroke="#111" stroke-width="2"/><text class="tag" x="635" y="350">GD-007</text>
+<circle cx="770" cy="395" r="7" fill="white" stroke="#111" stroke-width="2"/><text class="tag" x="785" y="390">GD-008</text>
+<circle cx="770" cy="480" r="7" fill="white" stroke="#111" stroke-width="2"/><text class="tag" x="785" y="500">GD-009</text>
+<circle cx="895" cy="535" r="7" fill="white" stroke="#111" stroke-width="2"/><text class="tag" x="910" y="528">GD-013 direct controlled opening</text>
+<circle cx="1020" cy="600" r="7" fill="white" stroke="#111" stroke-width="2"/><line x1="1020" y1="600" x2="1080" y2="600" stroke="#111" stroke-width="2"/><text class="tag" x="1035" y="590">GD-014</text>
+<circle cx="470" cy="365" r="7" fill="white" stroke="#111" stroke-width="2"/><text class="tag" x="485" y="355">GD-015</text>
+
+<!-- abstract vertical relation Record -> Archive -->
+<line class="branch" x1="980" y1="230" x2="980" y2="350"/><text class="tag" x="925" y="220">GD-016 vertical</text>
+<line class="branch" x1="1020" y1="285" x2="1080" y2="285"/>
+
+<!-- Burial branches -->
+<line class="branch" x1="620" y1="660" x2="620" y2="720"/><circle cx="620" cy="690" r="7" fill="white" stroke="#111" stroke-width="2"/><text class="tag" x="635" y="696">GD-019</text>
+<line class="branch" x1="800" y1="800" x2="1080" y2="650"/><circle cx="930" cy="730" r="7" fill="white" stroke="#111" stroke-width="2"/><text class="tag" x="945" y="736">GD-020</text>
+
+<!-- Lamp relation -->
+<line class="branch" x1="410" y1="570" x2="410" y2="590"/><text class="tag" x="425" y="588">GD-005</text>
+
+<!-- geometry tags -->
+<text class="tag" x="1030" y="170">GD-001 principal mass</text>
+<text class="tag" x="175" y="375">GD-003 Street Court</text>
+<text class="tag" x="340" y="420">GD-002 entrance-side</text>
+<text class="tag" x="485" y="175">GD-010 Witness</text>
+<text class="tag" x="785" y="175">GD-011 Record</text>
+<text class="tag" x="785" y="355">GD-012 Guest</text>
+<text class="tag" x="500" y="705">GD-018 Burial Court</text>
+<text class="tag" x="1080" y="485">GD-021 Service Yard</text>
+<text class="tag" x="1080" y="175">GD-017 Archive Loft</text>
+<text class="tag" x="485" y="675">GD-022 proportions/alignment</text>
+<text class="tag" x="485" y="345">GD-006 Petition Hall</text>
+
+<!-- control notes -->
+<rect x="55" y="730" width="360" height="205" fill="none" stroke="#111" stroke-width="2"/>
+<text x="75" y="760" font-size="18" font-weight="700">R1 CONTROL NOTES</text>
+<text x="75" y="790" font-size="15">• Single-line boundaries only; no wall thickness.</text>
+<text x="75" y="815" font-size="15">• No windows or decorative openings.</text>
+<text x="75" y="840" font-size="15">• No materials, textures, structural details, or style.</text>
+<text x="75" y="865" font-size="15">• No dimensions, scale, or compass orientation.</text>
+<text x="75" y="890" font-size="15">• Guest Hall ↔ Kitchen: one direct controlled opening.</text>
+<text x="75" y="915" font-size="15">• Bell Stair: no redundant-egress/service claim.</text>
+<text x="75" y="940" font-size="15">• All geometry remains candidate pending approval.</text>
+
+<rect x="1040" y="740" width="400" height="195" fill="none" stroke="#111" stroke-width="2"/>
+<text x="1060" y="770" font-size="18" font-weight="700">ACCESS / SYMBOL KEY</text>
+<line x1="1070" y1="800" x2="1120" y2="800" stroke="#111" stroke-width="2"/><text x="1135" y="806" font-size="15">single-line boundary</text>
+<line x1="1070" y1="830" x2="1120" y2="830" class="branch"/><text x="1135" y="836" font-size="15">controlled / conditional branch</text>
+<circle cx="1095" cy="865" r="7" fill="white" stroke="#111" stroke-width="2"/><text x="1135" y="871" font-size="15">candidate controlled opening</text>
+<text x="1060" y="905" font-size="15" font-weight="700">All HOU-FP-GD-001–022 remain CANDIDATE.</text>
+</svg>
