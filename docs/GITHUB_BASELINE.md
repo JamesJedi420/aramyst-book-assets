@@ -105,12 +105,18 @@ At baseline:
 
 - `main` is the default branch.
 - One pre-existing non-main branch remains: `agent/map-hou-001-functional-adjacency`.
-- Draft PR #4, `Review MAP-HOU-001 functional adjacency schematic v001`, remains open.
-- PR #4 is 2 commits ahead of and 24 commits behind current `main`.
 - PR #5, `Bind approved MAP-HOU-001 FP01-R1 floorplan`, is merged.
 - There are no open GitHub issues in this repository.
 
-PR #4 predates the approved controlling physical floorplan registered by PR #5. It must not be merged without an explicit reconciliation decision determining whether its functional-adjacency artifact is still independently useful, should be rebased and retained as historical/supporting material, or should be closed as superseded.
+Post-baseline reconciliation on 2026-08-14:
+
+- PR #4 was reconciled against the approved `MAP-HOU-001 / AST-MAP-004` state.
+- Disposition: **SUPERSEDED — closed without merge or rebase**.
+- The functional-adjacency schematic was valid as an intermediate requirements visualization while physical geometry was intentionally unresolved.
+- `AST-MAP-004` now resolves and controls the physical/topological relationships that PR #4 deliberately left unknown, including room/yard placement, controlled openings, Bell Stair attachment/access, Record Room → Back Archive Loft vertical relation, Burial Court placement/branches, Guest Hall ↔ Kitchen/Winter Store, and Kitchen/Winter Store ↔ Service Yard.
+- Merging PR #4 unchanged would create stale authority language beside the approved floorplan; rebasing it into a current diagram would duplicate `AST-MAP-004` rather than preserve an independent production purpose.
+- The PR and branch history retain the intermediate artifact for development provenance. No Asset ID is minted for it, and neither proposed file becomes an active source on `main`.
+- The historical branch may remain until normal branch cleanup; its presence does not confer active authority.
 
 ## Validation and CI state
 
@@ -144,14 +150,14 @@ Strengths:
 - synchronized machine-readable, CSV, and human-readable registries;
 - approved map assets retain explicit authority, dependencies, holds, and supersession history;
 - repository changes are already being handled through scoped `agent/` branches and pull requests;
-- validation code and a CI workflow exist.
+- validation code and a CI workflow exist;
+- stale pre-approval PR #4 has been explicitly reconciled and closed as superseded.
 
 Warnings:
 
 1. GitHub Actions is not currently functioning as a reliable merge gate because of the reported billing lock.
-2. Draft PR #4 is materially behind `main` and predates the controlling MAP-HOU-001 floorplan approval.
-3. JSON Schema is documented but not actually enforced by the validator.
-4. Branch-protection status is unverified.
+2. JSON Schema is documented but not actually enforced by the validator.
+3. Branch-protection status is unverified.
 
 ## Change-control baseline for this thread
 
@@ -169,7 +175,6 @@ Until superseded by an explicit project decision, GitHub maintenance in this thr
 
 ## Immediate follow-up queue
 
-1. Reconcile draft PR #4 against the approved MAP-HOU-001 / AST-MAP-004 state before any merge.
-2. Restore GitHub Actions execution so `validate-assets.yml` can function as a real gate.
-3. Strengthen `scripts/validate_manifest.py` so the JSON Schema is actually enforced or explicitly retire the schema as non-enforcing documentation.
-4. Verify and, if appropriate, establish branch-protection requirements for `main`.
+1. Restore GitHub Actions execution so `validate-assets.yml` can function as a real gate.
+2. Strengthen `scripts/validate_manifest.py` so the JSON Schema is actually enforced or explicitly retire the schema as non-enforcing documentation.
+3. Verify and, if appropriate, establish branch-protection requirements for `main`.
