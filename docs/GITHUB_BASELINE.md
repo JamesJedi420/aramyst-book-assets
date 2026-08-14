@@ -171,11 +171,27 @@ Post-baseline CI restoration on 2026-08-14:
 - A fresh `main` push validation after the merge also completed successfully.
 - Issue #7, `Restore GitHub Actions account access`, was closed after runner-backed validation was observed.
 
-Branch-protection settings could not be verified through the connected GitHub integration and remain unconfirmed.
+## Main branch protection
+
+Protection verified on 2026-08-14.
+
+Repository ruleset `Protect main` (ruleset ID `20862839`) is active and targets `refs/heads/main` only. GitHub's effective-rules evaluation for `main` confirms that the ruleset is currently applying the following controls:
+
+- require changes to reach `main` through a pull request;
+- require resolution of review threads;
+- allow squash and rebase merge methods;
+- require the `validate` status check from GitHub Actions (integration ID `15368`);
+- require the branch to be up to date before merge;
+- require linear history;
+- block non-fast-forward / force-push updates;
+- restrict deletion of `main`;
+- no standing bypass actors; the authenticated maintainer cannot bypass the ruleset.
+
+The controlled target configuration is recorded in `docs/MAIN_PROTECTION_POLICY.md` and `.github/rulesets/protect-main.json`.
 
 ## Baseline health
 
-Status: **controlled with one remaining repository-control warning**.
+Status: **controlled**.
 
 Strengths:
 
@@ -187,11 +203,10 @@ Strengths:
 - stale pre-approval PR #4 has been explicitly reconciled and closed as superseded;
 - GitHub Actions executes successfully as a real validation gate;
 - the JSON Schema is now an enforced machine-readable contract rather than passive documentation;
-- schema enforcement has a regression test that proves invalid structure is rejected.
+- schema enforcement has a regression test that proves invalid structure is rejected;
+- `main` is protected by an active repository ruleset requiring pull requests and the `validate` GitHub Actions check, with force-push and deletion protections and no standing bypass.
 
-Warning:
-
-1. Branch-protection status is unverified.
+No unresolved repository-control warning remains from the baseline audit.
 
 ## Change-control baseline for this thread
 
@@ -205,8 +220,8 @@ Until superseded by an explicit project decision, GitHub maintenance in this thr
 6. Preserve superseded assets when they carry approval, QA, or provenance history unless explicit archival/deletion authority is given.
 7. Require the GitHub Actions validation gate to pass before merge; reproduce the validator manually only as a diagnostic supplement, not as a replacement for a failed or unavailable gate.
 8. Record any unresolved synchronization conflict as a blocker rather than guessing which source is correct.
-9. Re-audit this baseline whenever repository ownership, source-of-truth rules, validation architecture, or release structure changes materially.
+9. Re-audit this baseline whenever repository ownership, source-of-truth rules, validation architecture, branch-protection architecture, or release structure changes materially.
 
 ## Immediate follow-up queue
 
-1. Verify and, if appropriate, establish branch-protection requirements for `main`.
+No unresolved baseline-control task remains. Continue normal repository maintenance against approved project work.
