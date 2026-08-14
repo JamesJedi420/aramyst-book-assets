@@ -92,11 +92,12 @@ Canonical human-readable registry for Aramyst visual assets. `manifest.json` is 
 - **Approval:** Approved controlling non-metric physical geometry 2026-08-14; FP-01–FP-14 QA PASS; HOU-PD-012 remains deferred.
 - **QA Record:** Drive `13vGwovr1KA8SlX5MYEbUdiYMqz3QEogu2ziaxAScEB8` — MAP-HOU-001-FP01-R1-QA-001.
 - **Geometry Authority:** Drive `1w7fd-wkY8ui2_mV6GO4N78lQWpTxDi55jTG0aeITmV4` — MAP-HOU-001-FP-GD-001.
-- **Source SHA-256:** `a6276209d66453bc13cf3d714c3999978f751a4feff8318b47a15951930e0413`.
+- **Active Source SHA-256:** `30d3b68113b62987380c945a919c9091a1e56b8ebec7db3fcdc9cdde311058d9`.
+- **Pre-Approval QA-Artifact SHA-256:** `a6276209d66453bc13cf3d714c3999978f751a4feff8318b47a15951930e0413`.
 - **Binding sidecar:** `docs/map-hou-001-fp01-r1-approval-v001.md`.
+- **Status-label synchronization:** after approval, only visible approval/provenance text was updated. A structural comparison with all text elements removed confirmed that the active source has identical geometry to the QA-reviewed R1 artifact.
 - **Explicit exclusions:** HOU-FP-X-001–008 are not part of the approved geometry. Numeric dimensions, scale, wall thickness, construction material, decorative architecture, exact compass orientation, windows, structural system, detailed architectural stair form, and publication styling remain unestablished under HOU-PD-012.
 - **Superseded history:** Original FP01 failed QA; Drive `1jTI2CRKZYdhGkAGjWb__v1Uq-Oupgd0Qntf4EwV3qSk` is retained as superseded QA history and has no controlling geometry authority.
-- **Provenance note:** The source SVG is the byte-preserved QA-reviewed R1 artifact. Its embedded pre-approval candidate labels are historical/provenance text; current approval state is governed by the asset registry, approval sidecar, geometry authority, and control record.
 
 ## Non-Map Assets
 
@@ -108,7 +109,7 @@ AST-COVER-001, AST-CHAR-001, AST-CHAR-002, AST-LOC-001, AST-SYM-001, AST-TYPE-00
 
 | Date | Change | Result |
 |---|---|---|
-| 2026-08-14 | AST-MAP-004 MAP-HOU-001 floorplan binding | Registered the QA-passed FP01-R1 neutral SVG as the approved controlling non-metric Last-Bell House floorplan; promoted only HOU-FP-GD-001–022; retained HOU-PD-012 holds and original FP01 failure history. |
+| 2026-08-14 | AST-MAP-004 MAP-HOU-001 floorplan binding | Registered FP01-R1 as the approved controlling non-metric Last-Bell House floorplan; promoted only HOU-FP-GD-001–022; retained HOU-PD-012 holds and original FP01 failure history; synchronized approval labels without changing geometry. |
 | 2026-08-13 | AST-MAP-002 manifest reconciliation | Bound `maps/map-reg-001-gm-reference-v002.svg` as approved v002; recorded regional-data-first authority and PASS acceptance gate; v001 retained only as superseded history. |
 | 2026-08-13 | AST-MAP-003 mirror synchronization | Existing approved MAP-ENV-001 local schematic is represented in the human-readable registry alongside JSON/CSV. |
 | 2026-08-13 | Player-facing control | No MAP-REG-001 player derivative started; it remains explicitly blocked. |
