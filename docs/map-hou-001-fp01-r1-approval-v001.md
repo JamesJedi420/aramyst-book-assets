@@ -45,3 +45,19 @@ The original FP01 candidate failed QA and remains preserved as development histo
 ## Production rule
 
 This asset visualizes approved canon geometry but does not independently expand canon. Any later revision that changes HOU-FP-GD-001–022 requires a new geometry decision/QA cycle. Pure status/provenance-label corrections may be made only when a structural geometry-equivalence check confirms that no geometry changed and both before/after checksums are recorded.
+
+## Geometry freeze — 2026-08-14
+
+Freeze state: **ACTIVE** for `AST-MAP-004` v001.
+
+`HOU-FP-GD-001` through `HOU-FP-GD-022` are frozen as the controlling physical geometry package for `MAP-HOU-001-FP01-R1`. Downstream scenario documents, GM references, workbook material, atlas records, player derivatives, and publication preparation may reference or reproduce this geometry but may not alter it silently.
+
+Any geometry-modifying change to room or yard shape/placement, approved controlled openings, access relationships, the principal-mass envelope, Bell Stair attachment/access relation, Record Room → Back Archive Loft vertical relation, Burial Court branches, Service Yard interface, or the approved relative alignment/proportion package requires all of the following before becoming controlling:
+
+1. a new explicit geometry decision;
+2. a new geometry QA cycle; and
+3. an appropriate asset-version change.
+
+Non-geometric metadata, provenance, approval-label, or reference corrections may be made without reopening the geometry only when the structural geometry remains unchanged and the audit trail is preserved.
+
+The freeze does **not** reopen `HOU-PD-012`. Numeric dimensions, map scale, wall thickness, construction materials, decorative architecture, exact compass orientation, window placement beyond already approved access openings, structural system, detailed architectural stair form, and publication styling remain **DEFERRED / GOVERNING**. If a later product or procedure genuinely requires one of these categories, it must be returned as a separate `HOU-PD-012` approval gate rather than being inferred from this asset.
