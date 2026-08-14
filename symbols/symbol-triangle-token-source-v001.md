@@ -15,11 +15,11 @@ The authoritative lossless PNG master is stored in Google Drive:
 - Master MIME type: `image/png`
 - Master SHA-256: `a6963796ac766ea9aca914655ba059eab7836a508490c689b5e7dc1a82f29c17`
 
-## Repository export
+## Repository preview derivative
 
-- Export path: `exports/symbol-triangle-token-handout-v001.jpg.b64`
-- Export format after decoding: JPEG
-- Export dimensions: 1254 × 1254 px
-- Export SHA-256 after decoding: `9a0568d3190280532c82e563860ad28eb793cb5a5796b404be0d77e4d1da0e94`
+- Export path: `exports/symbol-triangle-token-preview-v001.webp.b64`
+- Decode format: WebP
+- Decoded dimensions: 256 × 256 px
+- Decoded SHA-256: `16a70af17acdc0d8547fbf28eda61b288b5de0eba5c489503b4490b62388bc7b`
 
-The repository export is a layout/playtest derivative. The Google Drive PNG above remains the authoritative visual master.
+The repository preview is a compact review/layout derivative. The Google Drive PNG above remains the authoritative visual master.
