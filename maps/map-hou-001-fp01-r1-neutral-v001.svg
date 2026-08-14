@@ -11,8 +11,8 @@ text{font-family:Arial,Helvetica,sans-serif;fill:#111}
 .tag{font-size:14px;font-weight:700}
 </style>
 <text x="55" y="55" font-size="34" font-weight="700">ARAMYST — MAP-HOU-001-FP01-R1</text>
-<text x="55" y="90" font-size="22">Last-Bell House — neutral non-metric physical floorplan candidate</text>
-<text x="55" y="120" font-size="16" font-weight="700">CANDIDATE / NOT ESTABLISHED • NO SCALE • NO COMPASS ORIENTATION • HOU-PD-012 HOLDS REMAIN</text>
+<text x="55" y="90" font-size="22">Last-Bell House — approved non-metric physical floorplan reference</text>
+<text x="55" y="120" font-size="16" font-weight="700">APPROVED / CONTROLLING PHYSICAL GEOMETRY • NO SCALE • NO COMPASS ORIENTATION • HOU-PD-012 HOLDS REMAIN</text>
 
 <!-- principal enclosed mass: single-line boundaries only -->
 <rect class="room" x="470" y="180" width="300" height="180"/>
@@ -87,12 +87,12 @@ text{font-family:Arial,Helvetica,sans-serif;fill:#111}
 <text x="75" y="865" font-size="15">• No dimensions, scale, or compass orientation.</text>
 <text x="75" y="890" font-size="15">• Guest Hall ↔ Kitchen: one direct controlled opening.</text>
 <text x="75" y="915" font-size="15">• Bell Stair: no redundant-egress/service claim.</text>
-<text x="75" y="940" font-size="15">• All geometry remains candidate pending approval.</text>
+<text x="75" y="940" font-size="15">• HOU-FP-GD-001–022 approved; HOU-PD-012 holds remain.</text>
 
 <rect x="1040" y="740" width="400" height="195" fill="none" stroke="#111" stroke-width="2"/>
 <text x="1060" y="770" font-size="18" font-weight="700">ACCESS / SYMBOL KEY</text>
 <line x1="1070" y1="800" x2="1120" y2="800" stroke="#111" stroke-width="2"/><text x="1135" y="806" font-size="15">single-line boundary</text>
 <line x1="1070" y1="830" x2="1120" y2="830" class="branch"/><text x="1135" y="836" font-size="15">controlled / conditional branch</text>
 <circle cx="1095" cy="865" r="7" fill="white" stroke="#111" stroke-width="2"/><text x="1135" y="871" font-size="15">candidate controlled opening</text>
-<text x="1060" y="905" font-size="15" font-weight="700">All HOU-FP-GD-001–022 remain CANDIDATE.</text>
+<text x="1060" y="905" font-size="15" font-weight="700">HOU-FP-GD-001–022 APPROVED / CONTROLLING.</text>
 </svg>
