@@ -20,6 +20,6 @@ The authoritative lossless PNG master is stored in Google Drive:
 - Export path: `exports/symbol-triangle-token-preview-v001.webp.b64`
 - Decode format: WebP
 - Decoded dimensions: 256 × 256 px
-- Decoded SHA-256: `16a70af17acdc0d8547fbf28eda61b288b5de0eba5c489503b4490b62388bc7b`
+- Decoded SHA-256: `611510ae2ebf1ad81f42e2e7ca43ce4fe84f6784b03e84d4251c960d80353d2f`
 
 The repository preview is a compact review/layout derivative. The Google Drive PNG above remains the authoritative visual master.
