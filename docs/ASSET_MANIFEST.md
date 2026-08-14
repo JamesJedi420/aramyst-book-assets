@@ -2,6 +2,8 @@
 
 Canonical human-readable registry for Aramyst visual assets. `manifest.json` is the machine-readable source; `ASSET_MANIFEST.csv` is the operational mirror. GitHub owns asset identity, status, version, validation, and repository paths.
 
+Project identity boundary: “Aramyst” is a temporary development alias; the final publication/setting title remains unresolved. The approved project model is a standalone TTRPG under SYS-001. This registry must not reintroduce compatibility-based framing or treat the development alias as a publication-final title.
+
 ## Registry Rules
 
 1. Asset IDs are permanent and never reused.
@@ -24,9 +26,9 @@ Canonical human-readable registry for Aramyst visual assets. `manifest.json` is 
 | AST-LOC-001 | Opening Location Key Art | location | planned | v001 | `locations/` |
 | AST-SYM-001 | Aramyst Seal / Emblem | symbol | planned | v001 | `symbols/` |
 | AST-TYPE-001 | Main Title Treatment | typography | planned | v001 | `typography/` |
-| AST-CHAR-003 | Tobin Marr Portrait | character | in-progress | v001 | Drive brief |
+| AST-CHAR-003 | Tovin Marr Portrait | character | in-progress | v001 | Drive brief |
 | AST-CHAR-004 | Sister Aneth Portrait | character | in-progress | v001 | Drive brief |
-| AST-CHAR-005 | Sergeant Bren Vask Portrait | character | in-progress | v001 | Drive brief |
+| AST-CHAR-005 | Sergeant Beran Vask Portrait | character | in-progress | v001 | Drive brief |
 | AST-LOC-002 | Gate at Dusk Backdrop | location | in-progress | v001 | Drive brief |
 | AST-SYM-002 | Black Door Sign | symbol | in-progress | v001 | Drive brief |
 | AST-SYM-003 | Triangle Token | symbol | in-progress | v001 | Drive brief |
@@ -101,7 +103,7 @@ Canonical human-readable registry for Aramyst visual assets. `manifest.json` is 
 
 ## Non-Map Assets
 
-The following registered assets remain unchanged by the map-registry and MAP-HOU-001 reconciliations. Their complete operational fields are preserved in `manifest.json` and `ASSET_MANIFEST.csv`:
+The following registered assets remain outside the detailed map records. Their complete operational fields are preserved in `manifest.json` and `ASSET_MANIFEST.csv`:
 
 AST-COVER-001, AST-CHAR-001, AST-CHAR-002, AST-LOC-001, AST-SYM-001, AST-TYPE-001, AST-CHAR-003, AST-CHAR-004, AST-CHAR-005, AST-LOC-002, AST-SYM-002, AST-SYM-003.
 
@@ -109,6 +111,7 @@ AST-COVER-001, AST-CHAR-001, AST-CHAR-002, AST-LOC-001, AST-SYM-001, AST-TYPE-00
 
 | Date | Change | Result |
 |---|---|---|
+| 2026-08-14 | Q-023 cross-system identity synchronization | Updated Approved Working Scene 01 names to Tovin Marr and Sergeant Beran Vask in this registry and recorded the temporary development-alias / standalone-system boundary without changing Asset IDs or versions. |
 | 2026-08-14 | AST-MAP-004 MAP-HOU-001 floorplan binding | Registered FP01-R1 as the approved controlling non-metric Last-Bell House floorplan; promoted only HOU-FP-GD-001–022; retained HOU-PD-012 holds and original FP01 failure history; synchronized approval labels without changing geometry. |
 | 2026-08-13 | AST-MAP-002 manifest reconciliation | Bound `maps/map-reg-001-gm-reference-v002.svg` as approved v002; recorded regional-data-first authority and PASS acceptance gate; v001 retained only as superseded history. |
 | 2026-08-13 | AST-MAP-003 mirror synchronization | Existing approved MAP-ENV-001 local schematic is represented in the human-readable registry alongside JSON/CSV. |
