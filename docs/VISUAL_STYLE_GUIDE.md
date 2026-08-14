@@ -1,6 +1,6 @@
 # Aramyst Visual Style Guide
 
-Canonical visual-direction document for **Aramyst: The Keep, the Road, and the Caves**, a 5e-compatible illustrated campaign book.
+Canonical visual-direction document for the project currently using **Aramyst** as a development alias. The final publication/setting title remains unresolved. Under `SYS-001`, this is a standalone game/book project; this guide does not assert 5e compatibility.
 
 This guide governs covers, page art, character and creature illustrations, locations, maps, symbols, typography, borders, and production-ready page assets. It should be read together with:
 
@@ -214,7 +214,7 @@ Maps should resemble functional frontier records: surveyed, copied, amended, inh
 
 ## 9. Symbols, Seals, and Faction Marks
 
-Symbols should be simple enough to recognize at small sizes and specific enough to belong to Aramyst.
+Symbols should be simple enough to recognize at small sizes and specific enough to belong to this setting/project.
 
 Every canonical symbol should have:
 
@@ -291,4 +291,5 @@ Changes to the approved direction should be recorded in this file and dated. A s
 
 | Date | Change | Author |
 |---|---|---|
+| 2026-08-14 | Q-023 continuity synchronization: made publication identity explicitly unresolved and removed the obsolete 5e-compatibility claim under standalone `SYS-001`. | JamesJedi420 / ChatGPT |
 | 2026-08-04 | Created canonical visual style guide from the approved grim-frontier manuscript direction. | JamesJedi420 / ChatGPT |

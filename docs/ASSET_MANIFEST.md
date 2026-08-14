@@ -1,6 +1,6 @@
 # Aramyst Asset Manifest
 
-Canonical human-readable registry for Aramyst visual assets. `manifest.json` is the machine-readable source; `ASSET_MANIFEST.csv` is the operational mirror. GitHub owns asset identity, status, version, validation, and repository paths.
+Canonical human-readable registry for the project currently using **Aramyst** as a development alias. The final publication/setting identity remains unresolved. `manifest.json` is the machine-readable source; `ASSET_MANIFEST.csv` is the operational mirror. GitHub owns asset identity, status, version, validation, and repository paths.
 
 ## Registry Rules
 
@@ -8,41 +8,41 @@ Canonical human-readable registry for Aramyst visual assets. `manifest.json` is 
 2. Material revisions retain the asset ID and increment the `v###` version.
 3. `manifest.json`, `ASSET_MANIFEST.csv`, and this file must identify the same registered assets.
 4. Google Drive remains the authority for working briefs, editable documents, and QA records unless promoted to GitHub.
-5. `approved` means accepted for the stated use; it does not imply publication-final cartography.
+5. `approved` means accepted for the stated use; it does not imply publication-final cartography or publication-final naming.
 
 ## Master Asset Index
 
 | Asset ID | Title | Category | Status | Version | Active source |
 |---|---|---|---|---|---|
 | AST-COVER-001 | Main Book Cover | cover | planned | v001 | `covers/` |
-| AST-MAP-001 | Aramyst World Map | map | planned | v001 | `maps/` |
+| AST-MAP-001 | World Map (Publication Identity Pending) | map | planned | v001 | `maps/` |
 | AST-MAP-002 | MAP-REG-001 — First-Playable Region GM Reference | map | approved | v002 | `maps/map-reg-001-gm-reference-v002.svg` |
 | AST-MAP-003 | MAP-ENV-001 — Keep / Lower Road / Last-Bell Local GM Schematic | map | approved | v001 | `maps/map-env-001-gm-schematic-v001.svg` |
 | AST-MAP-004 | MAP-HOU-001 — Last-Bell House Controlling Physical Floorplan | map | approved | v001 | `maps/map-hou-001-fp01-r1-neutral-v001.svg` |
 | AST-CHAR-001 | Primary Protagonist Portrait | character | planned | v001 | `characters/` |
 | AST-CHAR-002 | Primary Antagonist Portrait | character | planned | v001 | `characters/` |
 | AST-LOC-001 | Opening Location Key Art | location | planned | v001 | `locations/` |
-| AST-SYM-001 | Aramyst Seal / Emblem | symbol | planned | v001 | `symbols/` |
-| AST-TYPE-001 | Main Title Treatment | typography | planned | v001 | `typography/` |
-| AST-CHAR-003 | Tobin Marr Portrait | character | in-progress | v001 | Drive brief |
+| AST-SYM-001 | Project Seal / Emblem (Publication Identity Pending) | symbol | planned | v001 | `symbols/` |
+| AST-TYPE-001 | Main Title Treatment (Publication Name Pending) | typography | planned | v001 | `typography/` |
+| AST-CHAR-003 | Tovin Marr Portrait | character | in-progress | v001 | Drive brief |
 | AST-CHAR-004 | Sister Aneth Portrait | character | in-progress | v001 | Drive brief |
-| AST-CHAR-005 | Sergeant Bren Vask Portrait | character | in-progress | v001 | Drive brief |
+| AST-CHAR-005 | Sergeant Beran Vask Portrait | character | in-progress | v001 | Drive brief |
 | AST-LOC-002 | Gate at Dusk Backdrop | location | in-progress | v001 | Drive brief |
-| AST-SYM-002 | Black Door Sign | symbol | in-progress | v001 | Drive brief |
-| AST-SYM-003 | Triangle Token | symbol | in-progress | v001 | Drive brief |
+| AST-SYM-002 | Black Door Sign | symbol | approved | v001 | `symbols/symbol-black-door-sign-source-v001.md` |
+| AST-SYM-003 | Triangle Token | symbol | approved | v001 | `symbols/symbol-triangle-token-source-v001.md` |
 
 ## Map Asset Records
 
-### AST-MAP-001 — Aramyst World Map
+### AST-MAP-001 — World Map (Publication Identity Pending)
 
 - **Category:** map
 - **Context:** Whole book
-- **Purpose:** Canonical world-geography reference and possible publication map.
+- **Purpose:** Canonical world-geography reference and possible publication map; final publication identity pending approved successor naming.
 - **Status / Version:** planned / v001
 - **GitHub Source Path:** `maps/`
 - **Dependencies:** Canon geography decisions.
 - **Approval:** Not approved.
-- **Notes:** World geography remains independently deferred. AST-MAP-002 does not depend on completion of this asset.
+- **Notes:** World geography remains independently deferred. AST-MAP-002 does not depend on completion of this asset. The asset title does not establish a successor publication or setting name.
 
 ### AST-MAP-002 — MAP-REG-001 — First-Playable Region GM Reference
 
@@ -101,7 +101,7 @@ Canonical human-readable registry for Aramyst visual assets. `manifest.json` is 
 
 ## Non-Map Assets
 
-The following registered assets remain unchanged by the map-registry and MAP-HOU-001 reconciliations. Their complete operational fields are preserved in `manifest.json` and `ASSET_MANIFEST.csv`:
+The following registered assets remain governed by the complete operational fields in `manifest.json` and `ASSET_MANIFEST.csv`:
 
 AST-COVER-001, AST-CHAR-001, AST-CHAR-002, AST-LOC-001, AST-SYM-001, AST-TYPE-001, AST-CHAR-003, AST-CHAR-004, AST-CHAR-005, AST-LOC-002, AST-SYM-002, AST-SYM-003.
 
@@ -109,6 +109,7 @@ AST-COVER-001, AST-CHAR-001, AST-CHAR-002, AST-LOC-001, AST-SYM-001, AST-TYPE-00
 
 | Date | Change | Result |
 |---|---|---|
+| 2026-08-14 | Q-023 authorized continuity synchronization | Corrected current Approved Working Scene 01 identities to Tovin Marr and Sergeant Beran Vask; synchronized AST-SYM-002/003 approved status in this mirror; marked publication-identity-dependent planned assets as naming-pending; did not invent a successor title or change asset versions/approval state. |
 | 2026-08-14 | AST-MAP-004 MAP-HOU-001 floorplan binding | Registered FP01-R1 as the approved controlling non-metric Last-Bell House floorplan; promoted only HOU-FP-GD-001–022; retained HOU-PD-012 holds and original FP01 failure history; synchronized approval labels without changing geometry. |
 | 2026-08-13 | AST-MAP-002 manifest reconciliation | Bound `maps/map-reg-001-gm-reference-v002.svg` as approved v002; recorded regional-data-first authority and PASS acceptance gate; v001 retained only as superseded history. |
 | 2026-08-13 | AST-MAP-003 mirror synchronization | Existing approved MAP-ENV-001 local schematic is represented in the human-readable registry alongside JSON/CSV. |
