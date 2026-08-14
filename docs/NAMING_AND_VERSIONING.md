@@ -1,6 +1,6 @@
 # Aramyst Naming and Versioning
 
-Canonical naming, path, version, status, and fixed-layout page-order rules for **Aramyst: The Keep, the Road, and the Caves**.
+Canonical naming, path, version, status, and fixed-layout page-order rules for the project currently using **Aramyst** as a development alias. The final publication/setting title is unresolved and must not be inferred from repository names, existing slugs, or examples.
 
 This document applies to source art, prompts, references, maps, typography, exported images, fixed-layout pages, `.b64` wrappers, and related production files.
 
@@ -70,14 +70,14 @@ Use lowercase kebab-case:
 Examples:
 
 ```text
-cover-aramyst-main-front-v001-wip.psd
-cover-aramyst-main-front-v003-approved.png
+cover-project-main-front-v001-wip.psd
+cover-project-main-front-v003-approved.png
 character-protagonist-portrait-front-v002-review.png
 character-protagonist-costume-winter-v001-wip.png
 map-opening-region-player-v004-approved.svg
 map-opening-region-gm-v004-approved.svg
-symbol-aramyst-seal-one-color-v002-approved.svg
-typography-aramyst-title-stacked-v003-approved.svg
+symbol-project-seal-one-color-v002-approved.svg
+typography-title-stacked-v003-approved.svg
 prompt-character-portrait-base-v001.md
 ```
 
@@ -105,7 +105,7 @@ misc
 Use the canonical proper noun or stable role slug:
 
 ```text
-aramyst
+project
 protagonist
 opening-region
 keep
@@ -115,6 +115,8 @@ moon-seal
 ```
 
 Do not create multiple spellings for the same subject. When a proper noun becomes canonical, update future filenames and record the former name in the manifest notes if needed.
+
+Until successor naming is approved, do not mint new publication-facing filenames that treat `aramyst` or the retired long-form title as final identity. Use stable functional slugs, approved setting-local names, or existing technical IDs instead.
 
 ### Purpose
 
@@ -447,4 +449,5 @@ Before committing an asset change:
 
 | Date | Change | Author |
 |---|---|---|
+| 2026-08-14 | Q-023 continuity synchronization: made publication naming explicitly unresolved and replaced publication-final identity examples with neutral functional slugs. | JamesJedi420 / ChatGPT |
 | 2026-08-04 | Created canonical naming, versioning, and fixed-layout page-order rules. | JamesJedi420 / ChatGPT |
