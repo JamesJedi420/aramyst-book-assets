@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate Aramyst asset and page manifests without external dependencies."""
+"""Validate Aramyst asset and page manifests against schema and repository rules."""
 
 from __future__ import annotations
 
@@ -7,8 +7,16 @@ import csv
 import json
 import re
 import sys
+from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
+
+try:
+    from jsonschema import Draft202012Validator
+    from jsonschema.exceptions import SchemaError
+except ImportError:
+    Draft202012Validator = None
+    SchemaError = Exception
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST_PATH = ROOT / "manifest.json"
@@ -83,6 +91,41 @@ def load_json(path: Path, errors: list[str]) -> dict[str, Any]:
         errors.append(f"{path.relative_to(ROOT)} must contain a JSON object")
         return {}
     return data
+
+
+def format_json_path(path: Iterable[Any]) -> str:
+    rendered = "$"
+    for part in path:
+        if isinstance(part, int):
+            rendered += f"[{part}]"
+        else:
+            rendered += f".{part}"
+    return rendered
+
+
+def validate_json_schema(manifest: dict[str, Any], schema: dict[str, Any], errors: list[str]) -> None:
+    if Draft202012Validator is None:
+        errors.append(
+            "Missing validation dependency: jsonschema. "
+            "Install requirements-validation.txt before running the validator."
+        )
+        return
+
+    try:
+        Draft202012Validator.check_schema(schema)
+    except SchemaError as exc:
+        message = getattr(exc, "message", str(exc))
+        errors.append(f"Invalid JSON Schema in schemas/asset-manifest.schema.json: {message}")
+        return
+
+    validator = Draft202012Validator(schema)
+    schema_errors = sorted(
+        validator.iter_errors(manifest),
+        key=lambda error: tuple(str(part) for part in error.absolute_path),
+    )
+    for error in schema_errors:
+        path = format_json_path(error.absolute_path)
+        errors.append(f"manifest.json schema violation at {path}: {error.message}")
 
 
 def validate_project(project: Any, errors: list[str]) -> None:
@@ -315,7 +358,10 @@ def validate_markdown(asset_ids: set[str], errors: list[str]) -> None:
 def main() -> int:
     errors: list[str] = []
     manifest = load_json(MANIFEST_PATH, errors)
-    load_json(SCHEMA_PATH, errors)
+    schema = load_json(SCHEMA_PATH, errors)
+
+    if schema:
+        validate_json_schema(manifest, schema, errors)
 
     validate_project(manifest.get("project"), errors)
 
@@ -343,7 +389,10 @@ def main() -> int:
             print(f"- {error}", file=sys.stderr)
         return 1
 
-    print(f"Validated {len(asset_ids)} assets and {len(manifest.get('pages', []))} pages.")
+    print(
+        f"Validated schema contract, {len(asset_ids)} assets, "
+        f"and {len(manifest.get('pages', []))} pages."
+    )
     return 0
 
 

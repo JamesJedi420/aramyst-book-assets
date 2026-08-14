@@ -51,7 +51,7 @@ No GitHub maintenance action should silently create or revise story canon, geogr
 
 ## Registry snapshot
 
-At the baseline commit, `manifest.json` contains:
+At the baseline commit, `manifest.json` contained:
 
 - 16 registered assets;
 - 7 `planned` assets;
@@ -59,21 +59,23 @@ At the baseline commit, `manifest.json` contains:
 - 3 `approved` assets;
 - 1 planned fixed-layout page record (`pages/001_cover.png.b64`).
 
-Approved registered assets:
+Approved registered assets at that baseline point:
 
 - `AST-MAP-002` — MAP-REG-001 First-Playable Region GM Reference, `v002`;
 - `AST-MAP-003` — MAP-ENV-001 Keep / Lower Road / Last-Bell Local GM Schematic, `v001`;
 - `AST-MAP-004` — MAP-HOU-001 Last-Bell House Controlling Physical Floorplan, `v001`.
 
-Manual audit confirms that the same 16 asset IDs are represented in:
+Manual audit confirmed that the same 16 asset IDs were represented in:
 
 - `manifest.json`;
 - `ASSET_MANIFEST.csv`;
 - `docs/ASSET_MANIFEST.md`.
 
-The registered GitHub source paths for `AST-MAP-002`, `AST-MAP-003`, and `AST-MAP-004` all exist on `main`.
+The registered GitHub source paths for `AST-MAP-002`, `AST-MAP-003`, and `AST-MAP-004` existed on `main`.
 
 `maps/map-reg-001-gm-reference-v001.svg` remains present as superseded historical material, while `v002` is the registered active source.
+
+This section records the original baseline snapshot; later approved asset-state changes are governed by the current registries rather than by these historical counts.
 
 ## Repository structure
 
@@ -92,10 +94,12 @@ Current top-level structure includes the controlled registries and category fold
 - `schemas/`
 - `scripts/`
 - `symbols/`
+- `tests/`
 - `typography/`
 - `ASSET_MANIFEST.csv`
 - `README.md`
 - `manifest.json`
+- `requirements-validation.txt`
 
 Several category folders remain placeholders, which is consistent with the current asset-development stage.
 
@@ -104,9 +108,9 @@ Several category folders remain placeholders, which is consistent with the curre
 At baseline:
 
 - `main` is the default branch.
-- One pre-existing non-main branch remains: `agent/map-hou-001-functional-adjacency`.
-- PR #5, `Bind approved MAP-HOU-001 FP01-R1 floorplan`, is merged.
-- There are no open GitHub issues in this repository.
+- One pre-existing non-main branch remained: `agent/map-hou-001-functional-adjacency`.
+- PR #5, `Bind approved MAP-HOU-001 FP01-R1 floorplan`, was merged.
+- There were no open GitHub issues in this repository.
 
 Post-baseline reconciliation on 2026-08-14:
 
@@ -120,28 +124,58 @@ Post-baseline reconciliation on 2026-08-14:
 
 ## Validation and CI state
 
-The repository contains `.github/workflows/validate-assets.yml`, which runs `python scripts/validate_manifest.py` for manifest/page-control changes.
+The repository contains `.github/workflows/validate-assets.yml`.
 
-The validator currently checks:
+Current workflow behavior:
+
+- runs on every pull request;
+- runs on every push to `main`;
+- supports explicit `workflow_dispatch`;
+- cancels superseded in-progress validation runs for the same ref;
+- uses a five-minute job timeout;
+- installs the pinned validation dependency from `requirements-validation.txt`;
+- compiles `scripts/validate_manifest.py`;
+- runs the JSON Schema enforcement regression tests;
+- runs the complete manifest/page-registry validator.
+
+The validator enforces two layers of control.
+
+Layer 1 — machine-readable JSON Schema contract:
+
+- loads `schemas/asset-manifest.schema.json`;
+- checks that the schema itself is valid Draft 2020-12 JSON Schema;
+- validates `manifest.json` with `jsonschema`'s `Draft202012Validator`;
+- reports schema violations with manifest paths;
+- fails closed when the required `jsonschema` dependency is unavailable.
+
+Layer 2 — Aramyst repository semantics and cross-file consistency:
 
 - project constants;
-- asset-ID/category/version/status formats;
-- required fields;
+- asset-ID/category/version/status formats and category-code agreement;
+- required semantic fields;
 - Drive/GitHub source-location requirements;
 - dependency duplication;
-- page-number/path rules;
+- repository-relative path and filename rules;
+- page-number/path/asset-reference rules;
+- exported/published page-file presence;
 - JSON/CSV registry synchronization;
 - presence of every registered asset ID in `docs/ASSET_MANIFEST.md`.
 
-Operational warning: PR #5 records that GitHub Actions could not start because the GitHub account was locked due to a billing issue. No workflow run is attached to the baseline `main` commit. CI therefore cannot currently be treated as an independently verified gate.
+Schema enforcement is regression-tested against the current manifest and against an intentionally invalid copy containing an undeclared top-level property. The latter must be rejected by the schema's `additionalProperties: false` contract.
 
-Validation coverage warning: `scripts/validate_manifest.py` loads `schemas/asset-manifest.schema.json` only to confirm that it is valid JSON; it does not execute JSON Schema validation against `manifest.json`. The script duplicates many schema checks manually, but the schema is not presently an enforced contract.
+Post-baseline CI restoration on 2026-08-14:
+
+- PR #8, `Restore reliable GitHub Actions validation`, was merged.
+- The prior account-level billing lock stopped blocking runners.
+- PR-branch validation completed successfully.
+- A fresh `main` push validation after the merge also completed successfully.
+- Issue #7, `Restore GitHub Actions account access`, was closed after runner-backed validation was observed.
 
 Branch-protection settings could not be verified through the connected GitHub integration and remain unconfirmed.
 
 ## Baseline health
 
-Status: **controlled with operational warnings**.
+Status: **controlled with one remaining repository-control warning**.
 
 Strengths:
 
@@ -149,15 +183,15 @@ Strengths:
 - permanent asset IDs and controlled versions;
 - synchronized machine-readable, CSV, and human-readable registries;
 - approved map assets retain explicit authority, dependencies, holds, and supersession history;
-- repository changes are already being handled through scoped `agent/` branches and pull requests;
-- validation code and a CI workflow exist;
-- stale pre-approval PR #4 has been explicitly reconciled and closed as superseded.
+- repository changes are handled through scoped `agent/` branches and pull requests;
+- stale pre-approval PR #4 has been explicitly reconciled and closed as superseded;
+- GitHub Actions executes successfully as a real validation gate;
+- the JSON Schema is now an enforced machine-readable contract rather than passive documentation;
+- schema enforcement has a regression test that proves invalid structure is rejected.
 
-Warnings:
+Warning:
 
-1. GitHub Actions is not currently functioning as a reliable merge gate because of the reported billing lock.
-2. JSON Schema is documented but not actually enforced by the validator.
-3. Branch-protection status is unverified.
+1. Branch-protection status is unverified.
 
 ## Change-control baseline for this thread
 
@@ -169,12 +203,10 @@ Until superseded by an explicit project decision, GitHub maintenance in this thr
 4. Do not modify canon or approval state without an already-authorized project decision.
 5. When a registered asset changes materially, synchronize `manifest.json`, `ASSET_MANIFEST.csv`, and `docs/ASSET_MANIFEST.md` in the same change set.
 6. Preserve superseded assets when they carry approval, QA, or provenance history unless explicit archival/deletion authority is given.
-7. Run or manually reproduce the repository validator before merge whenever CI is unavailable.
+7. Require the GitHub Actions validation gate to pass before merge; reproduce the validator manually only as a diagnostic supplement, not as a replacement for a failed or unavailable gate.
 8. Record any unresolved synchronization conflict as a blocker rather than guessing which source is correct.
 9. Re-audit this baseline whenever repository ownership, source-of-truth rules, validation architecture, or release structure changes materially.
 
 ## Immediate follow-up queue
 
-1. Restore GitHub Actions execution so `validate-assets.yml` can function as a real gate.
-2. Strengthen `scripts/validate_manifest.py` so the JSON Schema is actually enforced or explicitly retire the schema as non-enforcing documentation.
-3. Verify and, if appropriate, establish branch-protection requirements for `main`.
+1. Verify and, if appropriate, establish branch-protection requirements for `main`.
