@@ -93,6 +93,6 @@ text{font-family:Arial,Helvetica,sans-serif;fill:#111}
 <text x="1060" y="770" font-size="18" font-weight="700">ACCESS / SYMBOL KEY</text>
 <line x1="1070" y1="800" x2="1120" y2="800" stroke="#111" stroke-width="2"/><text x="1135" y="806" font-size="15">single-line boundary</text>
 <line x1="1070" y1="830" x2="1120" y2="830" class="branch"/><text x="1135" y="836" font-size="15">controlled / conditional branch</text>
-<circle cx="1095" cy="865" r="7" fill="white" stroke="#111" stroke-width="2"/><text x="1135" y="871" font-size="15">candidate controlled opening</text>
+<circle cx="1095" cy="865" r="7" fill="white" stroke="#111" stroke-width="2"/><text x="1135" y="871" font-size="15">approved controlled opening</text>
 <text x="1060" y="905" font-size="15" font-weight="700">HOU-FP-GD-001–022 APPROVED / CONTROLLING.</text>
 </svg>
