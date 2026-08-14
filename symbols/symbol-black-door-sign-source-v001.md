@@ -15,11 +15,11 @@ The authoritative lossless PNG master is stored in Google Drive:
 - Master MIME type: `image/png`
 - Master SHA-256: `60571b5ab33acb3f471f59fec5fc8cfd1b940a73e6e8438208f26bc145f74ba6`
 
-## Repository export
+## Repository preview derivative
 
-- Export path: `exports/symbol-black-door-sign-handout-v001.jpg.b64`
-- Export format after decoding: JPEG
-- Export dimensions: 1254 × 1254 px
-- Export SHA-256 after decoding: `c40a750dc42170c042035c82272a4dc1ecef5dc4ee2ba47ec46bdd63c8b39fba`
+- Export path: `exports/symbol-black-door-sign-preview-v001.webp.b64`
+- Decode format: WebP
+- Decoded dimensions: 256 × 256 px
+- Decoded SHA-256: `0b6bc93e5cef8caeb1a1b5c3c70091b63d3e3d1c2196b9a68fbf18707ccb0e61`
 
-The repository export is a layout/playtest derivative. The Google Drive PNG above remains the authoritative visual master.
+The repository preview is a compact review/layout derivative. The Google Drive PNG above remains the authoritative visual master.
