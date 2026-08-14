@@ -1,6 +1,8 @@
 # Aramyst Naming and Versioning
 
-Canonical naming, path, version, status, and fixed-layout page-order rules for **Aramyst: The Keep, the Road, and the Caves**.
+Canonical naming, path, version, status, and fixed-layout page-order rules for the standalone Aramyst TTRPG production repository. “Aramyst” is a temporary development alias; the final publication/setting title remains unresolved.
+
+Existing `aramyst` filename slugs may remain where they identify development-era project material or preserve provenance. They must not be treated as an approved publication-final title slug, and no successor title slug may be invented before the governing naming decision is approved.
 
 This document applies to source art, prompts, references, maps, typography, exported images, fixed-layout pages, `.b64` wrappers, and related production files.
 
@@ -114,7 +116,7 @@ cave-mouth
 moon-seal
 ```
 
-Do not create multiple spellings for the same subject. When a proper noun becomes canonical, update future filenames and record the former name in the manifest notes if needed.
+Do not create multiple spellings for the same subject. When a proper noun becomes canonical, update future filenames and record the former name in the manifest notes if needed. Until the final publication/setting name is approved, `aramyst` may be used only as the existing development alias where a project-level slug is required.
 
 ### Purpose
 
@@ -447,4 +449,5 @@ Before committing an asset change:
 
 | Date | Change | Author |
 |---|---|---|
+| 2026-08-14 | Q-023 synchronization: clarified temporary development-alias handling and blocked unapproved successor title slugs. | JamesJedi420 / ChatGPT |
 | 2026-08-04 | Created canonical naming, versioning, and fixed-layout page-order rules. | JamesJedi420 / ChatGPT |
