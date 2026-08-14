@@ -18,9 +18,13 @@ Approval date: 2026-08-14
 
 Repository path: `maps/map-hou-001-fp01-r1-neutral-v001.svg`
 
-Source SHA-256: `a6276209d66453bc13cf3d714c3999978f751a4feff8318b47a15951930e0413`
+Active source SHA-256: `30d3b68113b62987380c945a919c9091a1e56b8ebec7db3fcdc9cdde311058d9`
 
-The SVG is preserved byte-for-byte from the R1 artifact reviewed by MAP-HOU-001-FP01-R1-QA-001. Its embedded pre-approval candidate labels are provenance text. Current authority is established by this binding, the Drive control record, the approved geometry register, and the asset registry.
+Pre-approval QA-artifact SHA-256: `a6276209d66453bc13cf3d714c3999978f751a4feff8318b47a15951930e0413`
+
+After geometry approval, the source SVG received a status-label-only synchronization so the visible artifact no longer declared its approved geometry to be candidate/not established. The only changes were human-readable approval/provenance text: the subtitle/status line, one R1 control-note line, and the controlled-opening legend/approval-state text. A structural comparison with all `<text>` elements removed returned exact equality between the QA-reviewed pre-approval SVG and the active approved SVG. No room/yard boundary, coordinate, opening, branch, GD tag, shape, line, or other geometry changed.
+
+The pre-approval checksum is retained above so the artifact lineage remains auditable. Current authority is established by this binding, the Drive control record, the approved geometry register, the R1 QA record, and the asset registry.
 
 ## Geometry promoted
 
@@ -40,4 +44,4 @@ The original FP01 candidate failed QA and remains preserved as development histo
 
 ## Production rule
 
-This asset visualizes approved canon geometry but does not independently expand canon. Any later revision that changes HOU-FP-GD-001–022 requires a new geometry decision/QA cycle. Cosmetic status-label cleanup may be produced as a derivative only if geometry remains identical and provenance is preserved.
+This asset visualizes approved canon geometry but does not independently expand canon. Any later revision that changes HOU-FP-GD-001–022 requires a new geometry decision/QA cycle. Pure status/provenance-label corrections may be made only when a structural geometry-equivalence check confirms that no geometry changed and both before/after checksums are recorded.
