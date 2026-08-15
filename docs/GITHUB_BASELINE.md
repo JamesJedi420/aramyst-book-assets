@@ -104,6 +104,8 @@ Current top-level structure includes the controlled registries and category fold
 
 Several category folders remain placeholders, which is consistent with the current asset-development stage.
 
+The `schemas/` control surface includes both the JSON Schema contract and the machine-readable filesystem provenance exception registry. `schemas/filesystem-integrity-allowlist.json` is the required mechanism for retaining otherwise-unregistered superseded/provenance files inside asset-owned directories.
+
 ## Branch and pull-request state
 
 At the original baseline:
@@ -154,10 +156,10 @@ Current workflow behavior:
 - uses a five-minute job timeout;
 - installs the pinned validation dependency from `requirements-validation.txt`;
 - compiles `scripts/validate_manifest.py`;
-- runs the JSON Schema enforcement regression tests;
-- runs the complete manifest/page-registry validator.
+- runs the full validator regression-test suite;
+- runs the complete manifest/page-registry/filesystem validator.
 
-The validator enforces two layers of control.
+The validator enforces three coordinated layers of control.
 
 Layer 1 — machine-readable JSON Schema contract:
 
@@ -167,7 +169,7 @@ Layer 1 — machine-readable JSON Schema contract:
 - reports schema violations with manifest paths;
 - fails closed when the required `jsonschema` dependency is unavailable.
 
-Layer 2 — Aramyst repository semantics and cross-file consistency:
+Layer 2 — Aramyst registry semantics and cross-file consistency:
 
 - project constants;
 - asset-ID/category/version/status formats and category-code agreement;
@@ -176,11 +178,38 @@ Layer 2 — Aramyst repository semantics and cross-file consistency:
 - dependency duplication;
 - repository-relative path and filename rules;
 - page-number/path/asset-reference rules;
-- exported/published page-file presence;
 - JSON/CSV registry synchronization;
 - presence of every registered asset ID in `docs/ASSET_MANIFEST.md`.
 
+Layer 3 — registry-to-filesystem integrity:
+
+- exact registered `AST-*` dependencies must resolve to registered Asset IDs; malformed or dangling Asset-ID dependencies fail validation;
+- concrete registered GitHub source/export files must exist for materialized `review`, `approved`, `exported`, and `published` assets when those paths are present;
+- `planned`, `briefed`, and `in-progress` future paths may remain unmaterialized;
+- materialized page files must exist and page paths must agree with the associated asset's registered `github_export_path` when one exists;
+- asset-owned directories are scanned for unexplained files;
+- `.gitkeep`, registered concrete files, and explicitly declared superseded/provenance exceptions are permitted;
+- active materialized paths may not point at files classified as superseded/provenance.
+
 Schema enforcement is regression-tested against the current manifest and against an intentionally invalid copy containing an undeclared top-level property. The latter must be rejected by the schema's `additionalProperties: false` contract.
+
+Filesystem-integrity enforcement is regression-tested against the current repository plus deliberately invalid cases covering missing approved sources, dangling `AST-*` dependencies, unexplained asset-directory files, planned/unmaterialized future paths, and documented provenance exceptions.
+
+### Filesystem provenance exception control
+
+`schemas/filesystem-integrity-allowlist.json` is the sole routine mechanism for allowing an otherwise-unregistered file to remain inside an asset-owned directory because it is intentionally retained as superseded or provenance material.
+
+Each allowlist entry must provide:
+
+- a safe repository-relative `path` inside an asset-owned directory;
+- `classification` of `superseded` or `provenance`;
+- a non-empty `reason` establishing why the file is retained.
+
+The validator also requires allowlisted files to physically exist, rejects duplicate allowlist paths and unsupported classifications, and prevents active materialized registry paths from pointing at allowlisted files. The allowlist is therefore an explicit provenance control, not a general CI bypass. Do not add unexplained files merely to silence orphan detection; establish the supersession/provenance basis first.
+
+The initial controlled exception is `maps/map-reg-001-gm-reference-v001.svg`, classified `superseded` because AST-MAP-002 v002 is the active registered source while v001 is retained for development history.
+
+The manual registry-to-filesystem audit recorded in `docs/REGISTRY_FILESYSTEM_AUDIT_2026-08-15.md` passed before automation. PR #20, `Automate registry filesystem integrity`, subsequently merged as `e28f38dde6c967927b947adb0e37bfdceb26ee37`, and the resulting `main` validation passed. The former manual filesystem-control gap is therefore resolved.
 
 Post-baseline CI restoration on 2026-08-14:
 
@@ -227,6 +256,8 @@ Strengths:
 - GitHub Actions executes successfully as a real validation gate;
 - the JSON Schema is now an enforced machine-readable contract rather than passive documentation;
 - schema enforcement has a regression test that proves invalid structure is rejected;
+- registry-to-filesystem integrity is now enforced automatically, including materialized-path existence, registered Asset-ID dependency resolution, page/export agreement, and asset-directory orphan detection;
+- superseded/provenance filesystem exceptions are explicit and machine-readable through `schemas/filesystem-integrity-allowlist.json` rather than informal exclusions;
 - `main` is protected by an active repository ruleset requiring pull requests and the `validate` GitHub Actions check, with force-push and deletion protections and no standing bypass;
 - issue tracker contains no unresolved repository-control blocker;
 - surviving non-main branches are deliberately classified provenance records rather than unexplained stale work.
@@ -246,7 +277,8 @@ Until superseded by an explicit project decision, GitHub maintenance in this thr
 7. Require the GitHub Actions validation gate to pass before merge; reproduce the validator manually only as a diagnostic supplement, not as a replacement for a failed or unavailable gate.
 8. Record any unresolved synchronization conflict as a blocker rather than guessing which source is correct.
 9. Treat closed issues and superseded PR bodies as historical records: do not infer a live blocker solely from stale wording inside a closed historical record.
-10. Re-audit this baseline whenever repository ownership, source-of-truth rules, validation architecture, branch-protection architecture, issue-control state, or release structure changes materially.
+10. For an otherwise-unregistered file retained inside an asset-owned directory solely as superseded/provenance history, add a justified entry to `schemas/filesystem-integrity-allowlist.json`; do not use the allowlist to hide unexplained or active production files.
+11. Re-audit this baseline whenever repository ownership, source-of-truth rules, validation architecture, branch-protection architecture, issue-control state, or release structure changes materially.
 
 ## Immediate follow-up queue
 
