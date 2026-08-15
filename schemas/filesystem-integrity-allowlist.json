@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "allowed_unregistered_files": [
+    {
+      "path": "maps/map-reg-001-gm-reference-v001.svg",
+      "classification": "superseded",
+      "reason": "Superseded AST-MAP-002 v001 regional-map source retained only for development history; v002 is the active registered source."
+    }
+  ]
+}
