@@ -1,6 +1,7 @@
 # Aramyst GitHub Baseline
 
 Baseline established: 2026-08-14 09:13 CDT
+Repository-control audit refreshed: 2026-08-15
 
 ## Baseline identity
 
@@ -8,7 +9,7 @@ Baseline established: 2026-08-14 09:13 CDT
 - Default branch: `main`
 - Visibility: public
 - Baseline `main` commit: `73ec4650b8c8733f03348e88710d17b223348cd8`
-- Repository role: controlled asset registry, machine-readable production metadata, validation, naming/versioning rules, publication paths, and promoted release-ready assets for the Aramyst book project.
+- Repository role: controlled production-asset registry, machine-readable production metadata, validation, naming/versioning rules, publication paths, and promoted release-ready assets for the standalone TTRPG project currently using `Aramyst` as a temporary development alias.
 - Canonical Drive root recorded by the repository: `1IBbWIFfAuJpB7I9jc7yrjb461mPnuGnq`
 
 ## Repository inventory audit
@@ -20,7 +21,7 @@ The authenticated account currently owns four repositories:
 - `JamesJedi420/dead-air-website`
 - `JamesJedi420/tinyfolk-realm-of-giants`
 
-Repository search found no additional installed repositories matching `Aramyst`, `Mystara`, or `Blackmoor`. For this project, `JamesJedi420/aramyst-book-assets` is therefore the current GitHub baseline repository.
+Repository search found no additional repository matching the Aramyst/Mystara/Blackmoor project identity. For this project, `JamesJedi420/aramyst-book-assets` remains the GitHub baseline repository.
 
 ## Source-of-truth boundaries
 
@@ -105,9 +106,9 @@ Several category folders remain placeholders, which is consistent with the curre
 
 ## Branch and pull-request state
 
-At baseline:
+At the original baseline:
 
-- `main` is the default branch.
+- `main` was the default branch.
 - One pre-existing non-main branch remained: `agent/map-hou-001-functional-adjacency`.
 - PR #5, `Bind approved MAP-HOU-001 FP01-R1 floorplan`, was merged.
 - There were no open GitHub issues in this repository.
@@ -120,7 +121,25 @@ Post-baseline reconciliation on 2026-08-14:
 - `AST-MAP-004` now resolves and controls the physical/topological relationships that PR #4 deliberately left unknown, including room/yard placement, controlled openings, Bell Stair attachment/access, Record Room → Back Archive Loft vertical relation, Burial Court placement/branches, Guest Hall ↔ Kitchen/Winter Store, and Kitchen/Winter Store ↔ Service Yard.
 - Merging PR #4 unchanged would create stale authority language beside the approved floorplan; rebasing it into a current diagram would duplicate `AST-MAP-004` rather than preserve an independent production purpose.
 - The PR and branch history retain the intermediate artifact for development provenance. No Asset ID is minted for it, and neither proposed file becomes an active source on `main`.
-- The historical branch may remain until normal branch cleanup; its presence does not confer active authority.
+
+Repository-hygiene audit on 2026-08-15:
+
+- no open or draft pull requests remain;
+- merged `agent/` branches have already been cleaned up;
+- exactly two non-main `agent/` branches remain, both intentionally preserved for historical provenance rather than active development:
+  - `agent/map-hou-001-functional-adjacency` — preserves the unique PR #4 functional-adjacency schematic and QA record that never entered `main`;
+  - `agent/q-023-cross-system-sync` — preserves the superseded PR #11 implementation history that was reconciled and replaced by merged PRs #14 and #15, with later attribution cleanup in PR #17;
+- both provenance branches are non-authoritative and must not be treated as current production sources merely because their refs remain present;
+- do not delete either provenance branch during routine cleanup unless a later explicit archival/deletion decision replaces this preservation rule.
+
+## Issue-tracker state
+
+Audit refreshed on 2026-08-15:
+
+- no open issues remain in `JamesJedi420/aramyst-book-assets`;
+- issue #7, `Restore GitHub Actions account access`, is closed as completed after runner-backed validation resumed;
+- issue #12, `Activate Protect main ruleset`, is closed as completed after the live ruleset and protected PR path were verified;
+- the bodies of closed issues #7 and #12 remain point-in-time historical problem statements. Language inside those closed issue bodies describing a billing lock or missing ruleset is not a current repository warning and should not be rewritten as though the historical problem never existed.
 
 ## Validation and CI state
 
@@ -171,6 +190,8 @@ Post-baseline CI restoration on 2026-08-14:
 - A fresh `main` push validation after the merge also completed successfully.
 - Issue #7, `Restore GitHub Actions account access`, was closed after runner-backed validation was observed.
 
+The billing-lock language above is retained as historical restoration context; GitHub Actions is currently functioning as a real repository gate.
+
 ## Main branch protection
 
 Protection verified on 2026-08-14.
@@ -187,7 +208,9 @@ Repository ruleset `Protect main` (ruleset ID `20862839`) is active and targets 
 - restrict deletion of `main`;
 - no standing bypass actors; the authenticated maintainer cannot bypass the ruleset.
 
-The controlled target configuration is recorded in `docs/MAIN_PROTECTION_POLICY.md` and `.github/rulesets/protect-main.json`.
+The controlled configuration is recorded in `docs/MAIN_PROTECTION_POLICY.md` and `.github/rulesets/protect-main.json`.
+
+PR #16, `Verify active main protection baseline`, passed the required `validate` check and merged through the protected path. The resulting `main` push validation also passed. Issue #12 was then closed as completed.
 
 ## Baseline health
 
@@ -204,7 +227,9 @@ Strengths:
 - GitHub Actions executes successfully as a real validation gate;
 - the JSON Schema is now an enforced machine-readable contract rather than passive documentation;
 - schema enforcement has a regression test that proves invalid structure is rejected;
-- `main` is protected by an active repository ruleset requiring pull requests and the `validate` GitHub Actions check, with force-push and deletion protections and no standing bypass.
+- `main` is protected by an active repository ruleset requiring pull requests and the `validate` GitHub Actions check, with force-push and deletion protections and no standing bypass;
+- issue tracker contains no unresolved repository-control blocker;
+- surviving non-main branches are deliberately classified provenance records rather than unexplained stale work.
 
 No unresolved repository-control warning remains from the baseline audit.
 
@@ -217,10 +242,11 @@ Until superseded by an explicit project decision, GitHub maintenance in this thr
 3. Default to draft pull requests rather than direct writes to `main`.
 4. Do not modify canon or approval state without an already-authorized project decision.
 5. When a registered asset changes materially, synchronize `manifest.json`, `ASSET_MANIFEST.csv`, and `docs/ASSET_MANIFEST.md` in the same change set.
-6. Preserve superseded assets when they carry approval, QA, or provenance history unless explicit archival/deletion authority is given.
+6. Preserve superseded assets and branches when they carry approval, QA, implementation, or provenance history unless explicit archival/deletion authority is given.
 7. Require the GitHub Actions validation gate to pass before merge; reproduce the validator manually only as a diagnostic supplement, not as a replacement for a failed or unavailable gate.
 8. Record any unresolved synchronization conflict as a blocker rather than guessing which source is correct.
-9. Re-audit this baseline whenever repository ownership, source-of-truth rules, validation architecture, branch-protection architecture, or release structure changes materially.
+9. Treat closed issues and superseded PR bodies as historical records: do not infer a live blocker solely from stale wording inside a closed historical record.
+10. Re-audit this baseline whenever repository ownership, source-of-truth rules, validation architecture, branch-protection architecture, issue-control state, or release structure changes materially.
 
 ## Immediate follow-up queue
 
