@@ -32,7 +32,7 @@ jobs:
       - name: Compile validator
         run: python -m py_compile scripts/validate_manifest.py
 
-      - name: Test JSON Schema enforcement
+      - name: Run validator regression tests
         run: python -m unittest discover -s tests -p 'test_*.py'
 
       - name: Validate manifests and page registry

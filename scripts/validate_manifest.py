@@ -23,6 +23,7 @@ MANIFEST_PATH = ROOT / "manifest.json"
 CSV_PATH = ROOT / "ASSET_MANIFEST.csv"
 MARKDOWN_PATH = ROOT / "docs" / "ASSET_MANIFEST.md"
 SCHEMA_PATH = ROOT / "schemas" / "asset-manifest.schema.json"
+FILESYSTEM_ALLOWLIST_PATH = ROOT / "schemas" / "filesystem-integrity-allowlist.json"
 
 STATUSES = {
     "planned",
@@ -34,6 +35,13 @@ STATUSES = {
     "published",
     "superseded",
     "archived",
+}
+
+MATERIALIZED_STATUSES = {
+    "review",
+    "approved",
+    "exported",
+    "published",
 }
 
 CATEGORY_CODES = {
@@ -48,6 +56,22 @@ CATEGORY_CODES = {
     "reference": "REF",
     "misc": "MISC",
 }
+
+ASSET_DIRECTORY_ROOTS = {
+    "characters",
+    "covers",
+    "exports",
+    "factions",
+    "locations",
+    "maps",
+    "pages",
+    "prompts",
+    "references",
+    "symbols",
+    "typography",
+}
+
+ALLOWLIST_CLASSIFICATIONS = {"superseded", "provenance"}
 
 VERSION_RE = re.compile(r"^v\d{3}$")
 ASSET_ID_RE = re.compile(r"^AST-(COVER|MAP|CHAR|FACT|LOC|SYM|TYPE|PROMPT|REF|MISC)-\d{3}$")
@@ -101,6 +125,12 @@ def format_json_path(path: Iterable[Any]) -> str:
         else:
             rendered += f".{part}"
     return rendered
+
+
+def safe_repository_relative_path(path_value: str) -> bool:
+    if not path_value or path_value.startswith("/") or "\\" in path_value:
+        return False
+    return ".." not in Path(path_value).parts
 
 
 def validate_json_schema(manifest: dict[str, Any], schema: dict[str, Any], errors: list[str]) -> None:
@@ -222,7 +252,7 @@ def validate_asset(asset: Any, index: int, errors: list[str]) -> str | None:
 
     for path_field in ("github_source_path", "github_export_path"):
         path_value = asset.get(path_field, "")
-        if path_value.startswith("/") or "\\" in path_value or ".." in Path(path_value).parts:
+        if path_value and not safe_repository_relative_path(path_value):
             errors.append(f"{asset_id}: {path_field} must be a safe repository-relative path")
         if path_value and not path_value.endswith("/") and not path_value.startswith("pages/"):
             filename = Path(path_value).name
@@ -355,6 +385,200 @@ def validate_markdown(asset_ids: set[str], errors: list[str]) -> None:
             errors.append(f"docs/ASSET_MANIFEST.md is missing {asset_id}")
 
 
+def load_filesystem_allowlist(
+    errors: list[str], root: Path = ROOT
+) -> dict[str, dict[str, str]]:
+    path = root / "schemas" / "filesystem-integrity-allowlist.json"
+    try:
+        with path.open(encoding="utf-8") as handle:
+            data = json.load(handle)
+    except FileNotFoundError:
+        errors.append("Missing required file: schemas/filesystem-integrity-allowlist.json")
+        return {}
+    except json.JSONDecodeError as exc:
+        errors.append(f"Invalid JSON in schemas/filesystem-integrity-allowlist.json: {exc}")
+        return {}
+
+    if not isinstance(data, dict):
+        errors.append("schemas/filesystem-integrity-allowlist.json must contain a JSON object")
+        return {}
+    if data.get("version") != 1:
+        errors.append("filesystem integrity allowlist version must equal 1")
+
+    entries = data.get("allowed_unregistered_files")
+    if not isinstance(entries, list):
+        errors.append("filesystem integrity allowlist must contain allowed_unregistered_files array")
+        return {}
+
+    allowlist: dict[str, dict[str, str]] = {}
+    for index, entry in enumerate(entries):
+        label = f"filesystem allowlist entry {index}"
+        if not isinstance(entry, dict):
+            errors.append(f"{label} must be an object")
+            continue
+        path_value = entry.get("path")
+        classification = entry.get("classification")
+        reason = entry.get("reason")
+        if not isinstance(path_value, str) or not safe_repository_relative_path(path_value):
+            errors.append(f"{label}: path must be a safe repository-relative path")
+            continue
+        if Path(path_value).parts[0] not in ASSET_DIRECTORY_ROOTS:
+            errors.append(f"{label}: path must be inside an asset-owned directory")
+        if classification not in ALLOWLIST_CLASSIFICATIONS:
+            errors.append(
+                f"{label}: classification must be one of {sorted(ALLOWLIST_CLASSIFICATIONS)}"
+            )
+        if not isinstance(reason, str) or not reason.strip():
+            errors.append(f"{label}: reason must be a non-empty string")
+        if path_value in allowlist:
+            errors.append(f"Duplicate filesystem allowlist path: {path_value}")
+            continue
+        allowlist[path_value] = {
+            "classification": str(classification),
+            "reason": reason if isinstance(reason, str) else "",
+        }
+        if not (root / path_value).is_file():
+            errors.append(f"Allowlisted provenance file is missing: {path_value}")
+
+    return allowlist
+
+
+def validate_registered_dependencies(
+    assets: list[dict[str, Any]], asset_ids: set[str], errors: list[str]
+) -> None:
+    for asset in assets:
+        if not isinstance(asset, dict):
+            continue
+        asset_id = asset.get("asset_id", "<unknown asset>")
+        dependencies = asset.get("dependencies", [])
+        if not isinstance(dependencies, list):
+            continue
+        for dependency in dependencies:
+            if not isinstance(dependency, str) or not dependency.startswith("AST-"):
+                continue
+            if not ASSET_ID_RE.fullmatch(dependency):
+                errors.append(f"{asset_id}: malformed registered Asset-ID dependency: {dependency}")
+            elif dependency not in asset_ids:
+                errors.append(f"{asset_id}: dangling registered Asset-ID dependency: {dependency}")
+
+
+def concrete_registered_paths(
+    assets: list[dict[str, Any]], pages: list[dict[str, Any]]
+) -> set[str]:
+    paths: set[str] = set()
+    for asset in assets:
+        if not isinstance(asset, dict):
+            continue
+        for field in ("github_source_path", "github_export_path"):
+            value = asset.get(field)
+            if isinstance(value, str) and value and not value.endswith("/"):
+                paths.add(value)
+    for page in pages:
+        if not isinstance(page, dict):
+            continue
+        value = page.get("file_path")
+        if isinstance(value, str) and value:
+            paths.add(value)
+    return paths
+
+
+def validate_registered_filesystem_paths(
+    assets: list[dict[str, Any]],
+    pages: list[dict[str, Any]],
+    allowlist: dict[str, dict[str, str]],
+    errors: list[str],
+    root: Path = ROOT,
+) -> None:
+    assets_by_id = {
+        asset.get("asset_id"): asset
+        for asset in assets
+        if isinstance(asset, dict) and isinstance(asset.get("asset_id"), str)
+    }
+
+    for asset in assets:
+        if not isinstance(asset, dict):
+            continue
+        asset_id = asset.get("asset_id", "<unknown asset>")
+        status = asset.get("status")
+        for field in ("github_source_path", "github_export_path"):
+            path_value = asset.get(field)
+            if not isinstance(path_value, str) or not path_value or path_value.endswith("/"):
+                continue
+            if status in MATERIALIZED_STATUSES and not (root / path_value).is_file():
+                errors.append(
+                    f"{asset_id}: {field} must exist for {status} asset: {path_value}"
+                )
+            if status in MATERIALIZED_STATUSES and path_value in allowlist:
+                errors.append(
+                    f"{asset_id}: active {field} points to superseded/provenance allowlist file: {path_value}"
+                )
+
+    for index, page in enumerate(pages):
+        if not isinstance(page, dict):
+            continue
+        path_value = page.get("file_path")
+        status = page.get("status")
+        if isinstance(path_value, str) and status in MATERIALIZED_STATUSES:
+            if not (root / path_value).is_file():
+                errors.append(
+                    f"pages[{index}]: file must exist for {status} page: {path_value}"
+                )
+
+        asset_id = page.get("asset_id")
+        asset = assets_by_id.get(asset_id)
+        if asset and isinstance(path_value, str):
+            export_path = asset.get("github_export_path")
+            if isinstance(export_path, str) and export_path and export_path != path_value:
+                errors.append(
+                    f"pages[{index}]: file_path disagrees with {asset_id} github_export_path"
+                )
+
+
+def validate_asset_directory_files(
+    assets: list[dict[str, Any]],
+    pages: list[dict[str, Any]],
+    allowlist: dict[str, dict[str, str]],
+    errors: list[str],
+    root: Path = ROOT,
+) -> None:
+    registered_paths = concrete_registered_paths(assets, pages)
+    allowlisted_paths = set(allowlist)
+
+    overlap = sorted(registered_paths & allowlisted_paths)
+    for path_value in overlap:
+        errors.append(
+            f"Filesystem allowlist path is also registered as an active/history path; remove redundant allowlist entry: {path_value}"
+        )
+
+    for root_name in sorted(ASSET_DIRECTORY_ROOTS):
+        directory = root / root_name
+        if not directory.exists():
+            continue
+        if not directory.is_dir():
+            errors.append(f"Asset-owned path must be a directory: {root_name}")
+            continue
+        for candidate in sorted(directory.rglob("*")):
+            if not candidate.is_file() or candidate.name == ".gitkeep":
+                continue
+            relative = candidate.relative_to(root).as_posix()
+            if relative in registered_paths or relative in allowlisted_paths:
+                continue
+            errors.append(f"Unregistered asset-directory file: {relative}")
+
+
+def validate_filesystem_integrity(
+    assets: list[dict[str, Any]],
+    pages: list[dict[str, Any]],
+    asset_ids: set[str],
+    allowlist: dict[str, dict[str, str]],
+    errors: list[str],
+    root: Path = ROOT,
+) -> None:
+    validate_registered_dependencies(assets, asset_ids, errors)
+    validate_registered_filesystem_paths(assets, pages, allowlist, errors, root)
+    validate_asset_directory_files(assets, pages, allowlist, errors, root)
+
+
 def main() -> int:
     errors: list[str] = []
     manifest = load_json(MANIFEST_PATH, errors)
@@ -378,10 +602,23 @@ def main() -> int:
                     errors.append(f"Duplicate asset_id: {asset_id}")
                 asset_ids.add(asset_id)
 
-    validate_pages(manifest.get("pages"), asset_ids, errors)
+    pages = manifest.get("pages")
+    validate_pages(pages, asset_ids, errors)
+    if not isinstance(pages, list):
+        pages = []
+
     csv_rows = read_csv(errors)
     compare_csv(assets, csv_rows, errors)
     validate_markdown(asset_ids, errors)
+
+    filesystem_allowlist = load_filesystem_allowlist(errors)
+    validate_filesystem_integrity(
+        assets,
+        pages,
+        asset_ids,
+        filesystem_allowlist,
+        errors,
+    )
 
     if errors:
         print("Aramyst manifest validation failed:", file=sys.stderr)
@@ -391,7 +628,7 @@ def main() -> int:
 
     print(
         f"Validated schema contract, {len(asset_ids)} assets, "
-        f"and {len(manifest.get('pages', []))} pages."
+        f"{len(pages)} pages, registered dependencies, and asset filesystem integrity."
     )
     return 0
 
