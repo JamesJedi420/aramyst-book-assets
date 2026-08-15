@@ -1,12 +1,14 @@
 # Main Branch Protection Policy
 
-Status: approved target configuration; repository settings enforcement pending
+Status: **verified active**
 
 Repository: `JamesJedi420/aramyst-book-assets`
 Target branch: `main`
-Preferred GitHub mechanism: repository branch ruleset
+GitHub mechanism: repository branch ruleset
 Ruleset name: `Protect main`
+Ruleset ID: `20862839`
 Enforcement: active
+Verified: 2026-08-14
 
 ## Purpose
 
@@ -41,24 +43,32 @@ Protect the authoritative `main` branch from accidental direct or destructive ch
 - Required signed commits: not enabled because the repository currently contains unsigned commits and enabling this would disrupt normal maintenance without solving the current control objective.
 - Required approving review count greater than zero: not enabled while the repository has a single maintainer; this can be raised when an independent reviewer exists.
 - Restrict updates: not enabled because it would prevent normal PR merges unless a bypass actor were granted.
-- Bypass actors: none by default. Emergency changes should be made by temporarily editing/disable the ruleset in repository administration, leaving the settings change visible in GitHub's rule history rather than maintaining a standing bypass.
+- Bypass actors: none by default. Emergency changes should be made by temporarily editing or disabling the ruleset in repository administration, leaving the settings change visible in GitHub's rule history rather than maintaining a standing bypass.
 
 ## Machine-readable target
 
-`.github/rulesets/protect-main.json` records the API/import target corresponding to this policy. The file is documentation/configuration source only; GitHub does not automatically activate a repository ruleset merely because the JSON exists in the repository.
+`.github/rulesets/protect-main.json` records the controlled API/import target corresponding to this policy. The file remains the auditable configuration source; GitHub's active repository ruleset is the enforcement mechanism.
 
-## Verification requirements
+## Verification record
 
-Protection is considered established only when all of the following are observed in GitHub repository settings/API:
+Protection was verified on 2026-08-14 through both configuration inspection and an actual protected pull-request cycle.
 
-- an active ruleset targets `refs/heads/main`;
+Confirmed in GitHub repository settings/API:
+
+- active ruleset `Protect main` targets `refs/heads/main`;
 - pull requests are required;
 - the `validate` status check is required from GitHub Actions;
 - strict/up-to-date status checking is enabled;
 - force pushes are blocked;
 - deletion is restricted;
 - linear history is required;
-- a test PR cannot merge until `validate` succeeds;
-- a normal direct push to `main` is rejected.
+- no standing bypass actors exist and the authenticated maintainer cannot bypass the ruleset.
 
-Until those checks are confirmed, this document describes the approved target but does not itself constitute branch protection.
+Operational verification:
+
+- PR #16, `Verify active main protection baseline`, passed the required `validate` check;
+- PR #16 was merged through the protected `main` path;
+- the resulting `main` push triggered a fresh `Validate Aramyst Assets` run, which also passed;
+- issue #12, `Activate Protect main ruleset`, was closed as completed after verification.
+
+This document therefore records an active repository control, not a pending target.
