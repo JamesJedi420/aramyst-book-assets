@@ -108,8 +108,30 @@ For `AST-SYM-002` and `AST-SYM-003`, the GitHub `github_source_path` points to a
 
 This is a GitHub registry-to-filesystem audit. It verifies repository paths/files and registry metadata consistency. It does **not** re-open approval decisions or independently revalidate the contents/existence of Google Drive files, canon authorities, or external dependency records.
 
-## Control gap identified
+## Control gap resolved
 
-The current validator checks JSON Schema, JSON/CSV mirror consistency, dependency duplication, path syntax, page-record consistency, and existence of page files once a page is `exported` or `published`. It does not generally require a concrete approved asset's `github_source_path` to exist, nor does it classify orphaned asset-directory files.
+At the time of the manual audit, filesystem existence and orphan detection were not generally enforced by `scripts/validate_manifest.py`. That gap was resolved on 2026-08-15 by PR #20, `Automate registry filesystem integrity`, merged to `main` as `e28f38dde6c967927b947adb0e37bfdceb26ee37`.
 
-The repository currently passes this stronger manual filesystem audit, but that part of the control remains manual.
+The validator now automatically:
+
+- requires concrete registered GitHub source/export files for materialized `review`, `approved`, `exported`, and `published` assets when those paths are present;
+- allows `planned`, `briefed`, and `in-progress` future paths to remain unmaterialized;
+- requires materialized page files and checks page paths against an asset's registered `github_export_path` when one is present;
+- resolves exact registered `AST-*` dependencies and rejects malformed or dangling Asset-ID dependencies;
+- scans asset-owned directories for unexplained files;
+- allows `.gitkeep`, registered concrete files, and explicitly controlled superseded/provenance exceptions;
+- rejects active materialized paths that point at files classified as superseded/provenance.
+
+### Required exception mechanism
+
+Future unregistered files retained inside asset-owned directories solely for superseded or provenance purposes must be declared in `schemas/filesystem-integrity-allowlist.json`. Each entry must provide:
+
+- a safe repository-relative `path` inside an asset-owned directory;
+- `classification` of `superseded` or `provenance`;
+- a non-empty `reason` explaining why the unregistered file must remain.
+
+The allowlist is not a general bypass mechanism. Allowlisted files must physically exist, duplicate paths are rejected, unsupported classifications are rejected, and a materialized active asset may not point at an allowlisted file. Unexplained files must not be added to the allowlist merely to make CI pass; their provenance/supersession purpose must be established first.
+
+The initial controlled exception is `maps/map-reg-001-gm-reference-v001.svg`, classified `superseded` because AST-MAP-002 v002 is the active registered source while v001 is retained for development history.
+
+The post-merge `main` validation run for PR #20 passed, so this former manual control is now part of the protected CI gate.
