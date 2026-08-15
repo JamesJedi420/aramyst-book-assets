@@ -109,7 +109,8 @@ AST-COVER-001, AST-CHAR-001, AST-CHAR-002, AST-LOC-001, AST-SYM-001, AST-TYPE-00
 
 | Date | Change | Result |
 |---|---|---|
-| 2026-08-14 | Q-023 authorized continuity synchronization | Corrected current Approved Working Scene 01 identities to Tovin Marr and Sergeant Beran Vask; synchronized AST-SYM-002/003 approved status in this mirror; marked publication-identity-dependent planned assets as naming-pending; did not invent a successor title or change asset versions/approval state. |
+| 2026-08-14 | Q-023 authorized continuity synchronization | Corrected current Approved Working Scene 01 identities to Tovin Marr and Sergeant Beran Vask; marked publication-identity-dependent planned assets as naming-pending; did not invent a successor title or change asset versions/approval state. |
+| 2026-08-14 | AST-SYM-002 / AST-SYM-003 status-mirror reconciliation | Separately recorded the already-approved v001 status in the human-readable mirror and corresponding Drive production records; no approval, status authority, Asset ID, or version change was introduced. |
 | 2026-08-14 | AST-MAP-004 MAP-HOU-001 floorplan binding | Registered FP01-R1 as the approved controlling non-metric Last-Bell House floorplan; promoted only HOU-FP-GD-001–022; retained HOU-PD-012 holds and original FP01 failure history; synchronized approval labels without changing geometry. |
 | 2026-08-13 | AST-MAP-002 manifest reconciliation | Bound `maps/map-reg-001-gm-reference-v002.svg` as approved v002; recorded regional-data-first authority and PASS acceptance gate; v001 retained only as superseded history. |
 | 2026-08-13 | AST-MAP-003 mirror synchronization | Existing approved MAP-ENV-001 local schematic is represented in the human-readable registry alongside JSON/CSV. |
