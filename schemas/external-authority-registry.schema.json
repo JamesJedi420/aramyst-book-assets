@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/JamesJedi420/aramyst-book-assets/schemas/external-authority-registry.schema.json",
+  "title": "Aramyst External Authority Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "purpose", "exact_authorities", "authority_ranges"],
+  "properties": {
+    "version": {"const": 1},
+    "purpose": {"type": "string", "minLength": 1},
+    "exact_authorities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "namespace", "kind", "status", "source"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+$"},
+          "namespace": {"type": "string", "pattern": "^[A-Z][A-Z0-9]*$"},
+          "kind": {"type": "string", "minLength": 1},
+          "status": {"type": "string", "minLength": 1},
+          "implemented_by_asset_id": {"type": "string", "pattern": "^AST-[A-Z]+-[0-9]{3}$"},
+          "identity_rule": {"enum": ["distinct_from_asset"]},
+          "notes": {"type": "string", "minLength": 1},
+          "source": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["provider", "file_id", "title"],
+            "properties": {
+              "provider": {"const": "google_drive"},
+              "file_id": {"type": "string", "minLength": 1},
+              "title": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    },
+    "authority_ranges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["prefix", "namespace", "start", "end", "width", "source_authority_id"],
+        "properties": {
+          "prefix": {"type": "string", "pattern": "^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*$"},
+          "namespace": {"type": "string", "pattern": "^[A-Z][A-Z0-9]*$"},
+          "start": {"type": "integer", "minimum": 0},
+          "end": {"type": "integer", "minimum": 0},
+          "width": {"type": "integer", "minimum": 1, "maximum": 12},
+          "source_authority_id": {"type": "string", "pattern": "^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+$"}
+        }
+      }
+    }
+  }
+}
