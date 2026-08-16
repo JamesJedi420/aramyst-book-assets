@@ -1,7 +1,7 @@
 # Aramyst GitHub Baseline
 
 Baseline established: 2026-08-14 09:13 CDT
-Repository-control audit refreshed: 2026-08-15
+Repository-control audit refreshed: 2026-08-16
 
 ## Baseline identity
 
@@ -104,7 +104,16 @@ Current top-level structure includes the controlled registries and category fold
 
 Several category folders remain placeholders, which is consistent with the current asset-development stage.
 
-The `schemas/` control surface includes both the JSON Schema contract and the machine-readable filesystem provenance exception registry. `schemas/filesystem-integrity-allowlist.json` is the required mechanism for retaining otherwise-unregistered superseded/provenance files inside asset-owned directories.
+The `schemas/` control surface now includes four distinct machine-readable control roles:
+
+- `asset-manifest.schema.json` — structural contract for `manifest.json`;
+- `external-authority-registry.json` plus its schema — durable non-asset authority ID/range resolution;
+- `dependency-classification-registry.json` plus its schema — mandatory classification records for title-bound, composite, and long-term prose dependencies;
+- `filesystem-integrity-allowlist.json` — explicit superseded/provenance filesystem exceptions.
+
+`schemas/dependency-classification-registry.json` is the required machine-readable record for every current and future dependency classified as `title_bound_authority`, `composite_gate`, or `long_term_prose_gate`. The manifest's prose dependency cannot be treated as admitted merely because it is human-readable; the matching controlled classification record must exist and name the exact Asset IDs authorized to use it.
+
+`schemas/filesystem-integrity-allowlist.json` remains the required mechanism for retaining otherwise-unregistered superseded/provenance files inside asset-owned directories.
 
 ## Branch and pull-request state
 
@@ -126,13 +135,15 @@ Post-baseline reconciliation on 2026-08-14:
 
 Repository-hygiene audit on 2026-08-15:
 
-- no open or draft pull requests remain;
-- merged `agent/` branches have already been cleaned up;
-- exactly two non-main `agent/` branches remain, both intentionally preserved for historical provenance rather than active development:
+- no open or draft pull requests remained at the close of that audit;
+- merged `agent/` branches had already been cleaned up;
+- exactly two non-main `agent/` branches remained, both intentionally preserved for historical provenance rather than active development:
   - `agent/map-hou-001-functional-adjacency` — preserves the unique PR #4 functional-adjacency schematic and QA record that never entered `main`;
   - `agent/q-023-cross-system-sync` — preserves the superseded PR #11 implementation history that was reconciled and replaced by merged PRs #14 and #15, with later attribution cleanup in PR #17;
 - both provenance branches are non-authoritative and must not be treated as current production sources merely because their refs remain present;
 - do not delete either provenance branch during routine cleanup unless a later explicit archival/deletion decision replaces this preservation rule.
+
+Normal post-audit `agent/` branches created for subsequent controlled work are expected to be removed automatically after their PRs merge; they do not alter the intentional provenance disposition above.
 
 ## Issue-tracker state
 
@@ -157,9 +168,9 @@ Current workflow behavior:
 - installs the pinned validation dependency from `requirements-validation.txt`;
 - compiles `scripts/validate_manifest.py`;
 - runs the full validator regression-test suite;
-- runs the complete manifest/page-registry/filesystem validator.
+- runs the complete manifest/page-registry/filesystem/dependency-governance validator.
 
-The validator enforces three coordinated layers of control.
+The validator enforces four coordinated layers of control.
 
 Layer 1 — machine-readable JSON Schema contract:
 
@@ -183,7 +194,6 @@ Layer 2 — Aramyst registry semantics and cross-file consistency:
 
 Layer 3 — registry-to-filesystem integrity:
 
-- exact registered `AST-*` dependencies must resolve to registered Asset IDs; malformed or dangling Asset-ID dependencies fail validation;
 - concrete registered GitHub source/export files must exist for materialized `review`, `approved`, `exported`, and `published` assets when those paths are present;
 - `planned`, `briefed`, and `in-progress` future paths may remain unmaterialized;
 - materialized page files must exist and page paths must agree with the associated asset's registered `github_export_path` when one exists;
@@ -191,9 +201,45 @@ Layer 3 — registry-to-filesystem integrity:
 - `.gitkeep`, registered concrete files, and explicitly declared superseded/provenance exceptions are permitted;
 - active materialized paths may not point at files classified as superseded/provenance.
 
+Layer 4 — dependency governance:
+
+- every `AST-*` dependency must resolve to an existing registered production asset; malformed or dangling asset edges fail validation;
+- every exact ID-shaped external dependency must resolve through `schemas/external-authority-registry.json`;
+- every bounded external authority range must resolve inside a registered range with matching prefix and identifier width;
+- exact registered authority IDs are resolved before range parsing, preventing multi-segment exact IDs from being mistaken for ranges;
+- every remaining prose dependency must have an exact controlled record in `schemas/dependency-classification-registry.json`;
+- classification is limited to the policy's prose classes: `title_bound_authority`, `composite_gate`, and `long_term_prose_gate`;
+- every prose dependency occurrence must be explicitly authorized for the Asset ID using it;
+- each classification record's declared Asset-ID set must exactly match actual manifest use, preventing stale classifications and unauthorized reuse;
+- classification records must cite an existing repository evidence document and reference only existing Asset IDs;
+- the classification registry itself is validated against `schemas/dependency-classification-registry.schema.json`;
+- CI does not infer prose semantics, choose a class, decide equivalence, or invent authority IDs. It enforces the previously approved classification record.
+
+The controlling semantic policy is `docs/DEPENDENCY_GOVERNANCE_POLICY.md`. `schemas/dependency-classification-registry.json` is the mandatory machine-readable admission record for title-bound, composite, and long-term prose dependencies. A future dependency edit in one of those classes must update that registry in the same controlled change set before the manifest can pass CI.
+
 Schema enforcement is regression-tested against the current manifest and against an intentionally invalid copy containing an undeclared top-level property. The latter must be rejected by the schema's `additionalProperties: false` contract.
 
-Filesystem-integrity enforcement is regression-tested against the current repository plus deliberately invalid cases covering missing approved sources, dangling `AST-*` dependencies, unexplained asset-directory files, planned/unmaterialized future paths, and documented provenance exceptions.
+Filesystem-integrity enforcement is regression-tested against the current repository plus deliberately invalid cases covering missing approved sources, unexplained asset-directory files, planned/unmaterialized future paths, and documented provenance exceptions.
+
+Dependency-governance enforcement is regression-tested against deliberately invalid cases covering dangling `AST-*` asset edges, unknown external authority IDs, out-of-range external authority ranges, unclassified prose dependencies, and use of a classified prose dependency by an Asset ID not authorized by its classification record.
+
+### Dependency classification control
+
+`schemas/dependency-classification-registry.json` is the sole routine machine-readable control for prose dependency classifications admitted under the dependency-governance policy.
+
+Each prose record must be governed by `schemas/dependency-classification-registry.schema.json` and must identify at minimum the exact dependency phrase, approved classification, exact affected Asset IDs, controlled evidence path, rationale, and reopen/satisfaction condition. Class-specific data such as a source anchor for title-bound authorities or constituent authorities for composite gates is recorded where required by the schema.
+
+The registry is deliberately separate from `manifest.json`: the manifest continues to carry the dependency string used by the asset, while the classification registry records why that otherwise non-machine-resolvable string is admitted and exactly where it may be used.
+
+Future dependency edits must follow this order:
+
+1. establish the semantic classification under `docs/DEPENDENCY_GOVERNANCE_POLICY.md`;
+2. create or update the controlled evidence record when needed;
+3. update `schemas/dependency-classification-registry.json` for title-bound, composite, or long-term prose dependencies;
+4. update `manifest.json` and `ASSET_MANIFEST.csv` together;
+5. pass CI.
+
+Do not add an unclassified prose dependency and rely on a later audit to legitimize it. CI now rejects that state.
 
 ### Filesystem provenance exception control
 
@@ -218,6 +264,8 @@ Post-baseline CI restoration on 2026-08-14:
 - PR-branch validation completed successfully.
 - A fresh `main` push validation after the merge also completed successfully.
 - Issue #7, `Restore GitHub Actions account access`, was closed after runner-backed validation was observed.
+
+Dependency-governance enforcement was added through PR #29, `Enforce dependency governance in CI`, merged as `05a73fc2bdbd300bdb32962f17d2b2d3c3936bc6`. Its successful protected PR run and post-merge `main` run established dependency classification and external-authority resolution as active CI controls rather than documentation-only policy.
 
 The billing-lock language above is retained as historical restoration context; GitHub Actions is currently functioning as a real repository gate.
 
@@ -254,13 +302,16 @@ Strengths:
 - repository changes are handled through scoped `agent/` branches and pull requests;
 - stale pre-approval PR #4 has been explicitly reconciled and closed as superseded;
 - GitHub Actions executes successfully as a real validation gate;
-- the JSON Schema is now an enforced machine-readable contract rather than passive documentation;
+- the JSON Schema is an enforced machine-readable contract rather than passive documentation;
 - schema enforcement has a regression test that proves invalid structure is rejected;
-- registry-to-filesystem integrity is now enforced automatically, including materialized-path existence, registered Asset-ID dependency resolution, page/export agreement, and asset-directory orphan detection;
+- registry-to-filesystem integrity is enforced automatically, including materialized-path existence, page/export agreement, and asset-directory orphan detection;
 - superseded/provenance filesystem exceptions are explicit and machine-readable through `schemas/filesystem-integrity-allowlist.json` rather than informal exclusions;
+- dependency governance is CI-enforced: `AST-*` asset edges resolve, external IDs/ranges resolve through the external-authority registry, and every remaining prose dependency must have a controlled classification record;
+- `schemas/dependency-classification-registry.json` is the mandatory machine-readable control for title-bound, composite, and long-term prose dependencies, including exact permitted Asset-ID use and evidence linkage;
+- dependency semantics remain human-approved rather than machine-guessed, while CI enforces the approved representation and classification state;
 - `main` is protected by an active repository ruleset requiring pull requests and the `validate` GitHub Actions check, with force-push and deletion protections and no standing bypass;
 - issue tracker contains no unresolved repository-control blocker;
-- surviving non-main branches are deliberately classified provenance records rather than unexplained stale work.
+- surviving non-main provenance branches are deliberately classified historical records rather than unexplained stale work.
 
 No unresolved repository-control warning remains from the baseline audit.
 
@@ -278,8 +329,9 @@ Until superseded by an explicit project decision, GitHub maintenance in this thr
 8. Record any unresolved synchronization conflict as a blocker rather than guessing which source is correct.
 9. Treat closed issues and superseded PR bodies as historical records: do not infer a live blocker solely from stale wording inside a closed historical record.
 10. For an otherwise-unregistered file retained inside an asset-owned directory solely as superseded/provenance history, add a justified entry to `schemas/filesystem-integrity-allowlist.json`; do not use the allowlist to hide unexplained or active production files.
-11. Re-audit this baseline whenever repository ownership, source-of-truth rules, validation architecture, branch-protection architecture, issue-control state, or release structure changes materially.
+11. Classify every proposed dependency under `docs/DEPENDENCY_GOVERNANCE_POLICY.md` before registry entry. For `title_bound_authority`, `composite_gate`, or `long_term_prose_gate`, add or update the exact controlled record in `schemas/dependency-classification-registry.json` in the same change set; for durable external IDs/ranges, ensure resolution through `schemas/external-authority-registry.json`; never invent an authority ID merely to satisfy CI.
+12. Re-audit this baseline whenever repository ownership, source-of-truth rules, validation architecture, dependency-governance architecture, branch-protection architecture, issue-control state, or release structure changes materially.
 
 ## Immediate follow-up queue
 
-No unresolved baseline-control task remains. Continue normal repository maintenance against approved project work.
+No unresolved baseline-control task remains. Continue normal repository maintenance against approved project work under the CI-enforced dependency-governance policy.
