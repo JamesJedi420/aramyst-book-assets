@@ -10,6 +10,8 @@ This audit does **not** mint authority IDs, change asset dependencies, alter app
 
 **Named-authority update — 2026-08-16:** `docs/MAP_REG_001_GEOMETRY_AUTHORITY_RECONCILIATION_2026-08-16.md` records the completed search for a durable ID for `MAP-REG-001 Geometry Specification v001 — CONTROLLING`. No existing project ID was found that is explicitly assigned to that specification. Its current prose dependency therefore remains authoritative and intentionally unnormalized; the exact Drive file ID is the equivalence anchor for any future normalization.
 
+**Scene-01 update — 2026-08-16:** `docs/SCENE_01_CANON_DEPENDENCY_RECONCILIATION_2026-08-16.md` resolves the repeated `Scene 01 canon` dependency as an intentional composite gate. No existing single durable authority was found that is equivalent to Scene-01-only canon across the six affected character/location/symbol assets. `SCN-INV-001` is broader scenario-package identity; `SCN-NODE-001`, `SCN-TRUTH-001`, and other `SCN-*` records govern narrower facets. The dependency therefore remains unchanged and is no longer treated as an unresolved vocabulary defect.
+
 ## Result
 
 The 16 registered assets currently contain **41 dependency entries** representing **33 distinct dependency strings**.
@@ -18,9 +20,9 @@ They fall into three materially different classes:
 
 1. **Registered asset dependencies** — already machine-resolvable `AST-*` IDs.
 2. **Durable external authority identifiers** — strings that already behave like stable project IDs or ID ranges.
-3. **Descriptive external gates / authority phrases** — human-readable requirements that may intentionally remain descriptive until a controlling project record exists.
+3. **Descriptive external gates / authority phrases** — human-readable requirements that may intentionally remain descriptive when no single equivalent durable authority exists.
 
-The dependency field is therefore carrying both graph edges and prose gates. The repository has machine resolution for the current ID-shaped non-asset dependencies, but it must not begin inventing IDs for descriptive or title-only authorities.
+The dependency field is therefore carrying both graph edges and prose gates. The repository has machine resolution for the current ID-shaped non-asset dependencies, but it must not invent IDs or substitute broader/narrower authorities for descriptive or title-only gates.
 
 ## Class 1 — registered asset dependencies
 
@@ -88,7 +90,7 @@ Therefore the dependency remains `MAP-REG-001 Geometry Specification v001 — CO
 
 ## Class 3 — descriptive external gates and authority phrases
 
-The following dependency strings are not presently safe to resolve mechanically because they describe approval conditions, broad canon bodies, decisions, or title-only authorities rather than a uniquely identified durable project ID:
+The following dependency strings are not safe to resolve mechanically because they describe approval conditions, broad canon bodies, decisions, composite authority gates, or title-only authorities rather than one uniquely equivalent durable project ID.
 
 ### Publication / art-direction gates
 
@@ -105,7 +107,18 @@ These may remain descriptive until the project establishes a controlling publica
 - `Approved location canon brief`
 - `Scene 01 canon`
 
-`Scene 01 canon` is particularly important because it is reused by six assets (`AST-CHAR-003`, `AST-CHAR-004`, `AST-CHAR-005`, `AST-LOC-002`, `AST-SYM-002`, and `AST-SYM-003`). Repetition makes it a strong candidate for replacement by a durable Scene 01 authority ID once the controlling scene/canon record is identified. The existing `SCN-NODE-001` dependency is not assumed to be equivalent.
+### Resolved composite gate: `Scene 01 canon`
+
+`Scene 01 canon` is reused by six assets: `AST-CHAR-003`, `AST-CHAR-004`, `AST-CHAR-005`, `AST-LOC-002`, `AST-SYM-002`, and `AST-SYM-003`.
+
+The reconciliation in `docs/SCENE_01_CANON_DEPENDENCY_RECONCILIATION_2026-08-16.md` found no existing single durable authority that is equivalent to the complete Scene-01-specific canon needed by all six assets.
+
+- `SCN-INV-001` is the broader investigation/scenario package identity, not a Scene-01-only canon record.
+- `SCN-NODE-001` governs investigation-node structure, not all Scene 01 character/location/symbol continuity.
+- `SCN-TRUTH-001` governs hidden-event reconstruction, not all Scene 01 presentation canon.
+- each affected asset also carries a subject-specific continuity gate, confirming that the shared Scene 01 requirement is distributed rather than owned by one already-defined authority.
+
+Therefore `Scene 01 canon` remains an intentional composite descriptive gate. Its repetition is no longer a conversion candidate unless the project later creates or identifies a Scene-01-only canon authority proven equivalent for all six assets.
 
 ### Continuity / approval gates
 
@@ -127,7 +140,7 @@ The effective dependency model distinguishes:
 - `asset` — exact registered `AST-*` dependency;
 - `authority` — exact external project authority ID resolved through `schemas/external-authority-registry.json`;
 - `authority_range` — deterministic bounded range resolved through the same registry;
-- `gate` — intentionally descriptive or title-based approval/canon condition that has no stable authority ID yet.
+- `gate` — intentionally descriptive, composite, or title-based approval/canon condition that has no single stable equivalent authority ID.
 
 The asset manifest's flat string list remains authoritative; the external registry supplies resolution metadata without forcing an immediate manifest schema migration.
 
@@ -137,19 +150,18 @@ The asset manifest's flat string list remains authoritative; the external regist
 
 A machine-readable external authority index resolves the current durable IDs and ranges used by the registry. `MAP` and `GXR` are included alongside the requested stable `ATLAS`, `GEO`, `ROUTE`, `ENV`, `HOU`, `REL`, and `SCN` namespaces because current dependencies already use them and complete resolution would otherwise remain partial.
 
-### Priority B — named authority review
+### Priority B — reconciled title/composite gates
 
-`MAP-REG-001 Geometry Specification v001 — CONTROLLING` has been reviewed. No existing durable project ID was found, so no replacement is authorized. Reopen this item only if a project record later assigns or reveals a durable ID that can be proven equivalent to Drive file `1HKS3TPvCenAKeqC77glZtgT2xXwUwogkDv3AVL8OEdE`.
+- `MAP-REG-001 Geometry Specification v001 — CONTROLLING`: reviewed; no durable ID exists for the exact specification, so title-based dependency retained.
+- `Scene 01 canon`: reviewed; no single equivalent Scene-01-only authority exists, so composite gate retained.
 
-### Priority C — next repeated authority candidate
+Reopen either item only when new source evidence establishes a directly equivalent durable authority.
 
-Identify the controlling durable record for `Scene 01 canon` before changing the six dependent assets.
-
-### Priority D — map continuity phrases only when authority exists
+### Priority C — map continuity phrases only when authority exists
 
 Match each continuity phrase to an already-approved continuity record where possible. Do not create IDs solely to eliminate prose.
 
-### Priority E — retain genuine gates descriptively
+### Priority D — retain genuine gates descriptively
 
 Keep publication/art-direction requirements descriptive until they become formal controlled records. A readable gate is preferable to a fabricated identifier.
 
@@ -158,15 +170,16 @@ Keep publication/art-direction requirements descriptive until they become formal
 1. Never invent a durable authority ID solely during GitHub maintenance.
 2. Use `AST-*` only for registered production assets.
 3. Prefer an existing approved authority ID over a prose synonym when identity is certain.
-4. Do not replace a prose dependency with an ID when equivalence is ambiguous or unproven.
+4. Do not replace a prose dependency with an ID when equivalence is ambiguous, broader, narrower, or otherwise unproven.
 5. Preserve bounded range semantics; do not silently expand or contract ranges.
 6. Treat repeated descriptive gates as candidates for authority identification, not automatic ID creation.
 7. Add new durable external IDs/ranges to `schemas/external-authority-registry.json` with a concrete controlling source before relying on them as machine-resolvable dependencies.
 8. For a title-only controlling authority, retain the title until a durable ID exists; use the exact source locator as the future equivalence anchor.
-9. Any future dependency-schema migration must update `manifest.json`, `ASSET_MANIFEST.csv`, JSON Schema, validator tests, and human-readable registry documentation together.
+9. For a composite gate, retain the prose when multiple narrower authorities jointly govern the requirement and no single equivalent authority exists.
+10. Any future dependency-schema migration must update `manifest.json`, `ASSET_MANIFEST.csv`, JSON Schema, validator tests, and human-readable registry documentation together.
 
 ## Audit conclusion
 
-**PASS — vocabulary is heterogeneous but the current durable external IDs are machine-resolvable, and the high-value MAP-REG title-only authority has been explicitly reconciled.**
+**PASS — vocabulary is heterogeneous but controlled.**
 
-No current `AST-*` dependency is dangling, and the repository regression test requires every current ID-shaped non-asset dependency to resolve through the external authority registry. `MAP-REG-001 Geometry Specification v001 — CONTROLLING` remains intentionally title-based because no durable project ID has been proven for that exact document. Other descriptive gates remain intentionally descriptive until the project possesses stable identity for them.
+Current durable external IDs are machine-resolvable. The MAP-REG title-only authority and repeated `Scene 01 canon` gate have both been explicitly reconciled rather than force-normalized. No current `AST-*` dependency is dangling, and descriptive gates remain descriptive where replacing them with an existing ID would distort scope or authority.
