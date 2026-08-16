@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "policy_path": "docs/DEPENDENCY_GOVERNANCE_POLICY.md",
+  "prose_dependencies": [
+    {
+      "dependency": "MAP-REG-001 Geometry Specification v001 — CONTROLLING",
+      "classification": "title_bound_authority",
+      "applies_to_asset_ids": ["AST-MAP-002"],
+      "evidence_path": "docs/MAP_REG_001_GEOMETRY_AUTHORITY_RECONCILIATION_2026-08-16.md",
+      "rationale": "One exact controlling geometry specification exists, but no durable project ID is proven to identify that exact document.",
+      "reopen_condition": "A durable project ID is assigned or discovered and proven equivalent to the exact controlling Drive document.",
+      "source_anchor": {
+        "provider": "google_drive",
+        "locator": "1HKS3TPvCenAKeqC77glZtgT2xXwUwogkDv3AVL8OEdE",
+        "title": "Aramyst — MAP-REG-001 Geometry Specification v001 — CONTROLLING"
+      }
+    },
+    {
+      "dependency": "Scene 01 canon",
+      "classification": "composite_gate",
+      "applies_to_asset_ids": ["AST-CHAR-003", "AST-CHAR-004", "AST-CHAR-005", "AST-LOC-002", "AST-SYM-002", "AST-SYM-003"],
+      "evidence_path": "docs/SCENE_01_CANON_DEPENDENCY_RECONCILIATION_2026-08-16.md",
+      "rationale": "Scene-01-specific canon is distributed across multiple narrower scenario and continuity authorities; no single existing authority owns the full gate.",
+      "reopen_condition": "One approved durable authority explicitly assumes the complete Scene-01 canon scope required by all affected assets.",
+      "constituent_authorities": ["SCN-INV-001", "SCN-NODE-001", "SCN-TRUTH-001", "SCN-PRESS-001"]
+    },
+    {
+      "dependency": "Approved character canon brief",
+      "classification": "long_term_prose_gate",
+      "applies_to_asset_ids": ["AST-CHAR-001", "AST-CHAR-002"],
+      "evidence_path": "docs/BROAD_DESCRIPTIVE_GATE_AUDIT_2026-08-16.md",
+      "rationale": "No approved protagonist or antagonist canon brief with equivalent scope currently exists.",
+      "reopen_condition": "The relevant protagonist or antagonist canon brief is approved and receives a durable authority identity."
+    },
+    {
+      "dependency": "Approved location canon brief",
+      "classification": "long_term_prose_gate",
+      "applies_to_asset_ids": ["AST-LOC-001"],
+      "evidence_path": "docs/BROAD_DESCRIPTIVE_GATE_AUDIT_2026-08-16.md",
+      "rationale": "The opening-location key-art scope is still generic and no equivalent approved location authority exists.",
+      "reopen_condition": "The opening location identity and controlling canon brief are approved with equivalent scope."
+    },
+    {
+      "dependency": "Canon geography decisions",
+      "classification": "long_term_prose_gate",
+      "applies_to_asset_ids": ["AST-MAP-001"],
+      "evidence_path": "docs/BROAD_DESCRIPTIVE_GATE_AUDIT_2026-08-16.md",
+      "rationale": "Current atlas architecture and regional truth authorities do not equal completed world-scale canonical geography.",
+      "reopen_condition": "A durable world-geography authority expressly controls enough approved world geography to support the planned world map."
+    },
+    {
+      "dependency": "Final publishing specifications",
+      "classification": "long_term_prose_gate",
+      "applies_to_asset_ids": ["AST-COVER-001"],
+      "evidence_path": "docs/BROAD_DESCRIPTIVE_GATE_AUDIT_2026-08-16.md",
+      "rationale": "The current Book Production Specification governs production practice, but final bleed/platform requirements remain unresolved.",
+      "reopen_condition": "The controlling production specification or approved successor incorporates final platform and bleed requirements and has durable dependency identity."
+    },
+    {
+      "dependency": "Approved symbolic and thematic direction",
+      "classification": "long_term_prose_gate",
+      "applies_to_asset_ids": ["AST-SYM-001"],
+      "evidence_path": "docs/BROAD_DESCRIPTIVE_GATE_AUDIT_2026-08-16.md",
+      "rationale": "No approved project-wide symbolic or thematic art-direction authority currently exists.",
+      "reopen_condition": "A project-wide symbolic/art-direction authority is approved with equivalent scope."
+    },
+    {
+      "dependency": "Approved cover direction",
+      "classification": "long_term_prose_gate",
+      "applies_to_asset_ids": ["AST-TYPE-001"],
+      "evidence_path": "docs/BROAD_DESCRIPTIVE_GATE_AUDIT_2026-08-16.md",
+      "rationale": "Production specifications do not establish the final cover concept, title-treatment hierarchy, or publication identity.",
+      "reopen_condition": "A controlled cover/art-direction authority is approved with equivalent title-treatment scope."
+    },
+    {
+      "dependency": "Character continuity approval",
+      "classification": "long_term_prose_gate",
+      "applies_to_asset_ids": ["AST-CHAR-003"],
+      "evidence_path": "docs/SUBJECT_CONTINUITY_GATE_AUDIT_2026-08-16.md",
+      "rationale": "No Tovin-specific durable continuity approval authority exists; available continuity records are broader or templated.",
+      "reopen_condition": "A Tovin-specific approved continuity authority is established with equivalent scope."
+    },
+    {
+      "dependency": "Chapel continuity approval",
+      "classification": "long_term_prose_gate",
+      "applies_to_asset_ids": ["AST-CHAR-004"],
+      "evidence_path": "docs/SUBJECT_CONTINUITY_GATE_AUDIT_2026-08-16.md",
+      "rationale": "No Chapel/Sister-Aneth-specific durable continuity approval authority exists.",
+      "reopen_condition": "A Chapel/Sister-Aneth continuity authority is approved with equivalent scope."
+    },
+    {
+      "dependency": "Keep guard continuity approval",
+      "classification": "long_term_prose_gate",
+      "applies_to_asset_ids": ["AST-CHAR-005"],
+      "evidence_path": "docs/SUBJECT_CONTINUITY_GATE_AUDIT_2026-08-16.md",
+      "rationale": "No Beran/Keep-guard-specific durable continuity approval authority exists; broader Keep records are not equivalent.",
+      "reopen_condition": "A Beran/Keep-guard continuity authority is approved with equivalent scope."
+    },
+    {
+      "dependency": "Keep exterior continuity",
+      "classification": "long_term_prose_gate",
+      "applies_to_asset_ids": ["AST-LOC-002"],
+      "evidence_path": "docs/SUBJECT_CONTINUITY_GATE_AUDIT_2026-08-16.md",
+      "rationale": "MAP-ENV-001 does not establish Keep footprints/frontages and no exact Keep-exterior authority currently owns the gate.",
+      "reopen_condition": "A durable Keep-exterior continuity authority is approved with equivalent scope."
+    },
+    {
+      "dependency": "Door/time-gate motif continuity",
+      "classification": "long_term_prose_gate",
+      "applies_to_asset_ids": ["AST-SYM-002"],
+      "evidence_path": "docs/SUBJECT_CONTINUITY_GATE_AUDIT_2026-08-16.md",
+      "rationale": "Source and handout records support the motif, but no dedicated durable motif-continuity authority exists.",
+      "reopen_condition": "A dedicated approved door/time-gate motif authority is established with equivalent scope."
+    },
+    {
+      "dependency": "Kael symbol continuity",
+      "classification": "long_term_prose_gate",
+      "applies_to_asset_ids": ["AST-SYM-003"],
+      "evidence_path": "docs/SUBJECT_CONTINUITY_GATE_AUDIT_2026-08-16.md",
+      "rationale": "Prelude/source material supports the symbol, but no dedicated durable Kael-symbol continuity authority exists.",
+      "reopen_condition": "A dedicated approved Kael-symbol continuity authority is established with equivalent scope."
+    }
+  ]
+}

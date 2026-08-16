@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/JamesJedi420/aramyst-book-assets/schemas/dependency-classification-registry.schema.json",
+  "title": "Aramyst Dependency Classification Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "policy_path", "prose_dependencies"],
+  "properties": {
+    "version": {"const": 1},
+    "policy_path": {"const": "docs/DEPENDENCY_GOVERNANCE_POLICY.md"},
+    "prose_dependencies": {"type": "array", "items": {"$ref": "#/$defs/proseDependency"}}
+  },
+  "$defs": {
+    "proseDependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dependency", "classification", "applies_to_asset_ids", "evidence_path", "rationale", "reopen_condition"],
+      "properties": {
+        "dependency": {"type": "string", "minLength": 1},
+        "classification": {"enum": ["title_bound_authority", "composite_gate", "long_term_prose_gate"]},
+        "applies_to_asset_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^AST-[A-Z]+-[0-9]{3}$"}},
+        "evidence_path": {"type": "string", "pattern": "^docs/[A-Za-z0-9_.-]+\\.md$"},
+        "rationale": {"type": "string", "minLength": 1},
+        "reopen_condition": {"type": "string", "minLength": 1},
+        "source_anchor": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["provider", "locator", "title"],
+          "properties": {
+            "provider": {"type": "string", "minLength": 1},
+            "locator": {"type": "string", "minLength": 1},
+            "title": {"type": "string", "minLength": 1}
+          }
+        },
+        "constituent_authorities": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      },
+      "allOf": [
+        {"if": {"properties": {"classification": {"const": "title_bound_authority"}}}, "then": {"required": ["source_anchor"]}},
+        {"if": {"properties": {"classification": {"const": "composite_gate"}}}, "then": {"required": ["constituent_authorities"]}}
+      ]
+    }
+  }
+}
