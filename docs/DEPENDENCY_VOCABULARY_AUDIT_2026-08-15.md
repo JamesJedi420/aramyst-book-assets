@@ -6,6 +6,8 @@ Scope: every `dependencies` entry in `manifest.json` / `ASSET_MANIFEST.csv`.
 
 This audit does **not** mint authority IDs, change asset dependencies, alter approval state, or reinterpret canon. It classifies the vocabulary already present and identifies candidates for later machine resolution.
 
+**Resolution update — 2026-08-16:** the original `MAP-ENV-001` ambiguity identified below is resolved by `docs/MAP_ENV_001_RECONCILIATION_2026-08-16.md`. `MAP-ENV-001` is the distinct durable map-product authority implemented by production asset `AST-MAP-003`; the existing `AST-MAP-004` dependency remains `MAP-ENV-001`. Machine resolution for the already-ID-shaped dependencies is now established through `schemas/external-authority-registry.json` and its schema/test contract.
+
 ## Result
 
 The 16 registered assets currently contain **41 dependency entries** representing **33 distinct dependency strings**.
@@ -13,10 +15,10 @@ The 16 registered assets currently contain **41 dependency entries** representin
 They fall into three materially different classes:
 
 1. **Registered asset dependencies** — already machine-resolvable `AST-*` IDs.
-2. **Durable external authority identifiers** — strings that already behave like stable project IDs or ID ranges, but are not yet resolved by the repository validator.
+2. **Durable external authority identifiers** — strings that already behave like stable project IDs or ID ranges.
 3. **Descriptive external gates / authority phrases** — human-readable requirements that may intentionally remain descriptive until a controlling project record exists.
 
-The dependency field is therefore carrying both graph edges and prose gates. The current validator correctly resolves exact `AST-*` dependencies, but it should not begin inventing IDs for the other classes.
+The dependency field is therefore carrying both graph edges and prose gates. The repository now has machine resolution for the current ID-shaped non-asset dependencies, but it must not begin inventing IDs for descriptive gates.
 
 ## Class 1 — registered asset dependencies
 
@@ -30,7 +32,7 @@ These are already in the preferred machine-resolvable form and require no vocabu
 
 ## Class 2 — durable external authority identifiers
 
-The following dependencies already have durable identifier-like form and are strong candidates for resolution through a future **external authority registry**, rather than being converted into `AST-*` IDs:
+The following dependencies already have durable identifier-like form and resolve through the controlled external authority registry rather than being converted into `AST-*` IDs:
 
 ### Atlas / geography authorities
 
@@ -42,6 +44,7 @@ The following dependencies already have durable identifier-like form and are str
 
 ### Local environment / scenario authorities
 
+- `MAP-ENV-001`
 - `MAP-ENV-001-FOUND-001`
 - `ENV-SD-001–ENV-SD-007`
 - `ENV-GD-001–ENV-GD-010`
@@ -57,24 +60,25 @@ The following dependencies already have durable identifier-like form and are str
 - `REL-CHAP-HOUSE-001`
 - `HOU-PD-012`
 
-These strings already communicate stable identity and should not be rewritten as loose prose. Their long-term machine-resolution problem is infrastructural: GitHub needs a controlled authority index capable of resolving external project IDs and, separately, deterministic ID-range syntax.
+These strings communicate stable identity and should not be rewritten as loose prose. Their machine-resolution source is `schemas/external-authority-registry.json`; bounded ranges retain their exact prefix, width, and start/end semantics.
 
-### Ambiguous identifier requiring reconciliation before automation
+### Resolved identifier: `MAP-ENV-001`
 
-`MAP-ENV-001` appears as a dependency of `AST-MAP-004` while `AST-MAP-003` is the registered asset whose title begins `MAP-ENV-001`.
+`MAP-ENV-001` is **not** an alias for `AST-MAP-003`.
 
-This dependency must **not** be automatically normalized. A later reconciliation must determine whether it means:
+The controlling Drive foundation explicitly declares `MAP-ENV-001` as the Map Product ID and `MAP-ENV-001-FOUND-001` as its Foundation ID. The MAP-ENV QA record separately identifies the repository source asset. The Last-Bell House foundation names `MAP-ENV-001 approved package / AST-MAP-003` as related governing sources, and `SCN-NODE-001` lists both identifiers independently.
 
-- the registered visual asset `AST-MAP-003`, in which case the dependency should eventually become `AST-MAP-003`; or
-- a separate non-asset MAP-ENV-001 authority/specification, in which case it should resolve through the external authority registry.
+Therefore:
 
-Until that semantic distinction is explicitly approved, `MAP-ENV-001` should remain unchanged.
+- use `MAP-ENV-001` for the durable approved map-product/local-geometry authority;
+- use `AST-MAP-003` for the registered production asset;
+- do not normalize one identifier into the other.
 
 ## Named authority document without durable ID
 
-`MAP-REG-001 Geometry Specification v001 — CONTROLLING` is not casual prose: it names a specific controlling Drive authority used by `AST-MAP-002`. It is therefore a high-priority candidate to receive or be mapped to an existing durable authority ID.
+`MAP-REG-001 Geometry Specification v001 — CONTROLLING` is not casual prose: it names a specific controlling Drive authority used by `AST-MAP-002`. It remains a high-priority candidate to receive or be mapped to an existing durable authority ID.
 
-The audit does **not** mint that ID. The correct next action is to locate the controlling specification's existing project identifier, if one exists, before creating any new namespace entry.
+This audit and the external authority registry do **not** mint that ID. The correct next action is to locate the controlling specification's existing project identifier, if one exists, before creating any new namespace entry.
 
 ## Class 3 — descriptive external gates and authority phrases
 
@@ -95,7 +99,7 @@ These may remain descriptive until the project establishes a controlling publica
 - `Approved location canon brief`
 - `Scene 01 canon`
 
-`Scene 01 canon` is particularly important because it is reused by six assets (`AST-CHAR-003`, `AST-CHAR-004`, `AST-CHAR-005`, `AST-LOC-002`, `AST-SYM-002`, and `AST-SYM-003`). Repetition makes it a strong candidate for replacement by a durable Scene 01 authority ID once the controlling scene/canon record is identified. The existing `SCN-NODE-001` dependency on `AST-MAP-003` is not assumed to be equivalent.
+`Scene 01 canon` is particularly important because it is reused by six assets (`AST-CHAR-003`, `AST-CHAR-004`, `AST-CHAR-005`, `AST-LOC-002`, `AST-SYM-002`, and `AST-SYM-003`). Repetition makes it a strong candidate for replacement by a durable Scene 01 authority ID once the controlling scene/canon record is identified. The existing `SCN-NODE-001` dependency is not assumed to be equivalent.
 
 ### Continuity / approval gates
 
@@ -108,30 +112,29 @@ These may remain descriptive until the project establishes a controlling publica
 
 These phrases express real gates, but the registry alone does not establish which concrete continuity record controls each phrase. They should remain descriptive until matched to already-approved continuity IDs or until a separate authority decision creates those IDs.
 
-## Recommended dependency architecture
+## Machine-resolvable dependency architecture
 
-Do **not** overload `AST-*` as a universal authority namespace. Asset IDs should continue to mean production assets.
+Do **not** overload `AST-*` as a universal authority namespace. Asset IDs continue to mean production assets.
 
-A future machine-resolvable dependency model should support at least:
+The effective dependency model now distinguishes:
 
 - `asset` — exact registered `AST-*` dependency;
-- `authority` — exact external project authority ID such as `ATLAS-REG-DATA-001` or `REL-CHAP-HOUSE-001`;
-- `authority_range` — deterministic bounded ranges such as `GEO-000002–GEO-000010`;
+- `authority` — exact external project authority ID resolved through `schemas/external-authority-registry.json`;
+- `authority_range` — deterministic bounded range resolved through the same registry;
 - `gate` — intentionally descriptive approval/canon condition that has no stable authority ID yet.
 
-The current flat string list can remain authoritative until such a schema change is separately approved. This audit recommends classification before migration, not immediate structural conversion.
+The asset manifest's flat string list remains authoritative; the external registry supplies resolution metadata without forcing an immediate manifest schema migration.
 
 ## Priority conversion queue
 
-### Priority A — resolve existing durable IDs
+### Priority A — completed for current ID-shaped dependencies
 
-Create or connect a machine-readable external authority index for the already-ID-shaped dependencies listed in Class 2. No new semantic identifiers are needed for these entries; only resolution infrastructure is missing.
+A machine-readable external authority index now resolves the current durable IDs and ranges used by the registry. `MAP` and `GXR` are included alongside the requested stable `ATLAS`, `GEO`, `ROUTE`, `ENV`, `HOU`, `REL`, and `SCN` namespaces because current dependencies already use them and complete resolution would otherwise remain partial.
 
-### Priority B — reconcile ambiguous/named authorities
+### Priority B — remaining named/repeated authorities
 
-1. Determine whether `MAP-ENV-001` means `AST-MAP-003` or a distinct authority.
-2. Find the existing durable project ID, if any, for `MAP-REG-001 Geometry Specification v001 — CONTROLLING`.
-3. Identify the controlling durable record for `Scene 01 canon` before changing the six dependent assets.
+1. Find the existing durable project ID, if any, for `MAP-REG-001 Geometry Specification v001 — CONTROLLING`.
+2. Identify the controlling durable record for `Scene 01 canon` before changing the six dependent assets.
 
 ### Priority C — map continuity phrases only when authority exists
 
@@ -149,10 +152,11 @@ Keep publication/art-direction requirements descriptive until they become formal
 4. Do not replace a prose dependency with an ID when equivalence is ambiguous.
 5. Preserve bounded range semantics; do not silently expand or contract ranges.
 6. Treat repeated descriptive gates as candidates for authority identification, not automatic ID creation.
-7. Any future dependency-schema migration must update `manifest.json`, `ASSET_MANIFEST.csv`, JSON Schema, validator tests, and human-readable registry documentation together.
+7. Add new durable external IDs/ranges to `schemas/external-authority-registry.json` with a concrete controlling source before relying on them as machine-resolvable dependencies.
+8. Any future dependency-schema migration must update `manifest.json`, `ASSET_MANIFEST.csv`, JSON Schema, validator tests, and human-readable registry documentation together.
 
 ## Audit conclusion
 
-**PASS — vocabulary is usable but heterogeneous.**
+**PASS — vocabulary is heterogeneous but the current durable external IDs are now machine-resolvable.**
 
-No current dependency is dangling under the repository's existing `AST-*` resolution rule. The main improvement opportunity is not to rewrite all free text, but to distinguish external durable authorities from intentional descriptive gates and then add machine resolution only where the project already possesses stable identity.
+No current `AST-*` dependency is dangling, and the repository regression test now requires every current ID-shaped non-asset dependency to resolve through the external authority registry. Descriptive gates remain intentionally descriptive until the project possesses stable identity for them.
