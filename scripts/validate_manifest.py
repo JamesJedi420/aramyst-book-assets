@@ -138,12 +138,7 @@ def safe_repository_relative_path(path_value: str) -> bool:
     return ".." not in Path(path_value).parts
 
 
-def validate_data_schema(
-    data: dict[str, Any],
-    schema: dict[str, Any],
-    label: str,
-    errors: list[str],
-) -> None:
+def validate_data_schema(data: dict[str, Any], schema: dict[str, Any], label: str, errors: list[str]) -> None:
     if Draft202012Validator is None:
         errors.append(
             "Missing validation dependency: jsonschema. "
@@ -195,64 +190,41 @@ def validate_asset(asset: Any, index: int, errors: list[str]) -> str | None:
     if not isinstance(asset, dict):
         errors.append(f"{label} must be an object")
         return None
-
     required = {
-        "asset_id",
-        "title",
-        "category",
-        "context",
-        "purpose",
-        "subjects",
-        "required_dimensions",
-        "status",
-        "version",
-        "drive_file_id",
-        "drive_url",
-        "drive_path",
-        "github_source_path",
-        "github_export_path",
-        "prompt_reference_path",
-        "owner",
-        "dependencies",
-        "approval",
-        "notes",
+        "asset_id", "title", "category", "context", "purpose", "subjects",
+        "required_dimensions", "status", "version", "drive_file_id", "drive_url",
+        "drive_path", "github_source_path", "github_export_path", "prompt_reference_path",
+        "owner", "dependencies", "approval", "notes",
     }
     missing = sorted(required - set(asset))
     if missing:
         errors.append(f"{label} missing fields: {', '.join(missing)}")
         return None
-
     asset_id = asset.get("asset_id")
     if not isinstance(asset_id, str) or not ASSET_ID_RE.fullmatch(asset_id):
         errors.append(f"{label}.asset_id has invalid format: {asset_id!r}")
         return None
-
     category = asset.get("category")
     if category not in CATEGORY_CODES:
         errors.append(f"{asset_id}: invalid category {category!r}")
     elif asset_id.split("-")[1] != CATEGORY_CODES[category]:
         errors.append(f"{asset_id}: ID category code does not match category {category!r}")
-
     for field in ("title", "context", "purpose", "subjects", "required_dimensions", "owner", "approval"):
         if not isinstance(asset.get(field), str) or not asset[field].strip():
             errors.append(f"{asset_id}: {field} must be a non-empty string")
-
     if asset.get("status") not in STATUSES:
         errors.append(f"{asset_id}: invalid status {asset.get('status')!r}")
     if not isinstance(asset.get("version"), str) or not VERSION_RE.fullmatch(asset["version"]):
         errors.append(f"{asset_id}: invalid version {asset.get('version')!r}")
-
     dependencies = asset.get("dependencies")
     if not isinstance(dependencies, list) or any(not isinstance(item, str) for item in dependencies):
         errors.append(f"{asset_id}: dependencies must be a list of strings")
     elif len(dependencies) != len(set(dependencies)):
         errors.append(f"{asset_id}: dependencies contain duplicates")
-
     drive_id = asset.get("drive_file_id", "")
     drive_url = asset.get("drive_url", "")
     github_source = asset.get("github_source_path", "")
     github_export = asset.get("github_export_path", "")
-
     if bool(drive_id) != bool(drive_url):
         errors.append(f"{asset_id}: drive_file_id and drive_url must be provided together")
     if drive_url and drive_id not in drive_url:
@@ -261,7 +233,6 @@ def validate_asset(asset: Any, index: int, errors: list[str]) -> str | None:
         errors.append(f"{asset_id}: requires a Drive source or GitHub source path")
     if asset.get("status") in {"exported", "published"} and not github_export:
         errors.append(f"{asset_id}: exported or published assets require github_export_path")
-
     for path_field in ("github_source_path", "github_export_path"):
         path_value = asset.get(path_field, "")
         if path_value and not safe_repository_relative_path(path_value):
@@ -270,7 +241,6 @@ def validate_asset(asset: Any, index: int, errors: list[str]) -> str | None:
             filename = Path(path_value).name
             if not FILE_NAME_RE.fullmatch(filename):
                 errors.append(f"{asset_id}: filename violates lowercase kebab-case rules: {filename}")
-
     return asset_id
 
 
@@ -278,7 +248,6 @@ def validate_pages(pages: Any, asset_ids: set[str], errors: list[str]) -> None:
     if not isinstance(pages, list):
         errors.append("pages must be an array")
         return
-
     numbers: set[int] = set()
     paths: set[str] = set()
     for index, page in enumerate(pages):
@@ -291,7 +260,6 @@ def validate_pages(pages: Any, asset_ids: set[str], errors: list[str]) -> None:
         if missing:
             errors.append(f"{label} missing fields: {', '.join(missing)}")
             continue
-
         number = page["page_number"]
         path = page["file_path"]
         if not isinstance(number, int) or not 1 <= number <= 999:
@@ -300,7 +268,6 @@ def validate_pages(pages: Any, asset_ids: set[str], errors: list[str]) -> None:
             errors.append(f"Duplicate page number: {number}")
         else:
             numbers.add(number)
-
         if not isinstance(path, str) or not PAGE_PATH_RE.fullmatch(path):
             errors.append(f"{label}.file_path has invalid format: {path!r}")
         else:
@@ -310,16 +277,14 @@ def validate_pages(pages: Any, asset_ids: set[str], errors: list[str]) -> None:
             expected_prefix = f"{number:03d}_" if isinstance(number, int) else ""
             if expected_prefix and not Path(path).name.startswith(expected_prefix):
                 errors.append(f"{label}: page number and filename prefix disagree")
-
         if page.get("asset_id") not in asset_ids:
             errors.append(f"{label}: unknown asset_id {page.get('asset_id')!r}")
         if page.get("status") not in STATUSES:
             errors.append(f"{label}: invalid status {page.get('status')!r}")
         if not isinstance(page.get("version"), str) or not VERSION_RE.fullmatch(page["version"]):
             errors.append(f"{label}: invalid version {page.get('version')!r}")
-        if page.get("status") in {"exported", "published"} and isinstance(path, str):
-            if not (ROOT / path).is_file():
-                errors.append(f"{label}: exported page file is missing: {path}")
+        if page.get("status") in {"exported", "published"} and isinstance(path, str) and not (ROOT / path).is_file():
+            errors.append(f"{label}: exported page file is missing: {path}")
 
 
 def read_csv(errors: list[str]) -> dict[str, dict[str, str]]:
@@ -352,7 +317,6 @@ def compare_csv(assets: list[dict[str, Any]], csv_rows: dict[str, dict[str, str]
             errors.append("Assets missing from CSV: " + ", ".join(missing_csv))
         if missing_json:
             errors.append("Assets missing from JSON: " + ", ".join(missing_json))
-
     fields = [
         "title", "category", "context", "purpose", "status", "version", "drive_file_id",
         "drive_url", "drive_path", "github_source_path", "github_export_path",
@@ -391,7 +355,6 @@ def load_filesystem_allowlist(errors: list[str], root: Path = ROOT) -> dict[str,
     except json.JSONDecodeError as exc:
         errors.append(f"Invalid JSON in schemas/filesystem-integrity-allowlist.json: {exc}")
         return {}
-
     if not isinstance(data, dict):
         errors.append("schemas/filesystem-integrity-allowlist.json must contain a JSON object")
         return {}
@@ -401,7 +364,6 @@ def load_filesystem_allowlist(errors: list[str], root: Path = ROOT) -> dict[str,
     if not isinstance(entries, list):
         errors.append("filesystem integrity allowlist must contain allowed_unregistered_files array")
         return {}
-
     allowlist: dict[str, dict[str, str]] = {}
     for index, entry in enumerate(entries):
         label = f"filesystem allowlist entry {index}"
@@ -489,14 +451,12 @@ def validate_dependency_governance(
         for entry in exact_entries
         if isinstance(entry, dict) and isinstance(entry.get("id"), str)
     }
-
     records = classification_registry.get("prose_dependencies", [])
     if not isinstance(records, list):
         errors.append("dependency classification registry must contain prose_dependencies array")
         records = []
-
     classification_by_dependency: dict[str, dict[str, Any]] = {}
-    for index, record in enumerate(records):
+    for record in records:
         if not isinstance(record, dict):
             continue
         dependency = record.get("dependency")
@@ -532,15 +492,15 @@ def validate_dependency_governance(
                 elif dependency not in asset_ids:
                     errors.append(f"{asset_id}: dangling registered Asset-ID dependency: {dependency}")
                 continue
+            if dependency in exact_ids:
+                continue
             if AUTHORITY_RANGE_RE.fullmatch(dependency):
                 if not _authority_range_resolves(dependency, range_entries):
                     errors.append(f"{asset_id}: unresolved external authority range: {dependency}")
                 continue
             if EXACT_EXTERNAL_ID_RE.fullmatch(dependency):
-                if dependency not in exact_ids:
-                    errors.append(f"{asset_id}: unresolved external authority ID: {dependency}")
+                errors.append(f"{asset_id}: unresolved external authority ID: {dependency}")
                 continue
-
             actual_prose_uses.setdefault(dependency, set()).add(str(asset_id))
             record = classification_by_dependency.get(dependency)
             if record is None:
@@ -548,9 +508,7 @@ def validate_dependency_governance(
                 continue
             allowed_assets = record.get("applies_to_asset_ids", [])
             if not isinstance(allowed_assets, list) or asset_id not in allowed_assets:
-                errors.append(
-                    f"{asset_id}: prose dependency is not classified for this asset: {dependency}"
-                )
+                errors.append(f"{asset_id}: prose dependency is not classified for this asset: {dependency}")
 
     for dependency, record in classification_by_dependency.items():
         declared_assets = record.get("applies_to_asset_ids", [])
@@ -563,9 +521,7 @@ def validate_dependency_governance(
             )
         unknown_assets = sorted(declared_set - asset_ids)
         if unknown_assets:
-            errors.append(
-                f"Dependency classification {dependency} references unknown assets: {', '.join(unknown_assets)}"
-            )
+            errors.append(f"Dependency classification {dependency} references unknown assets: {', '.join(unknown_assets)}")
 
 
 def concrete_registered_paths(assets: list[dict[str, Any]], pages: list[dict[str, Any]]) -> set[str]:
@@ -587,11 +543,8 @@ def concrete_registered_paths(assets: list[dict[str, Any]], pages: list[dict[str
 
 
 def validate_registered_filesystem_paths(
-    assets: list[dict[str, Any]],
-    pages: list[dict[str, Any]],
-    allowlist: dict[str, dict[str, str]],
-    errors: list[str],
-    root: Path = ROOT,
+    assets: list[dict[str, Any]], pages: list[dict[str, Any]], allowlist: dict[str, dict[str, str]],
+    errors: list[str], root: Path = ROOT,
 ) -> None:
     assets_by_id = {
         asset.get("asset_id"): asset
@@ -611,7 +564,6 @@ def validate_registered_filesystem_paths(
                 errors.append(f"{asset_id}: {field} must exist for {status} asset: {path_value}")
             if status in MATERIALIZED_STATUSES and path_value in allowlist:
                 errors.append(f"{asset_id}: active {field} points to superseded/provenance allowlist file: {path_value}")
-
     for index, page in enumerate(pages):
         if not isinstance(page, dict):
             continue
@@ -628,11 +580,8 @@ def validate_registered_filesystem_paths(
 
 
 def validate_asset_directory_files(
-    assets: list[dict[str, Any]],
-    pages: list[dict[str, Any]],
-    allowlist: dict[str, dict[str, str]],
-    errors: list[str],
-    root: Path = ROOT,
+    assets: list[dict[str, Any]], pages: list[dict[str, Any]], allowlist: dict[str, dict[str, str]],
+    errors: list[str], root: Path = ROOT,
 ) -> None:
     registered_paths = concrete_registered_paths(assets, pages)
     allowlisted_paths = set(allowlist)
@@ -657,12 +606,8 @@ def validate_asset_directory_files(
 
 
 def validate_filesystem_integrity(
-    assets: list[dict[str, Any]],
-    pages: list[dict[str, Any]],
-    asset_ids: set[str],
-    allowlist: dict[str, dict[str, str]],
-    errors: list[str],
-    root: Path = ROOT,
+    assets: list[dict[str, Any]], pages: list[dict[str, Any]], asset_ids: set[str],
+    allowlist: dict[str, dict[str, str]], errors: list[str], root: Path = ROOT,
 ) -> None:
     validate_registered_dependencies(assets, asset_ids, errors)
     validate_registered_filesystem_paths(assets, pages, allowlist, errors, root)
@@ -676,7 +621,6 @@ def main() -> int:
     authority_registry = load_json(EXTERNAL_AUTHORITY_REGISTRY_PATH, errors)
     classification_registry = load_json(DEPENDENCY_CLASSIFICATION_PATH, errors)
     classification_schema = load_json(DEPENDENCY_CLASSIFICATION_SCHEMA_PATH, errors)
-
     if schema:
         validate_json_schema(manifest, schema, errors)
     if classification_registry and classification_schema:
@@ -686,9 +630,7 @@ def main() -> int:
             "schemas/dependency-classification-registry.json",
             errors,
         )
-
     validate_project(manifest.get("project"), errors)
-
     assets = manifest.get("assets")
     asset_ids: set[str] = set()
     if not isinstance(assets, list):
@@ -701,39 +643,23 @@ def main() -> int:
                 if asset_id in asset_ids:
                     errors.append(f"Duplicate asset_id: {asset_id}")
                 asset_ids.add(asset_id)
-
     pages = manifest.get("pages")
     validate_pages(pages, asset_ids, errors)
     if not isinstance(pages, list):
         pages = []
-
     csv_rows = read_csv(errors)
     compare_csv(assets, csv_rows, errors)
     validate_markdown(asset_ids, errors)
-
     validate_dependency_governance(
-        assets,
-        asset_ids,
-        authority_registry,
-        classification_registry,
-        errors,
+        assets, asset_ids, authority_registry, classification_registry, errors
     )
-
     filesystem_allowlist = load_filesystem_allowlist(errors)
-    validate_filesystem_integrity(
-        assets,
-        pages,
-        asset_ids,
-        filesystem_allowlist,
-        errors,
-    )
-
+    validate_filesystem_integrity(assets, pages, asset_ids, filesystem_allowlist, errors)
     if errors:
         print("Aramyst manifest validation failed:", file=sys.stderr)
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         return 1
-
     print(
         f"Validated schema contract, {len(asset_ids)} assets, {len(pages)} pages, "
         "dependency governance, registered dependencies, and asset filesystem integrity."
