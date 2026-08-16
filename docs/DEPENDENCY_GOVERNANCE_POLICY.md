@@ -1,9 +1,11 @@
 # Aramyst Dependency Governance Policy
 
-Status: **CONTROLLING repository policy**
+Status: **CONTROLLING repository policy — CI enforced**
 Scope: dependency entries proposed for `manifest.json` and `ASSET_MANIFEST.csv`
 
 This policy consolidates the dependency-vocabulary audit and subsequent reconciliation work into one admission rule for the asset registry. It governs dependency representation; it does not create canon, mint authority IDs, approve assets, or replace the controlling source behind a dependency.
+
+Dependency governance is now mechanically enforced where semantics can be checked objectively. `schemas/dependency-classification-registry.json` is the mandatory machine-readable classification record for every dependency in the `title_bound_authority`, `composite_gate`, or `long_term_prose_gate` classes. CI does not infer prose meaning; it verifies that the controlled classification already exists, applies to the exact Asset IDs using the dependency, cites controlled evidence, and remains synchronized with actual registry use.
 
 ## 1. Governing principle
 
@@ -45,6 +47,8 @@ Use a stable, unambiguous controlling title in the dependency string. Record an 
 
 A title-bound authority remains outside `schemas/external-authority-registry.json` until a durable ID is assigned or discovered and proven equivalent to that exact authority.
 
+Before the dependency may enter the asset registry, it MUST also have a matching `title_bound_authority` record in `schemas/dependency-classification-registry.json`, including the exact dependency string, affected Asset IDs, evidence path, rationale, reopen condition, and source anchor required by the classification schema.
+
 ### Step D — Is the prerequisite distributed across multiple authorities?
 
 If multiple narrower approved authorities jointly govern the prerequisite and no one authority is scope-equivalent to the whole requirement, classify it as `composite_gate`.
@@ -53,11 +57,15 @@ Retain concise prose that describes the combined gate. Do not replace it with on
 
 A composite gate may be normalized later only when a single approved authority explicitly assumes the complete scope represented by the gate.
 
+Before entry, the prose dependency MUST have a matching `composite_gate` record in `schemas/dependency-classification-registry.json`, including its exact affected Asset IDs, controlled evidence, rationale, reopen condition, and constituent authorities where the schema requires them.
+
 ### Step E — Is the prerequisite real but not yet fully controlled?
 
 If the prerequisite depends on future canon, approval, art direction, geography, publication requirements, or another decision whose controlling authority is missing, provisional, partial, incomplete, or not scope-equivalent, classify it as `long_term_prose_gate`.
 
 Retain readable prose. Nearby authorities may be documented as supporting or likely future owners, but they do not satisfy the gate until their approved scope and completion state become equivalent.
+
+Before entry, the prose dependency MUST have a matching `long_term_prose_gate` record in `schemas/dependency-classification-registry.json`, including the exact affected Asset IDs, controlled evidence, rationale, and reopen/satisfaction condition.
 
 If none of these five classes can be established, the dependency MUST NOT enter the registry. Resolve the ambiguity first.
 
@@ -73,7 +81,7 @@ Required conditions:
 
 Required representation: exact `AST-*` ID.
 
-Validation expectation: target Asset ID exists; no dangling edge.
+CI enforcement: the target Asset ID must exist in the current asset registry. Malformed or dangling `AST-*` dependencies fail validation.
 
 Current examples include `AST-COVER-001` depending on `AST-SYM-001` and `AST-TYPE-001`.
 
@@ -88,6 +96,8 @@ Required conditions:
 - authority is registered in `schemas/external-authority-registry.json` before use.
 
 Required representation: exact authority ID, or exact bounded range when the dependency truly requires that bounded set.
+
+CI enforcement: exact authority IDs must resolve in `schemas/external-authority-registry.json`; bounded ranges must fall within a registered authority range with matching prefix and identifier width. Exact registered authority IDs are resolved before range parsing so multi-segment IDs such as `MAP-ENV-001-FOUND-001` are not misclassified as ranges.
 
 Range rules:
 
@@ -105,7 +115,8 @@ Required conditions:
 - exactly one controlling authority document exists;
 - no durable project ID has been proven to identify that exact document;
 - title is sufficiently specific to distinguish the controlling source;
-- an exact source locator/equivalence anchor is recorded in repository audit or reconciliation documentation.
+- an exact source locator/equivalence anchor is recorded in repository audit or reconciliation documentation;
+- a matching controlled record exists in `schemas/dependency-classification-registry.json`.
 
 Required representation: exact controlling title or established title-bound dependency phrase.
 
@@ -113,7 +124,8 @@ Prohibited actions:
 
 - inventing an ID during repository maintenance;
 - substituting a related ID;
-- adding the title itself to the external-authority registry as though it were an ID.
+- adding the title itself to the external-authority registry as though it were an ID;
+- adding or reusing the prose dependency in `manifest.json` without first updating the classification registry for the exact affected Asset IDs.
 
 Current precedent: `MAP-REG-001 Geometry Specification v001 — CONTROLLING`.
 
@@ -124,11 +136,12 @@ Required conditions:
 - prerequisite is real and presently controlled in parts;
 - two or more narrower authorities jointly govern it;
 - no single existing authority is equivalent to the full gate;
-- selecting only one constituent authority would distort or omit required scope.
+- selecting only one constituent authority would distort or omit required scope;
+- a matching controlled record exists in `schemas/dependency-classification-registry.json`.
 
 Required representation: concise stable prose naming the combined requirement.
 
-The gate's audit/reconciliation record SHOULD identify the important constituent authorities and explain why none is singly equivalent.
+The classification record identifies the important constituent authorities and the controlled audit/reconciliation evidence explaining why none is singly equivalent. CI verifies record existence and exact asset-use synchronization; it does not decide whether the semantic argument is correct.
 
 Current precedent: `Scene 01 canon`.
 
@@ -138,9 +151,12 @@ Required conditions:
 
 - prerequisite is intentionally unresolved or incomplete;
 - no current authority has both equivalent scope and required completion/approval state;
-- retaining the gate prevents premature production based on partial, provisional, or adjacent authority.
+- retaining the gate prevents premature production based on partial, provisional, or adjacent authority;
+- a matching controlled record exists in `schemas/dependency-classification-registry.json`.
 
 Required representation: concise prerequisite prose describing what must become approved/final before the dependent asset may proceed.
+
+The classification record must identify the exact affected Asset IDs, evidence path, rationale, and reopen/satisfaction condition. CI rejects an unclassified new prose dependency or reuse of a classified prose dependency by an Asset ID not explicitly included in that record.
 
 Current precedents:
 
@@ -173,6 +189,8 @@ Examples of prohibited false equivalence include:
 - `Final publishing specifications` → the current Book Production Specification while final platform/bleed requirements remain unresolved;
 - `Scene 01 canon` → `SCN-NODE-001` or `SCN-INV-001` when those authorities do not own all Scene-01 canon required by the affected assets.
 
+CI does not perform this semantic equivalence test. The equivalence decision must already be evidenced by a controlled audit, reconciliation record, or approved authority decision before machine-readable registry changes are proposed.
+
 ## 5. Mandatory pre-entry record
 
 Every future dependency addition or semantic replacement MUST include enough review evidence to answer:
@@ -187,7 +205,9 @@ Every future dependency addition or semantic replacement MUST include enough rev
 - constituent-authority rationale when class is `composite_gate`;
 - reopen/satisfaction condition when class is `long_term_prose_gate`.
 
-This evidence may live in the PR body, a dedicated reconciliation/audit document, or another controlled repository record. It MUST exist before the dependency edit is merged.
+For `title_bound_authority`, `composite_gate`, and `long_term_prose_gate`, the machine-readable record is mandatory: `schemas/dependency-classification-registry.json` MUST be updated in the same controlled change set before or with any corresponding dependency edit. Its Draft 2020-12 schema is `schemas/dependency-classification-registry.schema.json`.
+
+The human review evidence may live in the PR body, a dedicated reconciliation/audit document, or another controlled repository record, but the classification registry must cite an existing repository evidence path. The evidence MUST exist before the dependency edit is merged.
 
 ## 6. Registry-entry gate
 
@@ -197,16 +217,42 @@ A dependency edit MUST NOT merge into `manifest.json` or `ASSET_MANIFEST.csv` un
 2. its representation conforms to that class;
 3. any `AST-*` target exists;
 4. any durable external ID/range resolves through `schemas/external-authority-registry.json`;
-5. any title-bound authority has a documented exact source anchor;
-6. any composite gate has documented no-single-authority reasoning;
-7. any long-term prose gate states a real unresolved prerequisite rather than vague placeholder language;
-8. equivalence has not been inferred from mere topical similarity;
-9. manifest and CSV dependency representations remain synchronized;
-10. repository validation passes.
+5. any title-bound authority has a documented exact source anchor and matching classification-registry record;
+6. any composite gate has documented no-single-authority reasoning and matching classification-registry record;
+7. any long-term prose gate states a real unresolved prerequisite and has a matching classification-registry record;
+8. every prose occurrence is explicitly authorized for the affected Asset ID in that classification record;
+9. classification-registry asset sets exactly match current prose dependency use;
+10. evidence paths cited by classification records exist in the repository;
+11. equivalence has not been inferred from mere topical similarity;
+12. manifest and CSV dependency representations remain synchronized;
+13. repository validation passes.
 
-Reviewers MUST reject dependency edits that omit classification evidence or force a dependency into the wrong class for cosmetic consistency.
+Reviewers MUST reject dependency edits that omit classification evidence or force a dependency into the wrong class for cosmetic consistency. CI supplies an additional hard gate for the mechanically verifiable requirements above.
 
-## 7. Changes between classes
+## 7. CI-enforced dependency control
+
+`scripts/validate_manifest.py` enforces dependency governance using two machine-readable control registries:
+
+- `schemas/external-authority-registry.json` for durable external IDs and bounded ranges;
+- `schemas/dependency-classification-registry.json` for all current title-bound, composite, and long-term prose dependencies.
+
+The validator objectively checks:
+
+1. every `AST-*` dependency resolves to a registered asset;
+2. every exact ID-shaped external dependency resolves in the external-authority registry;
+3. every bounded external range is contained by a registered range with matching prefix and width;
+4. every remaining prose dependency has exactly one controlled classification record;
+5. every prose use occurs only on Asset IDs explicitly named by that record;
+6. the record's declared Asset-ID set exactly matches actual manifest usage;
+7. referenced Asset IDs exist;
+8. the cited evidence document exists;
+9. the classification registry satisfies its JSON Schema.
+
+Regression tests deliberately exercise rejection of dangling asset edges, unknown external IDs, out-of-range authority ranges, unclassified prose dependencies, and unauthorized reuse of an existing prose gate.
+
+The validator MUST NOT guess a prose class, infer equivalence, decide canon, or automatically convert prose into an authority ID. Semantic classification remains an approved project decision; CI enforces the recorded decision.
+
+## 8. Changes between classes
 
 Classification may change only when project authority changes or new evidence proves a different classification.
 
@@ -219,7 +265,9 @@ Permitted migrations include:
 
 Every migration MUST preserve meaning. A migration that broadens, narrows, weakens, or prematurely satisfies the prerequisite is prohibited.
 
-## 8. Authority-ID discipline
+A migration out of a prose class MUST update or remove its `schemas/dependency-classification-registry.json` record in the same change set so CI sees no stale classification. A migration into a prose class MUST add the classification record before the dependency can pass validation.
+
+## 9. Authority-ID discipline
 
 Repository maintenance MUST NOT mint project authority IDs merely to eliminate prose dependencies.
 
@@ -227,9 +275,11 @@ New authority IDs belong to the workflow that owns the underlying canon, map, sc
 
 `AST-*` remains exclusively the production-asset namespace.
 
-## 9. Synchronization rule
+## 10. Synchronization rule
 
 The flat dependency list remains authoritative in both `manifest.json` and `ASSET_MANIFEST.csv` until a separately approved schema migration changes that architecture.
+
+The dependency classification registry is a separate governance/control record; it does not replace the dependency lists in the manifest and CSV. For prose dependencies, its declared Asset-ID sets must remain exactly synchronized with actual manifest usage.
 
 Any future structural migration of dependency classification into machine-readable manifest fields MUST update together:
 
@@ -237,25 +287,28 @@ Any future structural migration of dependency classification into machine-readab
 - `ASSET_MANIFEST.csv`;
 - `schemas/asset-manifest.schema.json`;
 - `schemas/external-authority-registry.json` and its schema when applicable;
+- `schemas/dependency-classification-registry.json` and its schema;
 - validator implementation;
 - validator regression tests;
 - human-readable registry/documentation.
 
 No partial schema migration is permitted.
 
-## 10. Existing dependency disposition
+## 11. Existing dependency disposition
 
-This policy ratifies rather than reinterprets the completed audits:
+This policy ratifies rather than reinterprets the completed audits and their machine-readable classifications:
 
 - current `AST-*` edges remain `asset_edge`;
 - current durable external IDs/ranges remain `external_authority`;
-- `MAP-REG-001 Geometry Specification v001 — CONTROLLING` remains `title_bound_authority`;
-- `Scene 01 canon` remains `composite_gate`;
-- the six broad descriptive gates audited on 2026-08-16 remain `long_term_prose_gate`;
-- other continuity/approval prose dependencies remain subject to this policy and must be reconciled before any future normalization.
+- `MAP-REG-001 Geometry Specification v001 — CONTROLLING` remains `title_bound_authority` and is recorded in the classification registry;
+- `Scene 01 canon` remains `composite_gate` and is recorded in the classification registry;
+- the six broad descriptive gates audited on 2026-08-16 remain `long_term_prose_gate` and are recorded in the classification registry;
+- the six subject-specific continuity gates audited on 2026-08-16 remain `long_term_prose_gate` and are recorded in the classification registry.
 
-## 11. Controlling rule
+The current machine-readable classification registry contains the complete set of remaining prose dependencies used by the manifest. A prose dependency appearing in the manifest without a corresponding controlled record is a CI failure, not an implicitly accepted new gate.
+
+## 12. Controlling rule
 
 When identifier neatness conflicts with authority accuracy, **authority accuracy wins**.
 
-A readable, correctly scoped prose dependency is valid. A machine-resolvable identifier that changes the dependency's meaning is not.
+A readable, correctly scoped prose dependency is valid when its approved classification is explicitly controlled. A machine-resolvable identifier that changes the dependency's meaning is not.
