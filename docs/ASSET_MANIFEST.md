@@ -9,6 +9,7 @@ Canonical human-readable registry for the project currently using **Aramyst** as
 3. `manifest.json`, `ASSET_MANIFEST.csv`, and this file must identify the same registered assets.
 4. Google Drive remains the authority for working briefs, editable documents, and QA records unless promoted to GitHub.
 5. `approved` means accepted for the stated use; it does not imply publication-final cartography or publication-final naming.
+6. Before adding, removing, or changing any dependency, follow [`DEPENDENCY_GOVERNANCE_POLICY.md`](DEPENDENCY_GOVERNANCE_POLICY.md). Dependency classification is CI-enforced; prose dependencies require an authorized record in `../schemas/dependency-classification-registry.json` before registry entry.
 
 ## Master Asset Index
 
