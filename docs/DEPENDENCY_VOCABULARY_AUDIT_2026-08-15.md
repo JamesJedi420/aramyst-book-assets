@@ -6,7 +6,9 @@ Scope: every `dependencies` entry in `manifest.json` / `ASSET_MANIFEST.csv`.
 
 This audit does **not** mint authority IDs, change asset dependencies, alter approval state, or reinterpret canon. It classifies the vocabulary already present and identifies candidates for later machine resolution.
 
-**Resolution update — 2026-08-16:** the original `MAP-ENV-001` ambiguity identified below is resolved by `docs/MAP_ENV_001_RECONCILIATION_2026-08-16.md`. `MAP-ENV-001` is the distinct durable map-product authority implemented by production asset `AST-MAP-003`; the existing `AST-MAP-004` dependency remains `MAP-ENV-001`. Machine resolution for the already-ID-shaped dependencies is now established through `schemas/external-authority-registry.json` and its schema/test contract.
+**Resolution update — 2026-08-16:** the original `MAP-ENV-001` ambiguity is resolved by `docs/MAP_ENV_001_RECONCILIATION_2026-08-16.md`. `MAP-ENV-001` is the distinct durable map-product authority implemented by production asset `AST-MAP-003`; the existing `AST-MAP-004` dependency remains `MAP-ENV-001`. Machine resolution for the already-ID-shaped dependencies is established through `schemas/external-authority-registry.json` and its schema/test contract.
+
+**Named-authority update — 2026-08-16:** `docs/MAP_REG_001_GEOMETRY_AUTHORITY_RECONCILIATION_2026-08-16.md` records the completed search for a durable ID for `MAP-REG-001 Geometry Specification v001 — CONTROLLING`. No existing project ID was found that is explicitly assigned to that specification. Its current prose dependency therefore remains authoritative and intentionally unnormalized; the exact Drive file ID is the equivalence anchor for any future normalization.
 
 ## Result
 
@@ -18,7 +20,7 @@ They fall into three materially different classes:
 2. **Durable external authority identifiers** — strings that already behave like stable project IDs or ID ranges.
 3. **Descriptive external gates / authority phrases** — human-readable requirements that may intentionally remain descriptive until a controlling project record exists.
 
-The dependency field is therefore carrying both graph edges and prose gates. The repository now has machine resolution for the current ID-shaped non-asset dependencies, but it must not begin inventing IDs for descriptive gates.
+The dependency field is therefore carrying both graph edges and prose gates. The repository has machine resolution for the current ID-shaped non-asset dependencies, but it must not begin inventing IDs for descriptive or title-only authorities.
 
 ## Class 1 — registered asset dependencies
 
@@ -74,15 +76,19 @@ Therefore:
 - use `AST-MAP-003` for the registered production asset;
 - do not normalize one identifier into the other.
 
-## Named authority document without durable ID
+## Named authority document without durable ID — reconciled
 
-`MAP-REG-001 Geometry Specification v001 — CONTROLLING` is not casual prose: it names a specific controlling Drive authority used by `AST-MAP-002`. It remains a high-priority candidate to receive or be mapped to an existing durable authority ID.
+`MAP-REG-001 Geometry Specification v001 — CONTROLLING` names a specific controlling Drive authority used by `AST-MAP-002`.
 
-This audit and the external authority registry do **not** mint that ID. The correct next action is to locate the controlling specification's existing project identifier, if one exists, before creating any new namespace entry.
+The reconciliation in `docs/MAP_REG_001_GEOMETRY_AUTHORITY_RECONCILIATION_2026-08-16.md` searched the controlling document and surrounding project records for an existing durable project ID. None was found that is explicitly defined as the identity of the geometry specification itself.
+
+The exact controlling document is anchored by Drive file ID `1HKS3TPvCenAKeqC77glZtgT2xXwUwogkDv3AVL8OEdE`. Nearby identifiers such as `MAP-REG-001`, `ATLAS-REG-DATA-001`, QA/audit IDs, and the derived layout register identify related but different records and must not be substituted.
+
+Therefore the dependency remains `MAP-REG-001 Geometry Specification v001 — CONTROLLING` as intentional title-based authority. It must remain outside `schemas/external-authority-registry.json` unless a durable project ID is later assigned or discovered and proven equivalent to that exact Drive file.
 
 ## Class 3 — descriptive external gates and authority phrases
 
-The following dependency strings are not presently safe to resolve mechanically because they describe approval conditions, broad canon bodies, or decisions rather than a uniquely identified repository object:
+The following dependency strings are not presently safe to resolve mechanically because they describe approval conditions, broad canon bodies, decisions, or title-only authorities rather than a uniquely identified durable project ID:
 
 ### Publication / art-direction gates
 
@@ -116,12 +122,12 @@ These phrases express real gates, but the registry alone does not establish whic
 
 Do **not** overload `AST-*` as a universal authority namespace. Asset IDs continue to mean production assets.
 
-The effective dependency model now distinguishes:
+The effective dependency model distinguishes:
 
 - `asset` — exact registered `AST-*` dependency;
 - `authority` — exact external project authority ID resolved through `schemas/external-authority-registry.json`;
 - `authority_range` — deterministic bounded range resolved through the same registry;
-- `gate` — intentionally descriptive approval/canon condition that has no stable authority ID yet.
+- `gate` — intentionally descriptive or title-based approval/canon condition that has no stable authority ID yet.
 
 The asset manifest's flat string list remains authoritative; the external registry supplies resolution metadata without forcing an immediate manifest schema migration.
 
@@ -129,18 +135,21 @@ The asset manifest's flat string list remains authoritative; the external regist
 
 ### Priority A — completed for current ID-shaped dependencies
 
-A machine-readable external authority index now resolves the current durable IDs and ranges used by the registry. `MAP` and `GXR` are included alongside the requested stable `ATLAS`, `GEO`, `ROUTE`, `ENV`, `HOU`, `REL`, and `SCN` namespaces because current dependencies already use them and complete resolution would otherwise remain partial.
+A machine-readable external authority index resolves the current durable IDs and ranges used by the registry. `MAP` and `GXR` are included alongside the requested stable `ATLAS`, `GEO`, `ROUTE`, `ENV`, `HOU`, `REL`, and `SCN` namespaces because current dependencies already use them and complete resolution would otherwise remain partial.
 
-### Priority B — remaining named/repeated authorities
+### Priority B — named authority review
 
-1. Find the existing durable project ID, if any, for `MAP-REG-001 Geometry Specification v001 — CONTROLLING`.
-2. Identify the controlling durable record for `Scene 01 canon` before changing the six dependent assets.
+`MAP-REG-001 Geometry Specification v001 — CONTROLLING` has been reviewed. No existing durable project ID was found, so no replacement is authorized. Reopen this item only if a project record later assigns or reveals a durable ID that can be proven equivalent to Drive file `1HKS3TPvCenAKeqC77glZtgT2xXwUwogkDv3AVL8OEdE`.
 
-### Priority C — map continuity phrases only when authority exists
+### Priority C — next repeated authority candidate
+
+Identify the controlling durable record for `Scene 01 canon` before changing the six dependent assets.
+
+### Priority D — map continuity phrases only when authority exists
 
 Match each continuity phrase to an already-approved continuity record where possible. Do not create IDs solely to eliminate prose.
 
-### Priority D — retain genuine gates descriptively
+### Priority E — retain genuine gates descriptively
 
 Keep publication/art-direction requirements descriptive until they become formal controlled records. A readable gate is preferable to a fabricated identifier.
 
@@ -149,14 +158,15 @@ Keep publication/art-direction requirements descriptive until they become formal
 1. Never invent a durable authority ID solely during GitHub maintenance.
 2. Use `AST-*` only for registered production assets.
 3. Prefer an existing approved authority ID over a prose synonym when identity is certain.
-4. Do not replace a prose dependency with an ID when equivalence is ambiguous.
+4. Do not replace a prose dependency with an ID when equivalence is ambiguous or unproven.
 5. Preserve bounded range semantics; do not silently expand or contract ranges.
 6. Treat repeated descriptive gates as candidates for authority identification, not automatic ID creation.
 7. Add new durable external IDs/ranges to `schemas/external-authority-registry.json` with a concrete controlling source before relying on them as machine-resolvable dependencies.
-8. Any future dependency-schema migration must update `manifest.json`, `ASSET_MANIFEST.csv`, JSON Schema, validator tests, and human-readable registry documentation together.
+8. For a title-only controlling authority, retain the title until a durable ID exists; use the exact source locator as the future equivalence anchor.
+9. Any future dependency-schema migration must update `manifest.json`, `ASSET_MANIFEST.csv`, JSON Schema, validator tests, and human-readable registry documentation together.
 
 ## Audit conclusion
 
-**PASS — vocabulary is heterogeneous but the current durable external IDs are now machine-resolvable.**
+**PASS — vocabulary is heterogeneous but the current durable external IDs are machine-resolvable, and the high-value MAP-REG title-only authority has been explicitly reconciled.**
 
-No current `AST-*` dependency is dangling, and the repository regression test now requires every current ID-shaped non-asset dependency to resolve through the external authority registry. Descriptive gates remain intentionally descriptive until the project possesses stable identity for them.
+No current `AST-*` dependency is dangling, and the repository regression test requires every current ID-shaped non-asset dependency to resolve through the external authority registry. `MAP-REG-001 Geometry Specification v001 — CONTROLLING` remains intentionally title-based because no durable project ID has been proven for that exact document. Other descriptive gates remain intentionally descriptive until the project possesses stable identity for them.
