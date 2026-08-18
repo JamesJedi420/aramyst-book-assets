@@ -26,7 +26,7 @@ Canonical human-readable registry for the project currently using **Aramyst** as
 | AST-SYM-001 | Project Seal / Emblem (Publication Identity Pending) | symbol | planned | v001 | `symbols/` |
 | AST-TYPE-001 | Main Title Treatment (Publication Name Pending) | typography | planned | v001 | `typography/` |
 | AST-CHAR-003 | Tovin Marr Portrait | character | in-progress | v001 | Drive brief |
-| AST-CHAR-004 | Sister Aneth Portrait | character | in-progress | v001 | Drive brief |
+| AST-CHAR-004 | Sister Aneth Portrait | character | approved | v001 | `characters/ast-char-004-sister-aneth-source-v001.md` |
 | AST-CHAR-005 | Sergeant Beran Vask Portrait | character | in-progress | v001 | Drive brief |
 | AST-LOC-002 | Gate at Dusk Backdrop | location | in-progress | v001 | Drive brief |
 | AST-SYM-002 | Black Door Sign | symbol | approved | v001 | `symbols/symbol-black-door-sign-source-v001.md` |
@@ -102,14 +102,33 @@ Canonical human-readable registry for the project currently using **Aramyst** as
 
 ## Non-Map Assets
 
-The following registered assets remain governed by the complete operational fields in `manifest.json` and `ASSET_MANIFEST.csv`:
+### AST-CHAR-004 — Sister Aneth Portrait
 
-AST-COVER-001, AST-CHAR-001, AST-CHAR-002, AST-LOC-001, AST-SYM-001, AST-TYPE-001, AST-CHAR-003, AST-CHAR-004, AST-CHAR-005, AST-LOC-002, AST-SYM-002, AST-SYM-003.
+- **Category:** character
+- **Context:** Campaign One: The Last Quiet Spring / Scene 01 — The Gate at Dusk
+- **Purpose:** NPC portrait for the Chapel witness and moral counterweight who protects frightened people and inconvenient evidence.
+- **Subjects:** Sister Aneth of the Last Bell in plain frontier Chapel garb / dark traveling habit, composed and watchful with quiet fear beneath her calm.
+- **Required Dimensions:** Portrait format or square; suitable for NPC card/avatar.
+- **Status / Version:** approved / v001
+- **Drive File ID:** `1yJErhP5P6eNAEIUBfjfTOsUERi6CbT0W`
+- **Drive Path:** `Aramyst/05 — Assets/Characters/AST-CHAR-004 — Sister Aneth Portrait — Master v001.png`
+- **GitHub Source Path:** `characters/ast-char-004-sister-aneth-source-v001.md`
+- **GitHub Export Binding:** `exports/ast-char-004-sister-aneth-master-v001.md`
+- **Prompt / Brief Authority:** Drive `1EouMk8YQlgIpJKpexebnhjgaia-BGR8uMWVvskDDGkg`
+- **Dependencies:** Scene 01 canon; Chapel continuity approval.
+- **Approval:** Approved visual master 2026-08-18; Drive PNG authoritative; GitHub source/export binding records.
+- **Master SHA-256:** `1315736c793e2f3ff0bf05405a83e55664f250252298339f963f9c670a254236`.
+- **Authority ceiling:** simple Chapel cord only if visible; no cross, medallion, halo, invented office/rank, priesthood cue, magical effect, weapon, ornate vestments, or unsupported lore.
+
+The following registered non-map assets remain governed by the complete operational fields in `manifest.json` and `ASSET_MANIFEST.csv`:
+
+AST-COVER-001, AST-CHAR-001, AST-CHAR-002, AST-LOC-001, AST-SYM-001, AST-TYPE-001, AST-CHAR-003, AST-CHAR-005, AST-LOC-002, AST-SYM-002, AST-SYM-003.
 
 ## Change Log
 
 | Date | Change | Result |
 |---|---|---|
+| 2026-08-18 | TIN-274 / AST-CHAR-004 visual approval and integration | Approved Sister Aneth v001 under corrected locked brief; Drive PNG is authoritative; GitHub source/export binding records registered; no unsupported priesthood, rank, magical, weapon, or religious-symbol content authorized. |
 | 2026-08-14 | Q-023 authorized continuity synchronization | Corrected current Approved Working Scene 01 identities to Tovin Marr and Sergeant Beran Vask; marked publication-identity-dependent planned assets as naming-pending; did not invent a successor title or change asset versions/approval state. |
 | 2026-08-14 | AST-SYM-002 / AST-SYM-003 status-mirror reconciliation | Separately recorded the already-approved v001 status in the human-readable mirror and corresponding Drive production records; no approval, status authority, Asset ID, or version change was introduced. |
 | 2026-08-14 | AST-MAP-004 MAP-HOU-001 floorplan binding | Registered FP01-R1 as the approved controlling non-metric Last-Bell House floorplan; promoted only HOU-FP-GD-001–022; retained HOU-PD-012 holds and original FP01 failure history; synchronized approval labels without changing geometry. |
