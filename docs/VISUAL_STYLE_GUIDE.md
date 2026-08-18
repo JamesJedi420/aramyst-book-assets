@@ -1,295 +1,372 @@
 # Aramyst Visual Style Guide
 
-Canonical visual-direction document for the project currently using **Aramyst** as a development alias. The final publication/setting title remains unresolved. Under `SYS-001`, this is a standalone game/book project; this guide does not assert 5e compatibility.
+**Canonical production rule — MPN-1 Marcher Painterly Naturalism**  
+Effective: 2026-08-18
 
-This guide governs covers, page art, character and creature illustrations, locations, maps, symbols, typography, borders, and production-ready page assets. It should be read together with:
+The final publication/setting title remains unresolved; **Aramyst** is the current development alias. Under `SYS-001`, this is a standalone game/book project.
 
-- `docs/ASSET_MANIFEST.md`
-- `docs/NAMING_AND_VERSIONING.md`
-- `ASSET_MANIFEST.csv`
-- `manifest.json` when fixed-layout pages are assembled
+This guide governs all visual artwork intended for Aramyst books, handouts, cards, promotional material, VTT assets, reference documents, character portraits, creatures, locations, objects, and narrative scenes. Maps, diagrams, typography, seals, and other functional graphics retain their technical sub-rules but must harmonize with the same overall visual language.
 
-## 1. Approved Direction
+The full research and production record is mirrored in Google Drive as **Aramyst — Visual Art Style Guide & AI Production Standard v1.0**.
 
-The approved direction is **restrained old-school grim-frontier fantasy** presented as a **manuscript or sacred frontier record**, not a modern poster collage.
+## 1. Mandatory Rule
 
-Primary mood and layout references:
+**ONE WORLD, ONE ART LANGUAGE.**
 
-- *The Black Hours*
-- Morgan MS 493
+All newly created or materially revised Aramyst narrative artwork **MUST** use the canonical style defined here: **MPN-1 — Marcher Painterly Naturalism**.
 
-These references define hierarchy, atmosphere, ornament, and material character. They are not templates to copy literally.
+An asset may vary in subject, weather, time of day, composition, local palette, and degree of finish, but it may not establish a different rendering style.
+
+No artwork may be marked `approved`, Publication Alpha, Publication Candidate, or production-ready unless it passes the Visual Style Compliance Gate below.
+
+Existing approved assets are grandfathered as historical production records. Before publication-facing reuse, narrative artwork that materially conflicts with MPN-1 must be reviewed or reworked into compliance. A successful experiment does not redefine the style.
+
+## 2. Research Basis
+
+The direction is derived from three findings:
+
+1. **Project fit.** Current Aramyst authority already favors restrained grim-frontier fantasy, practical clothing/tools/architecture, low saturation, tactile material culture, weathering, institutional memory, deep interior shadow, and avoidance of glossy high-fantasy spectacle.
+2. **Contemporary TTRPG art direction.** Successful dark-fantasy and folkloric games such as *Symbaroum* and *Vaesen* demonstrate the value of a strong, setting-native illustration language with coherent mood and recognizable art direction rather than mixed generic fantasy styles.
+3. **Current image-generation strengths.** Current OpenAI image-generation guidance emphasizes clear subject/style/lighting constraints, explicit exclusions, targeted iterative edits, and image references for preserving important details. That favors a controlled painterly-naturalist pipeline over photographic perfection, uncontrolled hyper-detail, or literal simulation of traditional media.
+
+This guide does **not** instruct the model to imitate any named living artist. External games and artists are research references for high-level art-direction principles only.
+
+## 3. Canonical Style: MPN-1 Marcher Painterly Naturalism
+
+### Definition
+
+A contemporary painterly-naturalist fantasy illustration language built from believable observation, restrained chiaroscuro, tactile material surfaces, selective detail, and subtle hand-painted character.
+
+It should resemble a highly skilled modern fantasy illustrator working digitally with the visual logic of oils, gouache, and dry-brush paint — **not** a photograph, 3D render, glossy concept-art plate, or imitation of any named artist.
 
 ### Core Qualities
-
-Every major asset should reinforce at least three of these qualities:
 
 - weathered
 - solemn
 - dangerous
-- devotional
+- devotional without asserting supernatural truth
 - remote
 - tactile
-- legible
 - historically layered
+- materially plausible
 - restrained rather than maximal
+- narratively specific
+
+### Required Rendering Language
+
+- painterly surface with subtle brush character
+- naturalistic anatomy and believable materials
+- restrained chiaroscuro with motivated real light sources
+- hierarchy of hard, soft, and lost edges
+- selective finish: focal areas resolved, peripheral areas simplified
+- low-to-moderate saturation
+- deliberate negative space
+- asymmetry where natural
+- strong value design before micro-detail
+- environmental color affecting local materials
 
 ### Avoid
 
-- crowded montage compositions
-- glossy high-fantasy advertising language
+- photoreal headshot language as the default
+- 3D-render gloss
+- uniform image-wide micro-detail
 - neon or highly saturated palettes
-- clean modern UI styling inside book pages
+- blockbuster teal/orange grading
+- waxy or porcelain skin
+- fake text or meaningless glyphs
+- random runes, insignia, jewelry, buckles, straps, or ornament
 - generic cinematic lens flares
-- excessive magical particle effects
-- decorative borders that overpower the content
-- pseudo-medieval typography that harms readability
-- unrelated visual motifs used only to fill space
+- automatic shallow-depth-of-field bokeh
+- excessive magical particles, glowing seams, or aura effects
+- perfectly repeated patterns
+- persistent centered subject + blurred background compositions
 
-## 2. Production Format
+## 4. Color Language
 
-The canonical book format is fixed-layout **6 × 9 inches**, a 2:3 page ratio.
+The palette is dark, mineral, earth-based, and restrained.
 
-### Page Pipeline
+Preferred families:
 
-- Numeric prefixes control page order.
-- `manifest.json` is the ordering source of truth.
-- Page images are stored as fixed-layout raster outputs.
-- Base64-wrapped page assets use the original extension followed by `.b64`.
-- The current cover target is `pages/001_cover.png.b64`.
+- charcoal
+- umber
+- raw sienna
+- muted ochre
+- iron gray
+- moss green
+- smoke blue-gray
+- oxide red
+- muted wine
+- bone
+- weathered linen
+- tarnished gold
 
-### Resolution
+Rules:
 
-- Work at print resolution whenever practical.
-- A 6 × 9 inch page at 300 DPI is 1800 × 2700 pixels before bleed.
-- Keep editable or layered masters whenever the source format supports them.
-- Do not bake trim, bleed, or platform-specific spine measurements into canonical art until publishing specifications are confirmed.
+- saturation stays low to moderate
+- accent color has narrative purpose
+- blacks retain hue and texture
+- highlights are rarely pure white
+- practical light establishes warm/cool relationships
+- glowing color appears only when a canon-supported luminous phenomenon exists
 
-### Safe Composition
+## 5. Human Figure Standard
 
-- Keep critical faces, text, symbols, and landmarks away from trim edges.
-- Leave generous internal margins appropriate to a manuscript page.
-- Do not place critical information across a gutter unless the spread is intentionally designed for it.
-- Background texture may reach the edge; essential content should not.
+Characters must look lived-in rather than costume-designed.
 
-## 3. Visual Hierarchy
+Required:
 
-Pages and covers should read in this order:
+- plausible age/body variation
+- natural asymmetry in posture and garments
+- practical climate/labor layering
+- wear, repair, creasing, staining, soot, sun, wind, or use where appropriate
+- emotionally specific expressions
+- restraint in grooming and adornment unless canon says otherwise
+- close inspection of hands, eyes, teeth, ears, garment closures, and held objects
 
-1. primary title or subject
-2. central image, seal, map, or focal ornament
-3. section or chapter information
-4. supporting labels and marginal details
-5. texture and secondary decoration
+Avoid:
 
-Use a clear central hierarchy. Empty space is part of the design and should not automatically be filled.
+- cosmetic perfection across the cast
+- identical face structure across NPCs
+- fashion-editorial posing
+- perfect bilateral costume symmetry
+- generic fantasy class shorthand
+- unsupported holy symbols, weapons, ranks, insignia, noble styling, or magical cues
 
-## 4. Composition Language
+## 6. Portrait Standard
 
-### Preferred Structures
+Portraits use MPN-1 and are **not** a separate photographic style.
 
-- centered title above a single dominant emblem or scene
-- framed manuscript panel with controlled marginal decoration
-- symmetrical or near-symmetrical cover architecture
-- isolated figure or object against a dark field
-- landscape illustration treated as a recorded place rather than a panoramic advertisement
-- maps framed as working documents, chronicles, or sacred records
+Prefer:
 
-### Border System
+- bust, half-length, or environmental portrait
+- natural head turn/posture
+- purposeful background context rendered more loosely than the face
+- one primary practical light source with restrained ambient fill
+- detail concentrated around eyes, expression, and one or two identity-bearing features
+- broad garment value masses before fine texture
 
-Borders should feel drawn, engraved, stamped, illuminated, or assembled from repeated symbolic marks.
+Do not default to:
 
-Use borders to:
+- studio photography
+- passport framing
+- cinematic beauty light
+- extreme skin-pore detail
+- shallow bokeh
+- identical dark-hooded portrait compositions for multiple characters
 
-- establish page hierarchy
-- separate primary content from marginal notes
-- reinforce factions, regions, or chapters
-- create continuity across the book
+## 7. Environments and Scenes
 
-Borders should normally use one primary line weight and one secondary detail weight. Avoid more than three competing ornament systems on one page.
+Locations should feel occupied, maintained, neglected, repaired, traveled through, argued over, or remembered.
 
-## 5. Color System
+Where relevant show:
 
-The default palette is dark, mineral, parchment-based, and low saturation.
+- evidence of use
+- regional construction materials
+- structural logic
+- weathering and repair
+- navigational landmarks
+- restrained figures for scale/function
+- real atmospheric depth rather than blur effects
 
-| Role | Suggested Color | Hex | Use |
-|---|---|---:|---|
-| Deep field | Charcoal-black | `#15140F` | Covers, title fields, deep shadows |
-| Warm paper | Aged parchment | `#D2C29C` | Page grounds, labels, map fields |
-| Light paper | Bone vellum | `#E5D9BC` | High-legibility text grounds |
-| Primary metal | Antique gold | `#A78345` | Titles, seals, key borders, sacred emphasis |
-| Secondary metal | Tarnished silver | `#969693` | Secondary lettering, cold factions, restrained highlights |
-| Earth accent | Oxide red | `#71362E` | Warnings, bloodline or danger accents, limited emphasis |
-| Forest accent | Pine charcoal | `#29332B` | Wilderness, frontier maps, muted natural variation |
-| Ink | Brown-black | `#241F19` | Body text, line art, map labels |
+Prefer narrative moments before, during, or after consequential decisions rather than generic beauty shots.
 
-### Palette Rules
+## 8. Creatures and the Supernatural
 
-- Metallic colors are accents, not large flat fills.
-- Use one dominant accent family per asset.
-- Reserve red for narrative or navigational significance.
-- Keep most illustrations below full saturation.
-- Black should retain visible material texture rather than becoming a featureless digital void.
+The default world remains visually mundane until canon establishes otherwise.
 
-## 6. Typography
+Ordinary creatures should be anatomically and ecologically plausible.
 
-Typography should evoke an old record while remaining practical for sustained reading.
+Unusual or supernatural entities should derive strangeness from one or two strong deviations — silhouette, scale, motion, material, absence, impossible anatomy, or environmental effect — rather than generic fantasy excess.
 
-### Roles
+Avoid automatic horns, spikes, glowing cracks, black smoke, floating particles, symmetrical runes, or neon magical energy.
 
-- **Primary display:** engraved, inscriptional, uncial-influenced, or formal old-style display face.
-- **Secondary display:** restrained small caps or narrow serif for chapter and section headings.
-- **Body text:** readable old-style serif with open counters and durable print performance.
-- **Map and marginal labels:** compact serif, small caps, or hand-lettered style with controlled variation.
-- **Numbers and rules data:** highly legible serif or humanist companion face; clarity outranks atmosphere.
+## 9. Objects and Evidence
 
-### Typography Rules
+Object art should communicate:
 
-- Do not use ornate display lettering for paragraphs.
-- Maintain clear contrast between title, heading, body, caption, and marginal note.
-- Keep the main title treatment separate from background art.
-- Preserve editable title text and vector masters when possible.
-- Avoid more than two display families and one body family in a single production system.
-- Confirm commercial-use licensing before a font becomes canonical.
+- material construction
+- wear and handling
+- repair history
+- function
+- custody/use clues
+- restrained staging
 
-## 7. Illustration Direction
+Evidence-critical text, diagrams, seals, and labels should normally be produced as separate controlled assets. Do not rely on painterly image generation for long exact text, repeated heraldry, or evidence-sensitive lettering without independent verification and correction.
 
-### Rendering
+## 10. AI-Native Production Method
 
-Preferred rendering should feel:
+### Prompt Architecture
 
-- painterly, engraved, inked, or manuscript-adjacent
-- materially textured
-- grounded in practical clothing, tools, architecture, and terrain
-- dramatic through value and composition rather than effects overload
+Use explicit blocks for:
 
-Photorealism is not required. Consistency and world specificity matter more than surface realism.
+1. subject and action
+2. canon-bound physical details
+3. composition/viewpoint
+4. motivated lighting
+5. MPN-1 rendering language
+6. hard exclusions
 
-### Lighting
+### Reference-Locked Continuity
 
-- Favor firelight, overcast daylight, moonlight, candlelight, storm light, and deep interior shadow.
-- Use light as a story condition rather than a glamour effect.
-- Maintain readable silhouettes.
-- Magical illumination should have a defined source, color logic, and narrative purpose.
+Once a recurring person, location, creature, or key object has an approved master, use that master as an image reference for later depictions whenever supported. Do not regenerate recurring identities from text alone when a master exists.
 
-### Characters
+### Targeted Editing
 
-- Prioritize recognizable silhouette, equipment, posture, age, and lived-in clothing.
-- Costumes should show repair, use, climate, and social role.
-- Avoid generic pristine armor unless canon requires it.
-- Character continuity assets should document front view, profile, key equipment, palette, and distinguishing marks.
-- Heroic framing should remain severe and grounded rather than triumphant by default.
+Once composition and identity are correct, prefer focused edits over complete regeneration. Change one problem at a time and preserve already-approved features.
 
-### Creatures
+### Curation
 
-- Build creatures from ecological, folkloric, or magical logic.
-- Define scale with environment or human comparison when useful.
-- Avoid arbitrary spikes, glowing seams, or anatomy added only to signal danger.
-- Distinguish ordinary fauna, corrupted creatures, spirits, and legendary entities through consistent visual rules.
+Generate bounded candidates, audit them, and retain only compliant review candidates. Rejected generations do not establish canon or visual identity.
 
-### Locations
+### Separate Art from Typography
 
-- Architecture should reflect available materials, climate, defense needs, trade, and history.
-- Repeated construction details should establish regional identity.
-- Show evidence of occupation: repairs, soot, tracks, refuse, offerings, weathering, or abandoned tools.
-- Landscapes should communicate navigational and encounter-relevant information where possible.
+Narrative artwork normally contains no text. Page layout, labels, captions, title treatments, maps, and diagrams are assembled as controlled production elements.
 
-## 8. Maps and Diagrams
+## 11. Human-Authored Feel / Anti-Synthetic Controls
 
-Maps must remain usable at 6 × 9 inches.
+These are aesthetic quality controls, not provenance-concealment instructions.
 
-### Map Rules
+Required:
 
-- Establish a clear scale and orientation when relevant.
-- Use a limited symbol vocabulary.
-- Maintain strong distinction among roads, rivers, borders, elevation, settlements, ruins, and encounter sites.
-- Keep labels horizontal where possible and avoid collisions.
-- Use decorative monsters, compass roses, or marginal art sparingly.
-- Ensure important locations remain identifiable in grayscale.
-- Preserve a scalable master or the highest-resolution editable source.
+- selective rather than uniform detail
+- varied edge softness
+- subdued backgrounds
+- brush-like transitions and occasional broken-color/dry-brush behavior
+- imperfect but intentional garment folds and wear
+- real negative space
+- natural asymmetry
+- restrained facial retouching
+- color variation inside materials
+- practical environmental light
 
-### Map Styling
+Reject candidates exhibiting:
 
-Maps should resemble functional frontier records: surveyed, copied, amended, inherited, or sanctified. Imperfection may be visible, but geography must remain internally consistent.
+- over-sharpened everything
+- waxy skin
+- repeated facial templates
+- excessive tiny costume attachments
+- random decorative symbols
+- fake writing
+- impossible clothing closures
+- fused objects
+- malformed hands
+- inconsistent shadow/light direction
+- ornament with no canon/function explanation
 
-## 9. Symbols, Seals, and Faction Marks
+## 12. Asset-Class Variation Without Style Drift
 
-Symbols should be simple enough to recognize at small sizes and specific enough to belong to this setting/project.
+One style does not mean one composition.
 
-Every canonical symbol should have:
+- **Character portraits:** painterly naturalist environmental portrait
+- **Full scenes:** painterly narrative tableaux with atmospheric depth
+- **Landscapes:** observational painterly geography with strong value design
+- **Creatures:** naturalistic painterly anatomy with bounded strangeness
+- **Objects/evidence:** tactile still-life naturalism
+- **Spot art:** simplified MPN-1 brush/ink hybrid from the same palette/material logic
+- **Borders/seals:** manuscript/engraved graphic system harmonized with MPN-1
+- **Maps/diagrams:** functional record aesthetic; accuracy overrides painterly looseness
 
-- a full-detail master
-- a simplified small-size version
-- a one-color version
-- a transparent-background export
-- documented meaning and ownership
+## 13. Reusable MPN-1 Prompt Clause
 
-Avoid embedding small text inside emblems. Text and symbol should remain separable whenever possible.
+> Render in **Aramyst MPN-1 Marcher Painterly Naturalism**: contemporary naturalistic fantasy illustration with a hand-painted oil-and-gouache-like digital surface; restrained chiaroscuro; low-to-moderate saturation; tactile wool, leather, wood, iron, stone and weather; selective detail concentrated at the narrative focal point; varied hard/soft/lost edges; broad painterly simplification in secondary areas; motivated natural or practical light; historically plausible material culture; solemn grounded frontier mood. Illustration, not photography, not 3D rendering, not glossy concept art. No generic fantasy ornament, random symbols, fake text, excessive micro-detail, neon magic, or cinematic lens effects.
 
-## 10. Texture and Material Treatment
+## 14. Visual Continuity Record
 
-Approved texture families include:
+For recurring visuals preserve:
 
-- vellum and aged paper
-- ink bloom and dry-brush edges
-- engraved or stamped metal
-- soot, ash, mud, and weathering
-- faded mineral pigment
-- restrained gold or silver leaf effects
+- approved face/body structure
+- approximate age
+- hair/skin/eye characteristics when established
+- clothing logic and palette
+- distinctive equipment
+- recurring architecture/environment
+- scale
+- marks, damage, repairs, scars, or state changes
+- approved lighting-independent colors
 
-Texture must support hierarchy. Do not use uniform noise over every element.
+Material changes require a canon-state reason or explicit visual-continuity approval.
 
-## 11. Asset-Specific Requirements
+## 15. Visual Style Compliance Gate
 
-### Cover
+Before presentation for explicit creative approval, every applicable item must pass.
 
-- Dark field.
-- Antique gold or silver title hierarchy.
-- Decorated border with a clear central axis.
-- One primary image, seal, or scene.
-- No poster-collage assembly.
-- Title, emblem, and background remain separately editable.
+### Style
 
-### Interior Full-Page Art
+- [ ] Uses MPN-1
+- [ ] Reads as illustration, not photograph/3D/glossy unrelated concept art
+- [ ] Has selective detail and clear focal hierarchy
+- [ ] Uses restrained saturation and motivated lighting
 
-- Compose for 2:3 portrait output unless a spread is approved.
-- Keep essential narrative details inside the safe composition area.
-- Leave intentional space for captions or page furniture when required.
+### Canon
 
-### Spot Art
+- [ ] Every costume element, title, symbol, object, weapon, architectural detail, creature trait, and supernatural cue is supported by current authority or explicitly non-canon concept work
+- [ ] No excluded legacy material was imported
+- [ ] Unknowns remain unknown rather than being filled decoratively
 
-- Use strong silhouette and limited local complexity.
-- Prepare transparent-background versions when appropriate.
-- Confirm that fine detail survives at intended print size.
+### Human Figures
 
-### Chapter Openers
+- [ ] Anatomy is plausible
+- [ ] Visible hands, eyes, teeth, ears, clothing closures, and held objects pass inspection
+- [ ] Character does not reuse another established character’s facial identity
+- [ ] Costume is practical and canon-grounded
 
-- Use repeatable hierarchy: chapter mark, title, short descriptor, controlled ornament, and one focal illustration or symbol.
-- Preserve continuity while allowing chapter-specific motif changes.
+### Composition
 
-## 12. Approval Checklist
+- [ ] Crop/viewpoint are intentional
+- [ ] Background contributes setting information without competing with the focal subject
+- [ ] No accidental text, fake writing, random insignia, or malformed repeated ornament
 
-An asset is ready for `review` only when:
+### Production
 
-- its Asset ID exists in `docs/ASSET_MANIFEST.md` and `ASSET_MANIFEST.csv`
-- its filename follows `docs/NAMING_AND_VERSIONING.md`
-- the current version is recorded
-- source and output paths are known
-- the composition fits the intended 6 × 9 use
-- typography is legible at final size
-- palette and ornament follow this guide
-- required continuity references were used
-- no unlicensed font, stock, or third-party material is embedded without documentation
+- [ ] Correct Asset ID/version assigned
+- [ ] Review candidate stored separately from rejected generations
+- [ ] Approval status has not been advanced prematurely
+- [ ] Approved master will be stored in Drive, registered in GitHub, hashed, manifested, and reused as the continuity source for derivatives
 
-An asset is ready for `approved` only after creative direction, canon consistency, and production suitability are all accepted.
+Failure of any applicable item returns the asset to production. **Do not ask for user approval of a candidate already known to violate the guide.**
 
-## 13. Change Control
+## 16. Application to Existing Work
 
-Changes to the approved direction should be recorded in this file and dated. A single experimental asset does not redefine the canonical style.
+Effective immediately:
+
+- `AST-CHAR-004` and all currently unapproved narrative visual assets must be generated/regenerated under MPN-1 before approval
+- failed `AST-CHAR-004` generations remain rejected attempts and do not establish Sister Aneth’s appearance
+- an attractive image is not automatically an authoritative master
+- approved symbols, maps, and functional handout graphics retain approval, but future narrative derivatives must harmonize with MPN-1
+- existing narrative art that materially conflicts with MPN-1 must be reviewed before publication-facing reuse
+
+## 17. Existing Book-Design System Retained
+
+MPN-1 replaces and tightens the narrative illustration direction but retains the established book-production language:
+
+- fixed-layout 6 × 9 inch format
+- dark mineral/parchment palette
+- antique-gold/tarnished-silver restrained accents
+- manuscript/record hierarchy
+- engraved/stamped/illuminated border logic
+- readable old-style typography
+- strong central hierarchy and intentional empty space
+- 300 DPI production targets where practical
+- safe trim/gutter composition
+- functional frontier-record maps
+
+## 18. Change Control
+
+Changes to MPN-1 require:
+
+1. a stated production problem or new project requirement
+2. comparison against existing approved artwork
+3. continuity-impact assessment
+4. explicit approval
+5. synchronized update of this GitHub guide and the Drive guide
+6. update of affected briefs/statuses where required
+
+No individual image, prompt experiment, or external reference may silently change the canonical style.
 
 ## Change Log
 
 | Date | Change | Author |
 |---|---|---|
-| 2026-08-14 | Q-023 continuity synchronization: made publication identity explicitly unresolved and removed the obsolete 5e-compatibility claim under standalone `SYS-001`. | JamesJedi420 / ChatGPT |
-| 2026-08-04 | Created canonical visual style guide from the approved grim-frontier manuscript direction. | JamesJedi420 / ChatGPT |
+| 2026-08-18 | Established mandatory MPN-1 Marcher Painterly Naturalism after contemporary TTRPG / image-generation research; added AI-native production method, anti-synthetic quality controls, recurring-visual continuity lock, and mandatory style compliance gate. | JamesJedi420 / ChatGPT |
+| 2026-08-14 | Q-023 continuity synchronization: made publication identity explicitly unresolved and removed obsolete 5e-compatibility claim under standalone `SYS-001`. | JamesJedi420 / ChatGPT |
+| 2026-08-04 | Created canonical visual style guide from approved grim-frontier manuscript direction. | JamesJedi420 / ChatGPT |
