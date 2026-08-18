@@ -1,0 +1,18 @@
+{
+  "asset_id": "AST-MAP-004",
+  "version": "v001",
+  "status": "approved",
+  "approval_date": "2026-08-14",
+  "approval_evidence_path": "docs/map-hou-001-fp01-r1-approval-v001.md",
+  "drive_file_id": "1w7fd-wkY8ui2_mV6GO4N78lQWpTxDi55jTG0aeITmV4",
+  "github_source_path": "maps/map-hou-001-fp01-r1-neutral-v001.svg",
+  "github_export_path": "",
+  "master": {
+    "system": "github",
+    "github_path": "maps/map-hou-001-fp01-r1-neutral-v001.svg",
+    "hash": {
+      "algorithm": "git-blob-sha1",
+      "value": "0e6a75594539e5434ec075c789d7acae16fdbcd6"
+    }
+  }
+}

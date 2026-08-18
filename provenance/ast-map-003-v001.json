@@ -1,0 +1,18 @@
+{
+  "asset_id": "AST-MAP-003",
+  "version": "v001",
+  "status": "approved",
+  "approval_date": "2026-08-13",
+  "approval_evidence_path": "docs/map-env-001-schematic-qa-v001.md",
+  "drive_file_id": "1w4UnjQpzTHQIE4UXpMrejuaKBLy6Y0XMSh6EiGx3nfg",
+  "github_source_path": "maps/map-env-001-gm-schematic-v001.svg",
+  "github_export_path": "",
+  "master": {
+    "system": "github",
+    "github_path": "maps/map-env-001-gm-schematic-v001.svg",
+    "hash": {
+      "algorithm": "git-blob-sha1",
+      "value": "1380eae5f2ff8b48dc60b9a091d57828d5e66deb"
+    }
+  }
+}

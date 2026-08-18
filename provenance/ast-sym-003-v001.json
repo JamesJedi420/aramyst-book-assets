@@ -1,0 +1,26 @@
+{
+  "asset_id": "AST-SYM-003",
+  "version": "v001",
+  "status": "approved",
+  "approval_date": "2026-08-14",
+  "approval_evidence_path": "symbols/symbol-triangle-token-source-v001.md",
+  "drive_file_id": "1F_Yen3NvRgAFtJz3_ttoqlwxfJTPEBFj",
+  "github_source_path": "symbols/symbol-triangle-token-source-v001.md",
+  "github_export_path": "exports/symbol-triangle-token-preview-v001.webp.b64",
+  "master": {
+    "system": "google_drive",
+    "drive_file_id": "1F_Yen3NvRgAFtJz3_ttoqlwxfJTPEBFj",
+    "hash": {
+      "algorithm": "sha256",
+      "value": "a6963796ac766ea9aca914655ba059eab7836a508490c689b5e7dc1a82f29c17"
+    }
+  },
+  "source_hash": {
+    "algorithm": "git-blob-sha1",
+    "value": "6a42a2fb750d00b2b0b86d0d8d85a3a02abc86f9"
+  },
+  "export_hash": {
+    "algorithm": "sha256-base64-decoded",
+    "value": "611510ae2ebf1ad81f42e2e7ca43ce4fe84f6784b03e84d4251c960d80353d2f"
+  }
+}
