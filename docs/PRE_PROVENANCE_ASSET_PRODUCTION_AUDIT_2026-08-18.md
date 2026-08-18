@@ -14,7 +14,7 @@ PR #34 — the only identified pre-contract approval promotion requiring reconci
 
 ## Surviving non-main branches
 
-Three non-`main` branches remain at audit time:
+Three non-`main` branches remained at the original audit point:
 
 ### `agent/map-hou-001-functional-adjacency`
 
@@ -30,13 +30,25 @@ This is the previously audited superseded Q-023 implementation branch retained t
 
 ### `agent/continuity-gate-audit`
 
-Disposition: **STALE MERGED AUDIT REF — NO UNMERGED ASSET PROMOTION.**
+Original disposition: **STALE MERGED AUDIT REF — NO UNMERGED ASSET PROMOTION.**
 
-GitHub reports no commits between current `main` and this branch when a PR is attempted, so it carries no unique unmerged work relative to `main`.
+GitHub reported no commits between then-current `main` and this branch when a PR was attempted, so it carried no unique unmerged work relative to `main`.
 
-Its historical manifest snapshot also leaves the relevant Scene 01 visual records (`AST-CHAR-003`, `AST-CHAR-004`, `AST-CHAR-005`, and `AST-LOC-002`) in `in-progress` state. It therefore does not contain a hidden pre-contract `in-progress` → `approved` promotion.
+Its historical manifest snapshot also left the relevant Scene 01 visual records (`AST-CHAR-003`, `AST-CHAR-004`, `AST-CHAR-005`, and `AST-LOC-002`) in `in-progress` state. It therefore did not contain a hidden pre-contract `in-progress` → `approved` promotion.
 
-This branch must not be used as the base for new production because its working tree predates later provenance controls and newer approved asset state. New work starts from current `main`.
+The branch was not a valid base for new production because its working tree predated later provenance controls and newer approved asset state.
+
+## Post-audit branch cleanup — 2026-08-18
+
+The stale `agent/continuity-gate-audit` ref was separately audited against current `main` and confirmed to have no unique commits ahead of `main`. Explicit deletion authority was then granted, the branch was deleted through the GitHub UI, and a follow-up connector inventory verified that the ref no longer exists.
+
+Steady-state branch inventory after that cleanup is therefore:
+
+- `main` — authoritative production branch;
+- `agent/map-hou-001-functional-adjacency` — **intentional historical-provenance exception** preserving unique superseded PR #4 schematic/QA history;
+- `agent/q-023-cross-system-sync` — **intentional historical-provenance exception** preserving unique superseded PR #11/reconciliation history.
+
+The two remaining non-`main` branches are not unexplained stale work and are not candidates for routine branch cleanup. They are explicitly preserved, non-authoritative historical-provenance exceptions. They must not be used as bases for new production work, and they must not be deleted unless a later explicit archival/deletion decision supersedes this preservation rule.
 
 ## Finding
 
@@ -47,7 +59,7 @@ There is no surviving branch or open PR that both:
 1. contains an unmerged asset promotion to `approved`, `exported`, or `published`; and
 2. predates the approved-asset provenance contract without the required `provenance/*.json` sidecar.
 
-The currently surviving unique branches are historical provenance branches, not production branches. The additional continuity-audit ref has no commits ahead of `main` and carries no hidden approval promotion.
+The two surviving non-`main` branches are intentional historical-provenance exceptions, not production branches. The stale continuity-audit ref has been deleted after a zero-unique-commit verification.
 
 ## Required rule for future approval work
 
@@ -58,12 +70,12 @@ Any future asset approval branch MUST:
 3. bind the final Asset ID, version, status, Drive master identity, source/export paths, approval date, evidence record, and hashes;
 4. pass `Validate Aramyst Assets`, including `Validate approved asset provenance`, before merge.
 
-Do not revive historical or stale branches for new asset production. If historical work must be reused, create a new branch from current `main` and deliberately port only the still-authorized content.
+Do not revive historical branches for new asset production. If historical work must be reused, create a new branch from current `main` and deliberately port only the still-authorized content.
 
 ## Audit hygiene note
 
-During this audit two temporary no-op PRs (#40 and #41) were inadvertently opened solely while probing whether the preserved historical branches carried unique commits. Both were immediately closed without merge or branch modification. They have no authority and do not change the preservation disposition of either branch.
+During the original audit two temporary no-op PRs (#40 and #41) were inadvertently opened solely while probing whether the preserved historical branches carried unique commits. Both were immediately closed without merge or branch modification. They have no authority and do not change the preservation disposition of either branch.
 
 ## Conclusion
 
-The repository has no active pre-provenance approval promotion requiring reconciliation. The late-CI failure mode that affected PR #34 is therefore cleared from the current open-work surface. Future approval work is controlled by the same-PR provenance rule and must start from current `main`.
+The repository has no active pre-provenance approval promotion requiring reconciliation. The late-CI failure mode that affected PR #34 is cleared from the current open-work surface. The stale `agent/continuity-gate-audit` ref has been removed, and the two remaining non-`main` branches are explicitly controlled historical-provenance exceptions. Future approval work is controlled by the same-PR provenance rule and must start from current `main`.
