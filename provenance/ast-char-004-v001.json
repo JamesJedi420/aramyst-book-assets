@@ -4,23 +4,23 @@
   "status": "approved",
   "approval_date": "2026-08-18",
   "approval_evidence_path": "characters/ast-char-004-sister-aneth-source-v001.md",
-  "drive_file_id": "1yJErhP5P6eNAEIUBfjfTOsUERi6CbT0W",
+  "drive_file_id": "176HnPI69AZgvrDJ374V1KrLRoAGu17HH",
   "github_source_path": "characters/ast-char-004-sister-aneth-source-v001.md",
   "github_export_path": "exports/ast-char-004-sister-aneth-master-v001.md",
   "master": {
     "system": "google_drive",
-    "drive_file_id": "1yJErhP5P6eNAEIUBfjfTOsUERi6CbT0W",
+    "drive_file_id": "176HnPI69AZgvrDJ374V1KrLRoAGu17HH",
     "hash": {
       "algorithm": "sha256",
-      "value": "1315736c793e2f3ff0bf05405a83e55664f250252298339f963f9c670a254236"
+      "value": "a2599033b2e59f76deb3ad2ed02da8d035ab5ddbc1c4ede3ed8ec3abf7f32018"
     }
   },
   "source_hash": {
     "algorithm": "git-blob-sha1",
-    "value": "efdd4fd5082b9ce09bd20c4dbfc930cab44fc908"
+    "value": "03d57f43e1ee747aab46a8b451462bf4880631c6"
   },
   "export_hash": {
     "algorithm": "git-blob-sha1",
-    "value": "8d3e4f27f2d6cfc09e5b82a6c07ffd0e7c8e293e"
+    "value": "017336fab67d25c9a431cc515e364503f31a788d"
   }
 }
