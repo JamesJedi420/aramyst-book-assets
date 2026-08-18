@@ -119,6 +119,19 @@
       "evidence_path": "docs/SUBJECT_CONTINUITY_GATE_AUDIT_2026-08-16.md",
       "rationale": "Prelude/source material supports the symbol, but no dedicated durable Kael-symbol continuity authority exists.",
       "reopen_condition": "A dedicated approved Kael-symbol continuity authority is established with equivalent scope."
+    },
+    {
+      "dependency": "ART-DIR-001 / MPN-1",
+      "classification": "title_bound_authority",
+      "applies_to_asset_ids": ["AST-CHAR-004"],
+      "evidence_path": "docs/VISUAL_STYLE_GUIDE.md",
+      "rationale": "ART-DIR-001 is the durable controlling art-direction decision and MPN-1 is its named mandatory rendering language; the combined dependency label intentionally binds AST-CHAR-004 to that exact approved style authority.",
+      "reopen_condition": "ART-DIR-001 is superseded, or the MPN-1 designation or mandatory rendering language changes.",
+      "source_anchor": {
+        "provider": "github",
+        "locator": "docs/VISUAL_STYLE_GUIDE.md",
+        "title": "Aramyst Visual Style Guide — MPN-1 Marcher Painterly Naturalism"
+      }
     }
   ]
 }
