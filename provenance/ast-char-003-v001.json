@@ -1,0 +1,26 @@
+{
+  "asset_id": "AST-CHAR-003",
+  "version": "v001",
+  "status": "approved",
+  "approval_date": "2026-08-18",
+  "approval_evidence_path": "characters/ast-char-003-tovin-marr-source-v001.md",
+  "drive_file_id": "1ICRNoQd-IKnqAD1lV3m-RxCptIXd6hSd",
+  "github_source_path": "characters/ast-char-003-tovin-marr-source-v001.md",
+  "github_export_path": "exports/ast-char-003-tovin-marr-master-v001.md",
+  "master": {
+    "system": "google_drive",
+    "drive_file_id": "1ICRNoQd-IKnqAD1lV3m-RxCptIXd6hSd",
+    "hash": {
+      "algorithm": "sha256",
+      "value": "c60975d5747f3640025b54e4c74a806653be28e51bf6fc8deb87877578e5a4fe"
+    }
+  },
+  "source_hash": {
+    "algorithm": "git-blob-sha1",
+    "value": "3de241dd54e1715cdddfef73d6d9c78f8126e5bc"
+  },
+  "export_hash": {
+    "algorithm": "git-blob-sha1",
+    "value": "bbc6d8b450717962d767f4a5c08afeea0581c813"
+  }
+}
