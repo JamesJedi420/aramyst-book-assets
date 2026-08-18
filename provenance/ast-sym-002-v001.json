@@ -1,0 +1,26 @@
+{
+  "asset_id": "AST-SYM-002",
+  "version": "v001",
+  "status": "approved",
+  "approval_date": "2026-08-14",
+  "approval_evidence_path": "symbols/symbol-black-door-sign-source-v001.md",
+  "drive_file_id": "1JdXyK3vHG_VJpA6iwHqEoBuVoEG30T7E",
+  "github_source_path": "symbols/symbol-black-door-sign-source-v001.md",
+  "github_export_path": "exports/symbol-black-door-sign-preview-v001.webp.b64",
+  "master": {
+    "system": "google_drive",
+    "drive_file_id": "1JdXyK3vHG_VJpA6iwHqEoBuVoEG30T7E",
+    "hash": {
+      "algorithm": "sha256",
+      "value": "60571b5ab33acb3f471f59fec5fc8cfd1b940a73e6e8438208f26bc145f74ba6"
+    }
+  },
+  "source_hash": {
+    "algorithm": "git-blob-sha1",
+    "value": "ae37bcde7110638c3159cef3539c0d5bb843101c"
+  },
+  "export_hash": {
+    "algorithm": "sha256-base64-decoded",
+    "value": "0b6bc93e5cef8caeb1a1b5c3c70091b63d3e3d1c2196b9a68fbf18707ccb0e61"
+  }
+}
