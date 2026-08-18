@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/JamesJedi420/aramyst-book-assets/schemas/approved-asset-provenance.schema.json",
+  "title": "Aramyst Approved Asset Provenance Sidecar",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "asset_id",
+    "version",
+    "status",
+    "approval_date",
+    "approval_evidence_path",
+    "drive_file_id",
+    "github_source_path",
+    "github_export_path",
+    "master"
+  ],
+  "properties": {
+    "asset_id": {"type": "string", "pattern": "^AST-(COVER|MAP|CHAR|FACT|LOC|SYM|TYPE|PROMPT|REF|MISC)-[0-9]{3}$"},
+    "version": {"type": "string", "pattern": "^v[0-9]{3}$"},
+    "status": {"enum": ["approved", "exported", "published"]},
+    "approval_date": {"type": "string", "format": "date"},
+    "approval_evidence_path": {"type": "string", "minLength": 1},
+    "drive_file_id": {"type": "string"},
+    "github_source_path": {"type": "string"},
+    "github_export_path": {"type": "string"},
+    "master": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system", "hash"],
+      "properties": {
+        "system": {"enum": ["google_drive", "github"]},
+        "drive_file_id": {"type": "string", "minLength": 1},
+        "github_path": {"type": "string", "minLength": 1},
+        "hash": {"$ref": "#/$defs/hashBinding"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"system": {"const": "google_drive"}}},
+          "then": {"required": ["drive_file_id"]}
+        },
+        {
+          "if": {"properties": {"system": {"const": "github"}}},
+          "then": {"required": ["github_path"]}
+        }
+      ]
+    },
+    "source_hash": {"$ref": "#/$defs/hashBinding"},
+    "export_hash": {"$ref": "#/$defs/hashBinding"}
+  },
+  "$defs": {
+    "hashBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "value"],
+      "properties": {
+        "algorithm": {"enum": ["sha256", "git-blob-sha1", "sha256-base64-decoded"]},
+        "value": {"type": "string", "pattern": "^[0-9a-f]+$"}
+      }
+    }
+  }
+}
