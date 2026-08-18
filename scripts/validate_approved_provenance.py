@@ -37,7 +37,7 @@ def sha256(path: Path) -> str:
 
 def sha256_base64_decoded(path: Path) -> str:
     encoded = path.read_bytes()
-    payload = base64.b64decode(encoded, validate=False)
+    payload = base64.b64decode(encoded, validate=True)
     return hashlib.sha256(payload).hexdigest()
 
 
