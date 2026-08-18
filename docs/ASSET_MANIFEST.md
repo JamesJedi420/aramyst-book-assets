@@ -25,7 +25,7 @@ Canonical human-readable registry for the project currently using **Aramyst** as
 | AST-LOC-001 | Opening Location Key Art | location | planned | v001 | `locations/` |
 | AST-SYM-001 | Project Seal / Emblem (Publication Identity Pending) | symbol | planned | v001 | `symbols/` |
 | AST-TYPE-001 | Main Title Treatment (Publication Name Pending) | typography | planned | v001 | `typography/` |
-| AST-CHAR-003 | Tovin Marr Portrait | character | in-progress | v001 | Drive brief |
+| AST-CHAR-003 | Tovin Marr Portrait | character | approved | v001 | `characters/ast-char-003-tovin-marr-source-v001.md` |
 | AST-CHAR-004 | Sister Aneth Portrait | character | approved | v001 | `characters/ast-char-004-sister-aneth-source-v001.md` |
 | AST-CHAR-005 | Sergeant Beran Vask Portrait | character | in-progress | v001 | Drive brief |
 | AST-LOC-002 | Gate at Dusk Backdrop | location | in-progress | v001 | Drive brief |
@@ -102,6 +102,25 @@ Canonical human-readable registry for the project currently using **Aramyst** as
 
 ## Non-Map Assets
 
+### AST-CHAR-003 — Tovin Marr Portrait
+
+- **Category:** character
+- **Context:** Campaign One: The Last Quiet Spring / Scene 01 — The Gate at Dusk
+- **Purpose:** NPC portrait for the frightened cart-driver, witness, hook-carrier, and survivor who brings the missing escort mystery to the Keep.
+- **Subjects:** Tovin Marr, a weathered frontier cart-driver in his late thirties or forties, frightened and exhausted at torchlit dusk.
+- **Required Dimensions:** portrait; approved master 1122×1402 px.
+- **Status / Version:** approved / v001
+- **Style Authority:** MPN-1 — Marcher Painterly Naturalism (`ART-DIR-001 / TIN-278`).
+- **Drive File ID:** `1ICRNoQd-IKnqAD1lV3m-RxCptIXd6hSd`
+- **Drive Path:** `Aramyst/05 — Assets/Characters/Character Portraits/AST-CHAR-003 — Tovin Marr — MPN-1 — v001 — APPROVED.png`
+- **GitHub Source Path:** `characters/ast-char-003-tovin-marr-source-v001.md`
+- **GitHub Export Binding:** `exports/ast-char-003-tovin-marr-master-v001.md`
+- **Prompt / Brief Authority:** Drive `1dPcCTGJmJIPx1mdaKh9X5EPN7tE0OyJ69kzfDhaBQj8`
+- **Dependencies:** Scene 01 canon; Character continuity approval.
+- **Approval:** Approved MPN-1 visual master 2026-08-18; Drive PNG is the authoritative Tovin Marr visual anchor.
+- **Master SHA-256:** `c60975d5747f3640025b54e4c74a806653be28e51bf6fc8deb87877578e5a4fe`.
+- **Authority ceiling:** ordinary weathered frontier cart-driver; practical road-worn clothes; frightened and exhausted rather than heroic; no armor, weapon, heroic status, supernatural effect, invented symbol, noble costume, readable text, monster traits, or unsupported lore.
+
 ### AST-CHAR-004 — Sister Aneth Portrait
 
 - **Category:** character
@@ -124,12 +143,13 @@ Canonical human-readable registry for the project currently using **Aramyst** as
 
 The following registered non-map assets remain governed by the complete operational fields in `manifest.json` and `ASSET_MANIFEST.csv`:
 
-AST-COVER-001, AST-CHAR-001, AST-CHAR-002, AST-LOC-001, AST-SYM-001, AST-TYPE-001, AST-CHAR-003, AST-CHAR-005, AST-LOC-002, AST-SYM-002, AST-SYM-003.
+AST-COVER-001, AST-CHAR-001, AST-CHAR-002, AST-LOC-001, AST-SYM-001, AST-TYPE-001, AST-CHAR-005, AST-LOC-002, AST-SYM-002, AST-SYM-003.
 
 ## Change Log
 
 | Date | Change | Result |
 |---|---|---|
+| 2026-08-18 | TIN-273 / AST-CHAR-003 MPN-1 visual approval and integration | Approved Tovin Marr v001 as an MPN-1-native portrait; Drive PNG registered as authoritative visual anchor with source/export/provenance binding and synchronized manifest records. |
 | 2026-08-18 | TIN-274 / MPN-1 authority reconciliation | Replaced the pre-MPN-1 Sister Aneth master with the explicitly approved MPN-1 v001 master; new Drive ID/hash are authoritative and the earlier master is explicitly superseded. |
 | 2026-08-18 | TIN-274 / AST-CHAR-004 visual approval and integration | Earlier pre-MPN-1 integration retained as production history only; superseded by the MPN-1 authority reconciliation above. |
 | 2026-08-14 | Q-023 authorized continuity synchronization | Corrected current Approved Working Scene 01 identities to Tovin Marr and Sergeant Beran Vask; marked publication-identity-dependent planned assets as naming-pending; did not invent a successor title or change asset versions/approval state. |
