@@ -4,6 +4,8 @@ Production-asset repository for the standalone Aramyst TTRPG project. “Aramyst
 
 This repository stores source assets, working references, prompts, and export-ready files used during development and production.
 
+For the current repository-control state, branch exceptions, CI architecture, and maintenance rules, read [`docs/GITHUB_BASELINE.md`](docs/GITHUB_BASELINE.md). Dated audits and reconciliations are evidence records rather than parallel current-state baselines unless a controlling policy explicitly incorporates their result.
+
 Before adding or editing an asset dependency, read [`docs/DEPENDENCY_GOVERNANCE_POLICY.md`](docs/DEPENDENCY_GOVERNANCE_POLICY.md). Dependency strings are CI-governed: durable IDs/ranges must resolve through the external-authority registry, and title-bound, composite, or long-term prose dependencies require a controlled record in `schemas/dependency-classification-registry.json`.
 
 ## Folder Structure

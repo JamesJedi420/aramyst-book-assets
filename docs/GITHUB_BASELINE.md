@@ -1,337 +1,215 @@
 # Aramyst GitHub Baseline
 
-Baseline established: 2026-08-14 09:13 CDT
-Repository-control audit refreshed: 2026-08-16
+Status: **CONTROLLED — current repository-control baseline**
 
-## Baseline identity
+Baseline established: 2026-08-14  
+Last refreshed: 2026-08-18  
+Repository: `JamesJedi420/aramyst-book-assets`  
+Default branch: `main`  
+Visibility: public  
+Canonical Drive root: `1IBbWIFfAuJpB7I9jc7yrjb461mPnuGnq`
 
-- Repository: `JamesJedi420/aramyst-book-assets`
-- Default branch: `main`
-- Visibility: public
-- Baseline `main` commit: `73ec4650b8c8733f03348e88710d17b223348cd8`
-- Repository role: controlled production-asset registry, machine-readable production metadata, validation, naming/versioning rules, publication paths, and promoted release-ready assets for the standalone TTRPG project currently using `Aramyst` as a temporary development alias.
-- Canonical Drive root recorded by the repository: `1IBbWIFfAuJpB7I9jc7yrjb461mPnuGnq`
+## Purpose
 
-## Repository inventory audit
+This file is the single current-state entry point for GitHub repository control. Dated audits and reconciliations remain evidence records; they do not operate as parallel current-state baselines.
 
-The authenticated account currently owns four repositories:
+When a dated audit establishes a stable repository-wide control, fold that current fact into this file during the next baseline refresh. Preserve the dated audit as evidence of how the decision was reached. Git history preserves prior baseline snapshots.
 
-- `JamesJedi420/aramyst-book-assets`
-- `JamesJedi420/containment-protocol`
-- `JamesJedi420/dead-air-website`
-- `JamesJedi420/tinyfolk-realm-of-giants`
+## Documentation authority
 
-Repository search found no additional repository matching the Aramyst/Mystara/Blackmoor project identity. For this project, `JamesJedi420/aramyst-book-assets` remains the GitHub baseline repository.
+Read repository-control state in this order:
 
-## Source-of-truth boundaries
+1. `docs/GITHUB_BASELINE.md` — current repository-control state.
+2. Controlling domain policies within their scope:
+   - `docs/SOURCE_OF_TRUTH.md`
+   - `docs/NAMING_AND_VERSIONING.md`
+   - `docs/DEPENDENCY_GOVERNANCE_POLICY.md`
+   - `docs/APPROVED_ASSET_PROVENANCE.md`
+   - `docs/MAIN_PROTECTION_POLICY.md`
+   - `docs/VISUAL_STYLE_GUIDE.md` for visual-production rules.
+3. Machine-readable registries, schemas, validators, workflow configuration, and the PR template for the exact state they encode.
+4. Dated audits/reconciliations as evidence records.
 
-The existing `docs/SOURCE_OF_TRUTH.md` remains controlling.
+Asset-specific reconciliation documents may remain controlling evidence where a registry or policy cites them, but they are not general repository-control baselines.
 
-GitHub owns:
+## Source-of-truth boundary
 
-- asset IDs;
-- asset status and version;
-- `manifest.json`;
-- `ASSET_MANIFEST.csv`;
-- `docs/ASSET_MANIFEST.md`;
-- naming and version rules;
-- visual-style rules;
-- fixed-layout page order;
-- repository paths and promoted release-ready exports.
+`docs/SOURCE_OF_TRUTH.md` remains controlling for GitHub/Drive ownership.
 
-Google Drive owns:
+GitHub owns stable asset identity, status, version, machine-readable registries, naming/version rules, dependency admission records, approved provenance sidecars, validation, repository paths, fixed-layout page order, and promoted release-ready repository exports.
 
-- manuscript prose;
-- research and source notes;
-- editable working documents;
-- working briefs and generation prompts unless promoted;
-- working art prior to repository promotion;
-- review and QA records unless explicitly promoted to GitHub.
+Google Drive owns manuscript prose, research/source notes, editable working documents, working briefs, review material, and working art before repository promotion unless a specific controlling record says otherwise.
 
-No GitHub maintenance action should silently create or revise story canon, geography authority, mechanics, manuscript prose, or approval state. GitHub records approved project decisions; it does not originate them.
+GitHub maintenance must not independently create or revise story canon, geography authority, mechanics, manuscript prose, creative approval, or publication identity.
 
-## Registry snapshot
+## Registry authority
 
-At the baseline commit, `manifest.json` contained:
+Current asset state is owned by:
 
-- 16 registered assets;
-- 7 `planned` assets;
-- 6 `in-progress` assets;
-- 3 `approved` assets;
-- 1 planned fixed-layout page record (`pages/001_cover.png.b64`).
+- `manifest.json` — machine-readable asset/page authority;
+- `ASSET_MANIFEST.csv` — synchronized operational mirror;
+- `docs/ASSET_MANIFEST.md` — synchronized human-readable registry.
 
-Approved registered assets at that baseline point:
+This baseline does not duplicate current planned/in-progress/approved counts. Those values are volatile production state already governed by the registries.
 
-- `AST-MAP-002` — MAP-REG-001 First-Playable Region GM Reference, `v002`;
-- `AST-MAP-003` — MAP-ENV-001 Keep / Lower Road / Last-Bell Local GM Schematic, `v001`;
-- `AST-MAP-004` — MAP-HOU-001 Last-Bell House Controlling Physical Floorplan, `v001`.
+## Current branch, PR, and issue state
 
-Manual audit confirmed that the same 16 asset IDs were represented in:
+Verified on 2026-08-18 before this refresh branch was created:
 
-- `manifest.json`;
-- `ASSET_MANIFEST.csv`;
-- `docs/ASSET_MANIFEST.md`.
+- `main` — authoritative protected production branch;
+- `agent/map-hou-001-functional-adjacency` — intentional historical-provenance exception;
+- `agent/q-023-cross-system-sync` — intentional historical-provenance exception;
+- zero open pull requests;
+- zero open issues.
 
-The registered GitHub source paths for `AST-MAP-002`, `AST-MAP-003`, and `AST-MAP-004` existed on `main`.
+`agent/continuity-gate-audit` was audited, confirmed to have no unique commits ahead of `main`, explicitly authorized for deletion, deleted, and verified absent.
 
-`maps/map-reg-001-gm-reference-v001.svg` remains present as superseded historical material, while `v002` is the registered active source.
+The two surviving non-`main` refs are the only persistent branch exceptions:
 
-This section records the original baseline snapshot; later approved asset-state changes are governed by the current registries rather than by these historical counts.
+- `agent/map-hou-001-functional-adjacency` preserves unique superseded PR #4 schematic/QA history;
+- `agent/q-023-cross-system-sync` preserves unique superseded PR #11 implementation/reconciliation history.
 
-## Repository structure
+They are non-authoritative and must not be used as bases for new production work. Routine `agent/<scope>` branches are ephemeral and should be removed after merge or abandonment unless a specific preservation audit establishes a new historical-provenance exception.
 
-Current top-level structure includes the controlled registries and category folders expected by the project:
+Closed issues and superseded PR bodies are point-in-time historical records. Stale warning language inside them does not create a current blocker.
 
-- `.github/`
-- `characters/`
-- `covers/`
-- `docs/`
-- `exports/`
-- `factions/`
-- `locations/`
-- `maps/`
-- `prompts/`
-- `references/`
-- `schemas/`
-- `scripts/`
-- `symbols/`
-- `tests/`
-- `typography/`
-- `ASSET_MANIFEST.csv`
-- `README.md`
-- `manifest.json`
-- `requirements-validation.txt`
+## Main protection
 
-Several category folders remain placeholders, which is consistent with the current asset-development stage.
+GitHub currently reports `main` as protected. `docs/MAIN_PROTECTION_POLICY.md` and `.github/rulesets/protect-main.json` record the controlled design; the last full ruleset verification was 2026-08-14.
 
-The `schemas/` control surface now includes four distinct machine-readable control roles:
+The controlled protection model requires the normal publication path to use pull requests and the `validate` GitHub Actions job. It also records review-thread resolution, up-to-date validation before merge, linear history, force-push prevention, deletion restriction, and no standing bypass actor.
 
-- `asset-manifest.schema.json` — structural contract for `manifest.json`;
-- `external-authority-registry.json` plus its schema — durable non-asset authority ID/range resolution;
-- `dependency-classification-registry.json` plus its schema — mandatory classification records for title-bound, composite, and long-term prose dependencies;
-- `filesystem-integrity-allowlist.json` — explicit superseded/provenance filesystem exceptions.
+## CI architecture
 
-`schemas/dependency-classification-registry.json` is the required machine-readable record for every current and future dependency classified as `title_bound_authority`, `composite_gate`, or `long_term_prose_gate`. The manifest's prose dependency cannot be treated as admitted merely because it is human-readable; the matching controlled classification record must exist and name the exact Asset IDs authorized to use it.
+`.github/workflows/validate-assets.yml` is the controlling workflow. It runs on pull requests, pushes to `main`, and manual dispatch; uses Python 3.12; installs pinned validation dependencies; compiles all validators; runs the regression suite; validates manifest/filesystem/dependency state; and validates approved-asset provenance.
 
-`schemas/filesystem-integrity-allowlist.json` remains the required mechanism for retaining otherwise-unregistered superseded/provenance files inside asset-owned directories.
+The current control surface has five coordinated layers.
 
-## Branch and pull-request state
+### 1. Manifest schema and registry semantics
 
-At the original baseline:
+Owned primarily by `schemas/asset-manifest.schema.json` and `scripts/validate_manifest.py`.
 
-- `main` was the default branch.
-- One pre-existing non-main branch remained: `agent/map-hou-001-functional-adjacency`.
-- PR #5, `Bind approved MAP-HOU-001 FP01-R1 floorplan`, was merged.
-- There were no open GitHub issues in this repository.
+CI enforces schema validity, Asset-ID/category/version/status structure, required semantic fields, source-location rules, page rules, path/filename rules, JSON/CSV synchronization, and presence of registered Asset IDs in the human-readable registry.
 
-Post-baseline reconciliation on 2026-08-14:
+### 2. Registry-to-filesystem integrity
 
-- PR #4 was reconciled against the approved `MAP-HOU-001 / AST-MAP-004` state.
-- Disposition: **SUPERSEDED — closed without merge or rebase**.
-- The functional-adjacency schematic was valid as an intermediate requirements visualization while physical geometry was intentionally unresolved.
-- `AST-MAP-004` now resolves and controls the physical/topological relationships that PR #4 deliberately left unknown, including room/yard placement, controlled openings, Bell Stair attachment/access, Record Room → Back Archive Loft vertical relation, Burial Court placement/branches, Guest Hall ↔ Kitchen/Winter Store, and Kitchen/Winter Store ↔ Service Yard.
-- Merging PR #4 unchanged would create stale authority language beside the approved floorplan; rebasing it into a current diagram would duplicate `AST-MAP-004` rather than preserve an independent production purpose.
-- The PR and branch history retain the intermediate artifact for development provenance. No Asset ID is minted for it, and neither proposed file becomes an active source on `main`.
+Owned by `scripts/validate_manifest.py` and `schemas/filesystem-integrity-allowlist.json`.
 
-Repository-hygiene audit on 2026-08-15:
+Materialized registered files must exist where required; materialized page/export paths must agree; unexplained files inside asset-owned directories fail validation; explicit superseded/provenance exceptions require the allowlist; and active materialized paths may not point at allowlisted historical files.
 
-- no open or draft pull requests remained at the close of that audit;
-- merged `agent/` branches had already been cleaned up;
-- exactly two non-main `agent/` branches remained, both intentionally preserved for historical provenance rather than active development:
-  - `agent/map-hou-001-functional-adjacency` — preserves the unique PR #4 functional-adjacency schematic and QA record that never entered `main`;
-  - `agent/q-023-cross-system-sync` — preserves the superseded PR #11 implementation history that was reconciled and replaced by merged PRs #14 and #15, with later attribution cleanup in PR #17;
-- both provenance branches are non-authoritative and must not be treated as current production sources merely because their refs remain present;
-- do not delete either provenance branch during routine cleanup unless a later explicit archival/deletion decision replaces this preservation rule.
+### 3. Dependency governance
 
-Normal post-audit `agent/` branches created for subsequent controlled work are expected to be removed automatically after their PRs merge; they do not alter the intentional provenance disposition above.
+Owned by `docs/DEPENDENCY_GOVERNANCE_POLICY.md`, the external-authority registry, the dependency-classification registry, their schemas, `scripts/validate_manifest.py`, and regression tests.
 
-## Issue-tracker state
+CI enforces registered `AST-*` asset edges, exact external authority IDs, bounded external authority ranges, controlled records for title-bound/composite/long-term prose dependencies, exact permitted Asset-ID use, registry/manifest occurrence synchronization, cited evidence-path existence, and registry-schema validity.
 
-Audit refreshed on 2026-08-15:
+CI does not infer prose semantics, choose dependency classes, decide scope equivalence, or invent authority IDs. Those remain human authority judgments.
 
-- no open issues remain in `JamesJedi420/aramyst-book-assets`;
-- issue #7, `Restore GitHub Actions account access`, is closed as completed after runner-backed validation resumed;
-- issue #12, `Activate Protect main ruleset`, is closed as completed after the live ruleset and protected PR path were verified;
-- the bodies of closed issues #7 and #12 remain point-in-time historical problem statements. Language inside those closed issue bodies describing a billing lock or missing ruleset is not a current repository warning and should not be rewritten as though the historical problem never existed.
+### 4. Objective asset-governance invariants
 
-## Validation and CI state
+Owned by `scripts/check_asset_governance.py` and `tests/test_asset_governance.py`.
 
-The repository contains `.github/workflows/validate-assets.yml`.
+Regression-backed checks enforce that:
 
-Current workflow behavior:
+- a Drive-backed asset carries `drive_file_id`, `drive_url`, and `drive_path` together;
+- Drive URLs use HTTPS on `docs.google.com` or `drive.google.com` and identify the recorded Drive file ID;
+- an explicit `v###` token in a concrete GitHub source/export filename agrees with the manifest version;
+- `approved`, `exported`, and `published` assets do not directly contradict their promoted status with approval text stating `not approved`.
 
-- runs on every pull request;
-- runs on every push to `main`;
-- supports explicit `workflow_dispatch`;
-- cancels superseded in-progress validation runs for the same ref;
-- uses a five-minute job timeout;
-- installs the pinned validation dependency from `requirements-validation.txt`;
-- compiles `scripts/validate_manifest.py`;
-- runs the full validator regression-test suite;
-- runs the complete manifest/page-registry/filesystem/dependency-governance validator.
+Material-change significance, strict lifecycle-transition matrices, and substantive approval sufficiency remain human-governed because the repository has not adopted objective structured data that can decide them safely.
 
-The validator enforces four coordinated layers of control.
+### 5. Approved-asset provenance
 
-Layer 1 — machine-readable JSON Schema contract:
+Owned by `docs/APPROVED_ASSET_PROVENANCE.md`, `schemas/approved-asset-provenance.schema.json`, `scripts/validate_approved_provenance.py`, `tests/test_approved_provenance.py`, and `provenance/*.json`.
 
-- loads `schemas/asset-manifest.schema.json`;
-- checks that the schema itself is valid Draft 2020-12 JSON Schema;
-- validates `manifest.json` with `jsonschema`'s `Draft202012Validator`;
-- reports schema violations with manifest paths;
-- fails closed when the required `jsonschema` dependency is unavailable.
+Every `approved`, `exported`, or `published` asset must have exactly one schema-valid provenance sidecar. CI cross-checks Asset ID, version, status, Drive file ID, GitHub source/export paths, approval-date/evidence bindings, and repository-verifiable hashes.
 
-Layer 2 — Aramyst registry semantics and cross-file consistency:
+The contract distinguishes `google_drive` masters from `github` masters. GitHub can recompute repository-side hashes; for private Drive masters it validates the expected SHA-256 contract bound to the exact Drive identity without claiming to re-download the binary during Actions.
 
-- project constants;
-- asset-ID/category/version/status formats and category-code agreement;
-- required semantic fields;
-- Drive/GitHub source-location requirements;
-- dependency duplication;
-- repository-relative path and filename rules;
-- page-number/path/asset-reference rules;
-- JSON/CSV registry synchronization;
-- presence of every registered asset ID in `docs/ASSET_MANIFEST.md`.
+Promotion to `approved`, `exported`, or `published` must add or update the provenance sidecar in the same controlled change set.
 
-Layer 3 — registry-to-filesystem integrity:
+## Contributor and PR control
 
-- concrete registered GitHub source/export files must exist for materialized `review`, `approved`, `exported`, and `published` assets when those paths are present;
-- `planned`, `briefed`, and `in-progress` future paths may remain unmaterialized;
-- materialized page files must exist and page paths must agree with the associated asset's registered `github_export_path` when one exists;
-- asset-owned directories are scanned for unexplained files;
-- `.gitkeep`, registered concrete files, and explicitly declared superseded/provenance exceptions are permitted;
-- active materialized paths may not point at files classified as superseded/provenance.
+`.github/PULL_REQUEST_TEMPLATE.md` is the contributor-facing dependency-governance review surface. It distinguishes human semantic review, CI-backed authority/classification checks, evidence existence versus evidence substance, and the required validation gate.
 
-Layer 4 — dependency governance:
+A separate diff-aware dependency checker is intentionally absent. The 2026-08-18 checklist audit established that objective repository-state invariants are already enforced by the end-state validator; remaining checklist questions require semantic judgment. Add diff-aware validation only if a future transition-specific invariant can pass end-state validation yet remains objectively machine-detectable from the PR transition.
 
-- every `AST-*` dependency must resolve to an existing registered production asset; malformed or dangling asset edges fail validation;
-- every exact ID-shaped external dependency must resolve through `schemas/external-authority-registry.json`;
-- every bounded external authority range must resolve inside a registered range with matching prefix and identifier width;
-- exact registered authority IDs are resolved before range parsing, preventing multi-segment exact IDs from being mistaken for ranges;
-- every remaining prose dependency must have an exact controlled record in `schemas/dependency-classification-registry.json`;
-- classification is limited to the policy's prose classes: `title_bound_authority`, `composite_gate`, and `long_term_prose_gate`;
-- every prose dependency occurrence must be explicitly authorized for the Asset ID using it;
-- each classification record's declared Asset-ID set must exactly match actual manifest use, preventing stale classifications and unauthorized reuse;
-- classification records must cite an existing repository evidence document and reference only existing Asset IDs;
-- the classification registry itself is validated against `schemas/dependency-classification-registry.schema.json`;
-- CI does not infer prose semantics, choose a class, decide equivalence, or invent authority IDs. It enforces the previously approved classification record.
+## Current machine-readable control inventory
 
-The controlling semantic policy is `docs/DEPENDENCY_GOVERNANCE_POLICY.md`. `schemas/dependency-classification-registry.json` is the mandatory machine-readable admission record for title-bound, composite, and long-term prose dependencies. A future dependency edit in one of those classes must update that registry in the same controlled change set before the manifest can pass CI.
+Principal controls:
 
-Schema enforcement is regression-tested against the current manifest and against an intentionally invalid copy containing an undeclared top-level property. The latter must be rejected by the schema's `additionalProperties: false` contract.
+- `schemas/asset-manifest.schema.json`
+- `schemas/approved-asset-provenance.schema.json`
+- `schemas/external-authority-registry.json` and its schema
+- `schemas/dependency-classification-registry.json` and its schema
+- `schemas/filesystem-integrity-allowlist.json`
 
-Filesystem-integrity enforcement is regression-tested against the current repository plus deliberately invalid cases covering missing approved sources, unexplained asset-directory files, planned/unmaterialized future paths, and documented provenance exceptions.
+Validator scripts:
 
-Dependency-governance enforcement is regression-tested against deliberately invalid cases covering dangling `AST-*` asset edges, unknown external authority IDs, out-of-range external authority ranges, unclassified prose dependencies, and use of a classified prose dependency by an Asset ID not authorized by its classification record.
+- `scripts/validate_manifest.py`
+- `scripts/check_asset_governance.py`
+- `scripts/validate_approved_provenance.py`
 
-### Dependency classification control
+The regression suite includes dedicated tests for manifest validation, external-authority resolution, dependency governance, asset-governance invariants, and approved provenance.
 
-`schemas/dependency-classification-registry.json` is the sole routine machine-readable control for prose dependency classifications admitted under the dependency-governance policy.
+## Dated-document consolidation audit — 2026-08-18
 
-Each prose record must be governed by `schemas/dependency-classification-registry.schema.json` and must identify at minimum the exact dependency phrase, approved classification, exact affected Asset IDs, controlled evidence path, rationale, and reopen/satisfaction condition. Class-specific data such as a source anchor for title-bound authorities or constituent authorities for composite gates is recorded where required by the schema.
+Stable repository-wide facts from these records are represented in this baseline:
 
-The registry is deliberately separate from `manifest.json`: the manifest continues to carry the dependency string used by the asset, while the classification registry records why that otherwise non-machine-resolvable string is admitted and exactly where it may be used.
+- `docs/GITHUB_BASELINE_BRANCH_STATE_2026-08-18.md` — branch cleanup and the two provenance exceptions; this temporary supplement is removed by the consolidation PR after fold-back.
+- `docs/GOVERNANCE_MACHINE_ENFORCEMENT_AUDIT_2026-08-18.md` — objective asset-governance controls and semantic boundaries.
+- `docs/PR_CHECKLIST_MACHINE_ENFORCEMENT_AUDIT_2026-08-18.md` — contributor-checklist/CI boundary and no redundant diff-aware checker.
+- `docs/PRE_PROVENANCE_ASSET_PRODUCTION_AUDIT_2026-08-18.md` — completed stale-branch deletion and resulting steady-state exception set.
+- `docs/REGISTRY_FILESYSTEM_AUDIT_2026-08-15.md` and `docs/DEPENDENCY_VOCABULARY_AUDIT_2026-08-15.md` — repository-wide outcomes now represented by active CI controls.
 
-Future dependency edits must follow this order:
+These remain historical evidence except the temporary branch-state supplement, whose purpose ends once this refresh merges.
 
-1. establish the semantic classification under `docs/DEPENDENCY_GOVERNANCE_POLICY.md`;
-2. create or update the controlled evidence record when needed;
-3. update `schemas/dependency-classification-registry.json` for title-bound, composite, or long-term prose dependencies;
-4. update `manifest.json` and `ASSET_MANIFEST.csv` together;
-5. pass CI.
+The following stay outside the general baseline because they are asset-, authority-, or gate-specific evidence:
 
-Do not add an unclassified prose dependency and rely on a later audit to legitimize it. CI now rejects that state.
+- `docs/MAP_ENV_001_RECONCILIATION_2026-08-16.md`
+- `docs/MAP_REG_001_GEOMETRY_AUTHORITY_RECONCILIATION_2026-08-16.md`
+- `docs/SCENE_01_CANON_DEPENDENCY_RECONCILIATION_2026-08-16.md`
+- `docs/SUBJECT_CONTINUITY_GATE_AUDIT_2026-08-16.md`
+- `docs/BROAD_DESCRIPTIVE_GATE_AUDIT_2026-08-16.md`
+- `docs/SCENE_01_IN_PROGRESS_PROVENANCE_READINESS_AUDIT_2026-08-18.md`
 
-### Filesystem provenance exception control
-
-`schemas/filesystem-integrity-allowlist.json` is the sole routine mechanism for allowing an otherwise-unregistered file to remain inside an asset-owned directory because it is intentionally retained as superseded or provenance material.
-
-Each allowlist entry must provide:
-
-- a safe repository-relative `path` inside an asset-owned directory;
-- `classification` of `superseded` or `provenance`;
-- a non-empty `reason` establishing why the file is retained.
-
-The validator also requires allowlisted files to physically exist, rejects duplicate allowlist paths and unsupported classifications, and prevents active materialized registry paths from pointing at allowlisted files. The allowlist is therefore an explicit provenance control, not a general CI bypass. Do not add unexplained files merely to silence orphan detection; establish the supersession/provenance basis first.
-
-The initial controlled exception is `maps/map-reg-001-gm-reference-v001.svg`, classified `superseded` because AST-MAP-002 v002 is the active registered source while v001 is retained for development history.
-
-The manual registry-to-filesystem audit recorded in `docs/REGISTRY_FILESYSTEM_AUDIT_2026-08-15.md` passed before automation. PR #20, `Automate registry filesystem integrity`, subsequently merged as `e28f38dde6c967927b947adb0e37bfdceb26ee37`, and the resulting `main` validation passed. The former manual filesystem-control gap is therefore resolved.
-
-Post-baseline CI restoration on 2026-08-14:
-
-- PR #8, `Restore reliable GitHub Actions validation`, was merged.
-- The prior account-level billing lock stopped blocking runners.
-- PR-branch validation completed successfully.
-- A fresh `main` push validation after the merge also completed successfully.
-- Issue #7, `Restore GitHub Actions account access`, was closed after runner-backed validation was observed.
-
-Dependency-governance enforcement was added through PR #29, `Enforce dependency governance in CI`, merged as `05a73fc2bdbd300bdb32962f17d2b2d3c3936bc6`. Its successful protected PR run and post-merge `main` run established dependency classification and external-authority resolution as active CI controls rather than documentation-only policy.
-
-The billing-lock language above is retained as historical restoration context; GitHub Actions is currently functioning as a real repository gate.
-
-## Main branch protection
-
-Protection verified on 2026-08-14.
-
-Repository ruleset `Protect main` (ruleset ID `20862839`) is active and targets `refs/heads/main` only. GitHub's effective-rules evaluation for `main` confirms that the ruleset is currently applying the following controls:
-
-- require changes to reach `main` through a pull request;
-- require resolution of review threads;
-- allow squash and rebase merge methods;
-- require the `validate` status check from GitHub Actions (integration ID `15368`);
-- require the branch to be up to date before merge;
-- require linear history;
-- block non-fast-forward / force-push updates;
-- restrict deletion of `main`;
-- no standing bypass actors; the authenticated maintainer cannot bypass the ruleset.
-
-The controlled configuration is recorded in `docs/MAIN_PROTECTION_POLICY.md` and `.github/rulesets/protect-main.json`.
-
-PR #16, `Verify active main protection baseline`, passed the required `validate` check and merged through the protected path. The resulting `main` push validation also passed. Issue #12 was then closed as completed.
+Current asset status remains in the registries; current dependency admission remains in the classification registry; current provenance requirements remain in the controlling provenance policy.
 
 ## Baseline health
 
 Status: **controlled**.
 
-Strengths:
+Current strengths include explicit GitHub/Drive ownership, protected `main`, synchronized registries, schema-enforced manifest structure, automated filesystem integrity, CI-enforced dependency governance, objective Drive/version/approval consistency checks, schema-governed approved provenance, contributor-facing dependency review boundaries, only two intentional persistent non-`main` provenance refs, and no open repository-control issue or PR blocker at the start of this refresh.
 
-- explicit GitHub/Drive source-of-truth division;
-- permanent asset IDs and controlled versions;
-- synchronized machine-readable, CSV, and human-readable registries;
-- approved map assets retain explicit authority, dependencies, holds, and supersession history;
-- repository changes are handled through scoped `agent/` branches and pull requests;
-- stale pre-approval PR #4 has been explicitly reconciled and closed as superseded;
-- GitHub Actions executes successfully as a real validation gate;
-- the JSON Schema is an enforced machine-readable contract rather than passive documentation;
-- schema enforcement has a regression test that proves invalid structure is rejected;
-- registry-to-filesystem integrity is enforced automatically, including materialized-path existence, page/export agreement, and asset-directory orphan detection;
-- superseded/provenance filesystem exceptions are explicit and machine-readable through `schemas/filesystem-integrity-allowlist.json` rather than informal exclusions;
-- dependency governance is CI-enforced: `AST-*` asset edges resolve, external IDs/ranges resolve through the external-authority registry, and every remaining prose dependency must have a controlled classification record;
-- `schemas/dependency-classification-registry.json` is the mandatory machine-readable control for title-bound, composite, and long-term prose dependencies, including exact permitted Asset-ID use and evidence linkage;
-- dependency semantics remain human-approved rather than machine-guessed, while CI enforces the approved representation and classification state;
-- `main` is protected by an active repository ruleset requiring pull requests and the `validate` GitHub Actions check, with force-push and deletion protections and no standing bypass;
-- issue tracker contains no unresolved repository-control blocker;
-- surviving non-main provenance branches are deliberately classified historical records rather than unexplained stale work.
+No unresolved repository-control warning is identified by this consolidation audit.
 
-No unresolved repository-control warning remains from the baseline audit.
+## Change-control rules
 
-## Change-control baseline for this thread
-
-Until superseded by an explicit project decision, GitHub maintenance in this thread should follow these rules:
+Until explicitly superseded:
 
 1. Treat `main` as the authoritative repository branch.
-2. Make substantive changes on `agent/<scope>` branches.
-3. Default to draft pull requests rather than direct writes to `main`.
-4. Do not modify canon or approval state without an already-authorized project decision.
-5. When a registered asset changes materially, synchronize `manifest.json`, `ASSET_MANIFEST.csv`, and `docs/ASSET_MANIFEST.md` in the same change set.
-6. Preserve superseded assets and branches when they carry approval, QA, implementation, or provenance history unless explicit archival/deletion authority is given.
-7. Require the GitHub Actions validation gate to pass before merge; reproduce the validator manually only as a diagnostic supplement, not as a replacement for a failed or unavailable gate.
-8. Record any unresolved synchronization conflict as a blocker rather than guessing which source is correct.
-9. Treat closed issues and superseded PR bodies as historical records: do not infer a live blocker solely from stale wording inside a closed historical record.
-10. For an otherwise-unregistered file retained inside an asset-owned directory solely as superseded/provenance history, add a justified entry to `schemas/filesystem-integrity-allowlist.json`; do not use the allowlist to hide unexplained or active production files.
-11. Classify every proposed dependency under `docs/DEPENDENCY_GOVERNANCE_POLICY.md` before registry entry. For `title_bound_authority`, `composite_gate`, or `long_term_prose_gate`, add or update the exact controlled record in `schemas/dependency-classification-registry.json` in the same change set; for durable external IDs/ranges, ensure resolution through `schemas/external-authority-registry.json`; never invent an authority ID merely to satisfy CI.
-12. Re-audit this baseline whenever repository ownership, source-of-truth rules, validation architecture, dependency-governance architecture, branch-protection architecture, issue-control state, or release structure changes materially.
+2. Use scoped `agent/<scope>` branches for substantive changes.
+3. Merge only through the protected PR path after `validate` succeeds.
+4. Do not modify canon, approval state, geography authority, mechanics, or manuscript prose without prior project authorization.
+5. Keep registry mirrors synchronized for every relevant asset change.
+6. Classify dependencies before registry entry; never mint an authority ID merely for neatness or CI convenience.
+7. Add/update approved provenance in the same PR that promotes or materially changes a controlled approved/exported/published asset.
+8. Preserve explicitly classified historical-provenance branches/files unless later deletion/archive authority supersedes that disposition.
+9. Treat closed issues, superseded PRs, and dated audits as historical records unless a current controlling policy or registry explicitly incorporates their result.
+10. Record unresolved cross-system conflicts as blockers rather than guessing which source is correct.
 
-## Immediate follow-up queue
+## Periodic baseline refresh rule
 
-No unresolved baseline-control task remains. Continue normal repository maintenance against approved project work under the CI-enforced dependency-governance policy.
+Refresh this file whenever repository ownership, source-of-truth boundaries, branch-protection architecture, CI/validator architecture, dependency-governance architecture, approved-provenance architecture, persistent branch exceptions, issue-control state, or release structure changes materially.
+
+During each refresh:
+
+1. verify live branch/PR/issue state;
+2. review new dated audits for stable repository-wide current facts;
+3. fold those stable facts into this baseline;
+4. leave dated audits as evidence rather than competing current-state sources;
+5. remove temporary `GITHUB_BASELINE_*` supplements after fold-back;
+6. avoid duplicating volatile asset counts or per-asset state already owned by registries;
+7. create a new baseline supplement only when the baseline itself cannot be updated in the same controlled change, and give that supplement an explicit fold-back target.
+
+This process makes `docs/GITHUB_BASELINE.md` the durable current-state control surface while retaining dated audits for traceability.
