@@ -27,7 +27,7 @@ Canonical human-readable registry for the project currently using **Aramyst** as
 | AST-TYPE-001 | Main Title Treatment (Publication Name Pending) | typography | planned | v001 | `typography/` |
 | AST-CHAR-003 | Tovin Marr Portrait | character | approved | v001 | `characters/ast-char-003-tovin-marr-source-v001.md` |
 | AST-CHAR-004 | Sister Aneth Portrait | character | approved | v001 | `characters/ast-char-004-sister-aneth-source-v001.md` |
-| AST-CHAR-005 | Sergeant Beran Vask Portrait | character | in-progress | v001 | Drive brief |
+| AST-CHAR-005 | Sergeant Beran Vask Portrait | character | approved | v001 | `characters/ast-char-005-sergeant-beran-vask-source-v001.md` |
 | AST-LOC-002 | Gate at Dusk Backdrop | location | in-progress | v001 | Drive brief |
 | AST-SYM-002 | Black Door Sign | symbol | approved | v001 | `symbols/symbol-black-door-sign-source-v001.md` |
 | AST-SYM-003 | Triangle Token | symbol | approved | v001 | `symbols/symbol-triangle-token-source-v001.md` |
@@ -141,14 +141,34 @@ Canonical human-readable registry for the project currently using **Aramyst** as
 - **Authority ceiling:** simple Chapel cord only if visible; no cross, medallion, halo, invented office/rank, priesthood cue, magical effect, weapon, ornate vestments, readable text, or unsupported lore.
 - **Superseded master:** Drive `1yJErhP5P6eNAEIUBfjfTOsUERi6CbT0W`, SHA-256 `1315736c793e2f3ff0bf05405a83e55664f250252298339f963f9c670a254236`, is historical production evidence only and has no publication or visual-continuity authority.
 
+### AST-CHAR-005 — Sergeant Beran Vask Portrait
+
+- **Category:** character
+- **Context:** Campaign One: The Last Quiet Spring / Scene 01 — The Gate at Dusk
+- **Purpose:** NPC portrait for the veteran gate sergeant who embodies Keep law, controls entry, and pressures the heroes to define themselves.
+- **Subjects:** Sergeant Beran Vask, a middle-aged weather-beaten frontier veteran in practical worn mail and leather.
+- **Required Dimensions:** portrait; approved master 1122×1402 px.
+- **Status / Version:** approved / v001
+- **Style Authority:** MPN-1 — Marcher Painterly Naturalism (`ART-DIR-001 / TIN-278`).
+- **Drive File ID:** `1MMP3orxQ2gPIE1konptjScHj3_yewoW6`
+- **Drive Path:** `Aramyst/05 — Assets/Characters/Character Portraits/AST-CHAR-005 — Sergeant Beran Vask — MPN-1 — v001 — APPROVED.png`
+- **GitHub Source Path:** `characters/ast-char-005-sergeant-beran-vask-source-v001.md`
+- **GitHub Export Binding:** `exports/ast-char-005-sergeant-beran-vask-master-v001.md`
+- **Prompt / Brief Authority:** Drive `1AQeaiqhWB0z-UTCYF_Dwp8n95vT6m38W15mDFJmjD5M`
+- **Dependencies:** Scene 01 canon; Keep guard continuity approval.
+- **Approval:** Approved MPN-1 visual master 2026-08-24; Drive PNG is the authoritative Sergeant Beran Vask visual anchor.
+- **Master SHA-256:** `4d70afc2c71734b11195c67537efc889ca4669d16032699fca6a38f06597b430`.
+- **Authority ceiling:** suspicious, exhausted, controlled frontier veteran; practical worn mail/leather and plain rain-darkened clothing; no visual rank insignia, heraldry, badges, medals, keys/ledger props, magical effects, supernatural cues, heroic ornament, readable text, or unsupported lore.
+
 The following registered non-map assets remain governed by the complete operational fields in `manifest.json` and `ASSET_MANIFEST.csv`:
 
-AST-COVER-001, AST-CHAR-001, AST-CHAR-002, AST-LOC-001, AST-SYM-001, AST-TYPE-001, AST-CHAR-005, AST-LOC-002, AST-SYM-002, AST-SYM-003.
+AST-COVER-001, AST-CHAR-001, AST-CHAR-002, AST-LOC-001, AST-SYM-001, AST-TYPE-001, AST-LOC-002, AST-SYM-002, AST-SYM-003.
 
 ## Change Log
 
 | Date | Change | Result |
 |---|---|---|
+| 2026-08-24 | TIN-275 / AST-CHAR-005 MPN-1 visual approval and integration | Approved Sergeant Beran Vask v001 as an MPN-1-native portrait; Drive PNG registered as authoritative visual anchor with source/export/provenance binding and synchronized manifest records. |
 | 2026-08-18 | TIN-273 / AST-CHAR-003 MPN-1 visual approval and integration | Approved Tovin Marr v001 as an MPN-1-native portrait; Drive PNG registered as authoritative visual anchor with source/export/provenance binding and synchronized manifest records. |
 | 2026-08-18 | TIN-274 / MPN-1 authority reconciliation | Replaced the pre-MPN-1 Sister Aneth master with the explicitly approved MPN-1 v001 master; new Drive ID/hash are authoritative and the earlier master is explicitly superseded. |
 | 2026-08-18 | TIN-274 / AST-CHAR-004 visual approval and integration | Earlier pre-MPN-1 integration retained as production history only; superseded by the MPN-1 authority reconciliation above. |
