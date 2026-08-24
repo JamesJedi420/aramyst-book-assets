@@ -3,7 +3,7 @@
 Status: **CONTROLLED — current repository-control baseline**
 
 Baseline established: 2026-08-14  
-Last refreshed: 2026-08-18  
+Last refreshed: 2026-08-24  
 Repository: `JamesJedi420/aramyst-book-assets`  
 Default branch: `main`  
 Visibility: public  
@@ -14,6 +14,8 @@ Canonical Drive root: `1IBbWIFfAuJpB7I9jc7yrjb461mPnuGnq`
 This file is the single current-state entry point for GitHub repository control. Dated audits and reconciliations remain evidence records; they do not operate as parallel current-state baselines.
 
 When a dated audit establishes a stable repository-wide control, fold that current fact into this file during the next baseline refresh. Preserve the dated audit as evidence of how the decision was reached. Git history preserves prior baseline snapshots.
+
+Repository state that already has an exact machine-readable owner should not be copied here as a fixed member count or hand-maintained “current set.” This baseline should point to the controlling registry and summarize the architecture. Branch/PR/issue state is different: no machine-readable branch-exception registry currently exists, so those values may be recorded here only as an explicitly dated live-state snapshot and must be re-verified before action.
 
 ## Documentation authority
 
@@ -50,11 +52,21 @@ Current asset state is owned by:
 - `ASSET_MANIFEST.csv` — synchronized operational mirror;
 - `docs/ASSET_MANIFEST.md` — synchronized human-readable registry.
 
-This baseline does not duplicate current planned/in-progress/approved counts. Those values are volatile production state already governed by the registries.
+Current dependency state is owned by the live dependency lists plus the machine-readable authority/classification registries:
+
+- `manifest.json` / `ASSET_MANIFEST.csv` — dependency strings actually used by assets;
+- `schemas/external-authority-registry.json` — admitted durable external authority IDs/ranges;
+- `schemas/dependency-classification-registry.json` — title-bound, composite, and long-term prose dependency classifications and their exact affected Asset-ID sets.
+
+Current provenance-controlled coverage is derived from `manifest.json` together with the validated `provenance/*.json` sidecar set under `docs/APPROVED_ASSET_PROVENANCE.md`.
+
+This baseline does not duplicate volatile asset-status counts, dependency-class counts, provenance-sidecar counts, or other registry-owned membership totals. Read the corresponding live registry instead.
 
 ## Current branch, PR, and issue state
 
-Verified on 2026-08-18 before this refresh branch was created:
+Live-state snapshot verified on 2026-08-24 before this refresh branch was created. This is a dated baseline observation, not a permanent numeric invariant; re-read GitHub before acting on branch, PR, or issue state.
+
+At that verification point:
 
 - `main` — authoritative protected production branch;
 - `agent/map-hou-001-functional-adjacency` — intentional historical-provenance exception;
@@ -62,14 +74,16 @@ Verified on 2026-08-18 before this refresh branch was created:
 - zero open pull requests;
 - zero open issues.
 
-`agent/continuity-gate-audit` was audited, confirmed to have no unique commits ahead of `main`, explicitly authorized for deletion, deleted, and verified absent.
+`agent/continuity-gate-audit` was previously audited, confirmed to have no unique commits ahead of `main`, explicitly authorized for deletion, deleted, and verified absent.
 
-The two surviving non-`main` refs are the only persistent branch exceptions:
+The persistent non-`main` historical-provenance exceptions verified at this refresh are the branches enumerated above:
 
 - `agent/map-hou-001-functional-adjacency` preserves unique superseded PR #4 schematic/QA history;
 - `agent/q-023-cross-system-sync` preserves unique superseded PR #11 implementation/reconciliation history.
 
-They are non-authoritative and must not be used as bases for new production work. Routine `agent/<scope>` branches are ephemeral and should be removed after merge or abandonment unless a specific preservation audit establishes a new historical-provenance exception.
+Do not infer a permanent exception count from this prose. If a later preservation or deletion decision changes the set, re-verify live branches and refresh this section. A separate branch-exception registry should not be invented merely to remove prose unless the project explicitly adopts that architecture.
+
+These preserved refs are non-authoritative and must not be used as bases for new production work. Routine `agent/<scope>` branches are ephemeral and should be removed after merge or abandonment unless a specific preservation audit establishes a new historical-provenance exception.
 
 Closed issues and superseded PR bodies are point-in-time historical records. Stale warning language inside them does not create a current blocker.
 
@@ -83,7 +97,7 @@ The controlled protection model requires the normal publication path to use pull
 
 `.github/workflows/validate-assets.yml` is the controlling workflow. It runs on pull requests, pushes to `main`, and manual dispatch; uses Python 3.12; installs pinned validation dependencies; compiles all validators; runs the regression suite; validates manifest/filesystem/dependency state; and validates approved-asset provenance.
 
-The current control surface has five coordinated layers.
+The current control surface is organized into the coordinated layers below. The heading count is not an independent control inventory; the workflow, schemas, validator scripts, and tests are authoritative for what actually runs.
 
 ### 1. Manifest schema and registry semantics
 
@@ -156,13 +170,13 @@ The regression suite includes dedicated tests for manifest validation, external-
 
 Stable repository-wide facts from these records are represented in this baseline:
 
-- `docs/GITHUB_BASELINE_BRANCH_STATE_2026-08-18.md` — branch cleanup and the two provenance exceptions; this temporary supplement is removed by the consolidation PR after fold-back.
+- `docs/GITHUB_BASELINE_BRANCH_STATE_2026-08-18.md` — branch cleanup and the then-verified provenance exceptions; this temporary supplement was removed after fold-back.
 - `docs/GOVERNANCE_MACHINE_ENFORCEMENT_AUDIT_2026-08-18.md` — objective asset-governance controls and semantic boundaries.
 - `docs/PR_CHECKLIST_MACHINE_ENFORCEMENT_AUDIT_2026-08-18.md` — contributor-checklist/CI boundary and no redundant diff-aware checker.
-- `docs/PRE_PROVENANCE_ASSET_PRODUCTION_AUDIT_2026-08-18.md` — completed stale-branch deletion and resulting steady-state exception set.
+- `docs/PRE_PROVENANCE_ASSET_PRODUCTION_AUDIT_2026-08-18.md` — completed stale-branch deletion and resulting steady-state exception set at that audit point.
 - `docs/REGISTRY_FILESYSTEM_AUDIT_2026-08-15.md` and `docs/DEPENDENCY_VOCABULARY_AUDIT_2026-08-15.md` — repository-wide outcomes now represented by active CI controls.
 
-These remain historical evidence except the temporary branch-state supplement, whose purpose ends once this refresh merges.
+These remain historical evidence; any fixed counts or inventories they contain are point-in-time observations unless a current policy or registry explicitly incorporates them.
 
 The following stay outside the general baseline because they are asset-, authority-, or gate-specific evidence:
 
@@ -173,15 +187,15 @@ The following stay outside the general baseline because they are asset-, authori
 - `docs/BROAD_DESCRIPTIVE_GATE_AUDIT_2026-08-16.md`
 - `docs/SCENE_01_IN_PROGRESS_PROVENANCE_READINESS_AUDIT_2026-08-18.md`
 
-Current asset status remains in the registries; current dependency admission remains in the classification registry; current provenance requirements remain in the controlling provenance policy.
+Current asset status remains in the registries; current dependency membership/classification remains in the manifest and dependency registries; current provenance coverage remains in the manifest plus validated provenance sidecars; current provenance requirements remain in the controlling provenance policy.
 
 ## Baseline health
 
 Status: **controlled**.
 
-Current strengths include explicit GitHub/Drive ownership, protected `main`, synchronized registries, schema-enforced manifest structure, automated filesystem integrity, CI-enforced dependency governance, objective Drive/version/approval consistency checks, schema-governed approved provenance, contributor-facing dependency review boundaries, only two intentional persistent non-`main` provenance refs, and no open repository-control issue or PR blocker at the start of this refresh.
+At the 2026-08-24 refresh snapshot, strengths include explicit GitHub/Drive ownership, protected `main`, synchronized registries, schema-enforced manifest structure, automated filesystem integrity, CI-enforced dependency governance, objective Drive/version/approval consistency checks, schema-governed approved provenance, contributor-facing dependency review boundaries, explicitly enumerated persistent non-`main` provenance refs, and no open repository-control issue or PR blocker.
 
-No unresolved repository-control warning is identified by this consolidation audit.
+No unresolved repository-control warning was identified by this refresh audit.
 
 ## Change-control rules
 
@@ -209,7 +223,8 @@ During each refresh:
 3. fold those stable facts into this baseline;
 4. leave dated audits as evidence rather than competing current-state sources;
 5. remove temporary `GITHUB_BASELINE_*` supplements after fold-back;
-6. avoid duplicating volatile asset counts or per-asset state already owned by registries;
-7. create a new baseline supplement only when the baseline itself cannot be updated in the same controlled change, and give that supplement an explicit fold-back target.
+6. avoid duplicating volatile asset, dependency, provenance, or other machine-registry membership counts;
+7. record branch/PR/issue values only as dated live-state snapshots and re-verify them before action;
+8. create a new baseline supplement only when the baseline itself cannot be updated in the same controlled change, and give that supplement an explicit fold-back target.
 
 This process makes `docs/GITHUB_BASELINE.md` the durable current-state control surface while retaining dated audits for traceability.
