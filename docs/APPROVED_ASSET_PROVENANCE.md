@@ -4,7 +4,7 @@ Status: **CONTROLLING repository policy — CI enforced**
 
 Every asset whose manifest status is `approved`, `exported`, or `published` must have exactly one machine-readable JSON sidecar in `provenance/` satisfying `schemas/approved-asset-provenance.schema.json`.
 
-The sidecar supplements `manifest.json`; it does not replace the asset registry and does not move authoritative masters out of Google Drive.
+The sidecar supplements `manifest.json`; it does not replace the asset registry and does not by itself move an authoritative master between Google Drive and GitHub.
 
 ## Required manifest bindings
 
@@ -21,7 +21,7 @@ The sidecar also records an ISO approval date and a controlled repository eviden
 
 ## Master systems
 
-`master.system` is explicit because approved assets currently use two valid storage topologies.
+`master.system` is explicit because controlled assets may use two valid storage topologies.
 
 ### `google_drive`
 
@@ -31,7 +31,7 @@ GitHub Actions cannot independently download private Drive binaries. Therefore C
 
 ### `github`
 
-Use this when the approved repository source itself is the controlling asset master, as with the current approved SVG map assets. The sidecar records the exact GitHub path and a repository-verifiable hash. CI recomputes that hash from the checked-out file.
+Use this when the approved repository source itself is the controlling asset master, as with repository-native SVG map assets. The sidecar records the exact GitHub path and a repository-verifiable hash. CI recomputes that hash from the checked-out file.
 
 ## Repository hash bindings
 
@@ -57,9 +57,21 @@ Before an asset may enter `approved`, `exported`, or `published` status in GitHu
 
 Removing or downgrading a controlled asset must also remove or deliberately migrate its sidecar so that the set of sidecars exactly matches assets currently in `approved`, `exported`, or `published` state.
 
-## Current migration
+## Current coverage authority
 
-The initial migration covers the five approved assets present on `main` when this control was introduced:
+This policy intentionally does **not** maintain a static list of the assets currently governed by provenance.
+
+The current provenance-controlled set is derived from repository state:
+
+1. `manifest.json` defines which assets are currently `approved`, `exported`, or `published`;
+2. `provenance/*.json` contains the corresponding per-asset sidecars;
+3. `scripts/validate_approved_provenance.py` requires those sets to match exactly and rejects missing sidecars, orphan sidecars, or binding mismatches.
+
+Therefore, do not use a historical migration list, dated audit, PR description, or this policy's change log to determine the current approved/provenance-controlled inventory. Read `manifest.json` and the validated `provenance/` set instead.
+
+## Historical initial migration snapshot — non-authoritative
+
+When the provenance contract was first introduced, the initial migration covered the five assets that were approved on `main` at that time:
 
 - `AST-MAP-002` — GitHub SVG master, Drive geometry authority;
 - `AST-MAP-003` — GitHub SVG master, Drive local-geometry authority;
@@ -67,4 +79,12 @@ The initial migration covers the five approved assets present on `main` when thi
 - `AST-SYM-002` — Drive PNG master, GitHub provenance record and base64 preview derivative;
 - `AST-SYM-003` — Drive PNG master, GitHub provenance record and base64 preview derivative.
 
+This list records the scope of the **initial migration only**. It is retained for provenance-control history and must not be interpreted as a current approved-asset inventory. Assets admitted after that migration are governed by the same schema and validation contract without being appended to this historical list.
+
 Future controlled assets must satisfy the same schema rather than inventing a new free-form provenance format.
+
+## Change log
+
+| Date | Change |
+|---|---|
+| 2026-08-23 | Reclassified the original five-asset migration list as a non-authoritative historical snapshot and made `manifest.json` plus the validated `provenance/` sidecar set the sole current coverage authority. |
