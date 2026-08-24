@@ -89,9 +89,16 @@ Closed issues and superseded PR bodies are point-in-time historical records. Sta
 
 ## Main protection
 
-GitHub currently reports `main` as protected. `docs/MAIN_PROTECTION_POLICY.md` and `.github/rulesets/protect-main.json` record the controlled design; the last full ruleset verification was 2026-08-14.
+GitHub's live branch endpoint reported `main` as protected on 2026-08-24. `docs/MAIN_PROTECTION_POLICY.md` and `.github/rulesets/protect-main.json` remain synchronized and record the exact controlled target: PR requirement, review-thread resolution, required `validate` check from GitHub Actions, strict/up-to-date status checking, linear history, non-fast-forward protection, deletion restriction, squash/rebase merge methods, zero required approving reviews, and no controlled standing bypass actor.
 
-The controlled protection model requires the normal publication path to use pull requests and the `validate` GitHub Actions job. It also records review-thread resolution, up-to-date validation before merge, linear history, force-push prevention, deletion restriction, and no standing bypass actor.
+Protection verification is tracked at two levels:
+
+- **Exact live-ruleset configuration inspection:** last completed 2026-08-14, when the live ruleset object was read field-by-field and matched to the controlled target.
+- **Operational re-verification:** completed 2026-08-24. GitHub reported `main` as protected; current head PR #54 merged through the PR path after successful `Validate Aramyst Assets` run #128; its resulting `main` commit is single-parent and consistent with the linear squash workflow; no operational drift was observed.
+
+The connected GitHub interface used for the 2026-08-24 audit does not expose the repository-ruleset read endpoint. Its branch endpoint exposes `protected: true` but not the ruleset's internal parameters. Therefore this baseline does not falsely re-date the last exact configuration inspection. Non-observable fields remain controlled by `.github/rulesets/protect-main.json` and the policy until a later exact live-ruleset read confirms them again.
+
+The normal publication path remains: scoped branch → pull request → successful `validate` gate → resolved review threads → protected merge to `main`.
 
 ## CI architecture
 
@@ -193,9 +200,9 @@ Current asset status remains in the registries; current dependency membership/cl
 
 Status: **controlled**.
 
-At the 2026-08-24 refresh snapshot, strengths include explicit GitHub/Drive ownership, protected `main`, synchronized registries, schema-enforced manifest structure, automated filesystem integrity, CI-enforced dependency governance, objective Drive/version/approval consistency checks, schema-governed approved provenance, contributor-facing dependency review boundaries, explicitly enumerated persistent non-`main` provenance refs, and no open repository-control issue or PR blocker.
+At the 2026-08-24 refresh snapshot, strengths include explicit GitHub/Drive ownership, live `main` protection reporting, synchronized protection target files, current operational PR/CI verification, synchronized registries, schema-enforced manifest structure, automated filesystem integrity, CI-enforced dependency governance, objective Drive/version/approval consistency checks, schema-governed approved provenance, contributor-facing dependency review boundaries, explicitly enumerated persistent non-`main` provenance refs, and no open repository-control issue or PR blocker before this refresh branch was created.
 
-No unresolved repository-control warning was identified by this refresh audit.
+No operational branch-protection drift or other unresolved repository-control warning was identified by this refresh. Exact live-ruleset field inspection remains dated 2026-08-14 until the ruleset-read endpoint is available again; this is a verification-scope limitation, not evidence of a configuration defect.
 
 ## Change-control rules
 
@@ -225,6 +232,7 @@ During each refresh:
 5. remove temporary `GITHUB_BASELINE_*` supplements after fold-back;
 6. avoid duplicating volatile asset, dependency, provenance, or other machine-registry membership counts;
 7. record branch/PR/issue values only as dated live-state snapshots and re-verify them before action;
-8. create a new baseline supplement only when the baseline itself cannot be updated in the same controlled change, and give that supplement an explicit fold-back target.
+8. distinguish exact branch-protection configuration inspection from operational protection verification, and do not re-date unobserved rule fields;
+9. create a new baseline supplement only when the baseline itself cannot be updated in the same controlled change, and give that supplement an explicit fold-back target.
 
 This process makes `docs/GITHUB_BASELINE.md` the durable current-state control surface while retaining dated audits for traceability.
