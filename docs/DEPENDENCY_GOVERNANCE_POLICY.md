@@ -7,6 +7,8 @@ This policy consolidates the dependency-vocabulary audit and subsequent reconcil
 
 Dependency governance is now mechanically enforced where semantics can be checked objectively. `schemas/dependency-classification-registry.json` is the mandatory machine-readable classification record for every dependency in the `title_bound_authority`, `composite_gate`, or `long_term_prose_gate` classes. CI does not infer prose meaning; it verifies that the controlled classification already exists, applies to the exact Asset IDs using the dependency, cites controlled evidence, and remains synchronized with actual registry use.
 
+Current dependency membership and counts are intentionally **not maintained in this policy**. Read `manifest.json` / `ASSET_MANIFEST.csv` for the live flat dependency lists, `schemas/external-authority-registry.json` for admitted durable external IDs/ranges, and `schemas/dependency-classification-registry.json` for the live prose-dependency classifications. Examples in this policy are illustrative and non-exhaustive unless a rule explicitly says otherwise.
+
 ## 1. Governing principle
 
 Every dependency entered into the asset registry MUST be classified before entry as exactly one of five semantic classes:
@@ -83,7 +85,7 @@ Required representation: exact `AST-*` ID.
 
 CI enforcement: the target Asset ID must exist in the current asset registry. Malformed or dangling `AST-*` dependencies fail validation.
 
-Current examples include `AST-COVER-001` depending on `AST-SYM-001` and `AST-TYPE-001`.
+Illustrative example: `AST-COVER-001` depending on `AST-SYM-001` and `AST-TYPE-001`. Read the live manifest rather than this example to determine current asset-edge membership.
 
 ### 3.2 `external_authority`
 
@@ -106,7 +108,7 @@ Range rules:
 - do not convert a range into a vague family dependency;
 - do not infer missing members beyond the stated bounds.
 
-Examples include `ATLAS-ARCH-001`, `MAP-ENV-001`, `SCN-NODE-001`, and controlled bounded `GEO-*`, `ROUTE-*`, `GXR-*`, `ENV-*`, and `HOU-*` ranges.
+Illustrative examples include `ATLAS-ARCH-001`, `MAP-ENV-001`, `SCN-NODE-001`, and controlled bounded `GEO-*`, `ROUTE-*`, `GXR-*`, `ENV-*`, and `HOU-*` ranges. The external-authority registry, not this list, determines current admission.
 
 ### 3.3 `title_bound_authority`
 
@@ -127,7 +129,7 @@ Prohibited actions:
 - adding the title itself to the external-authority registry as though it were an ID;
 - adding or reusing the prose dependency in `manifest.json` without first updating the classification registry for the exact affected Asset IDs.
 
-Current precedent: `MAP-REG-001 Geometry Specification v001 — CONTROLLING`.
+Illustrative precedent: `MAP-REG-001 Geometry Specification v001 — CONTROLLING`.
 
 ### 3.4 `composite_gate`
 
@@ -143,7 +145,7 @@ Required representation: concise stable prose naming the combined requirement.
 
 The classification record identifies the important constituent authorities and the controlled audit/reconciliation evidence explaining why none is singly equivalent. CI verifies record existence and exact asset-use synchronization; it does not decide whether the semantic argument is correct.
 
-Current precedent: `Scene 01 canon`.
+Illustrative precedent: `Scene 01 canon`.
 
 ### 3.5 `long_term_prose_gate`
 
@@ -158,7 +160,7 @@ Required representation: concise prerequisite prose describing what must become 
 
 The classification record must identify the exact affected Asset IDs, evidence path, rationale, and reopen/satisfaction condition. CI rejects an unclassified new prose dependency or reuse of a classified prose dependency by an Asset ID not explicitly included in that record.
 
-Current precedents:
+Illustrative precedents, intentionally non-exhaustive:
 
 - `Approved character canon brief`;
 - `Approved location canon brief`;
@@ -166,6 +168,8 @@ Current precedents:
 - `Final publishing specifications`;
 - `Approved symbolic and thematic direction`;
 - `Approved cover direction`.
+
+Use `schemas/dependency-classification-registry.json` to determine which long-term prose gates currently exist and which Asset IDs they govern.
 
 ## 4. Equivalence test
 
@@ -294,18 +298,19 @@ Any future structural migration of dependency classification into machine-readab
 
 No partial schema migration is permitted.
 
-## 11. Existing dependency disposition
+## 11. Current dependency-state authority
 
-This policy ratifies rather than reinterprets the completed audits and their machine-readable classifications:
+Do not determine current dependency membership, class counts, or affected-asset sets from examples or historical audit prose in this policy.
 
-- current `AST-*` edges remain `asset_edge`;
-- current durable external IDs/ranges remain `external_authority`;
-- `MAP-REG-001 Geometry Specification v001 — CONTROLLING` remains `title_bound_authority` and is recorded in the classification registry;
-- `Scene 01 canon` remains `composite_gate` and is recorded in the classification registry;
-- the six broad descriptive gates audited on 2026-08-16 remain `long_term_prose_gate` and are recorded in the classification registry;
-- the six subject-specific continuity gates audited on 2026-08-16 remain `long_term_prose_gate` and are recorded in the classification registry.
+The live state is derived from the controlled repository records:
 
-The current machine-readable classification registry contains the complete set of remaining prose dependencies used by the manifest. A prose dependency appearing in the manifest without a corresponding controlled record is a CI failure, not an implicitly accepted new gate.
+- `manifest.json` and `ASSET_MANIFEST.csv` own the dependency strings actually used by assets;
+- `schemas/external-authority-registry.json` owns the admitted durable external IDs/ranges;
+- `schemas/dependency-classification-registry.json` owns the classifications and exact affected Asset-ID sets for title-bound, composite, and long-term prose dependencies.
+
+The 2026-08-16 reconciliation/audit documents remain evidence for the classifications they established, but their fixed group counts are historical observations and are not current inventory controls. Named examples elsewhere in this policy remain useful semantic precedents without implying that they are the complete or permanent live set.
+
+CI requires the registry-owned sets to remain synchronized with manifest use. A prose dependency appearing in the manifest without a corresponding controlled classification record is a validation failure, not an implicitly accepted new gate.
 
 ## 12. Controlling rule
 
