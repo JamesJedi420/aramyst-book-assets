@@ -1,0 +1,26 @@
+{
+  "asset_id": "AST-CHAR-005",
+  "version": "v001",
+  "status": "approved",
+  "approval_date": "2026-08-24",
+  "approval_evidence_path": "characters/ast-char-005-sergeant-beran-vask-source-v001.md",
+  "drive_file_id": "1MMP3orxQ2gPIE1konptjScHj3_yewoW6",
+  "github_source_path": "characters/ast-char-005-sergeant-beran-vask-source-v001.md",
+  "github_export_path": "exports/ast-char-005-sergeant-beran-vask-master-v001.md",
+  "master": {
+    "system": "google_drive",
+    "drive_file_id": "1MMP3orxQ2gPIE1konptjScHj3_yewoW6",
+    "hash": {
+      "algorithm": "sha256",
+      "value": "4d70afc2c71734b11195c67537efc889ca4669d16032699fca6a38f06597b430"
+    }
+  },
+  "source_hash": {
+    "algorithm": "git-blob-sha1",
+    "value": "2bbd655d58360f81765a3d7d9a9409242af50118"
+  },
+  "export_hash": {
+    "algorithm": "git-blob-sha1",
+    "value": "1737b0871b1e37498a977e34bc5702b052f4e5df"
+  }
+}
