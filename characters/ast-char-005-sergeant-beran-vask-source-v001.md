@@ -31,4 +31,4 @@ Do not add visual rank insignia, heraldry, badges, medals, keys/ledger apparatus
 
 ## Approval decision
 
-The project owner explicitly approved this exact MPN-1 candidate on 2026-08-24 after a reconciliation audit passed the locked canon and MPN-1 visual-style gates. This Drive master is the authoritative Sergeant Beran Vask visual anchor, pending final repository integration and validation.
+The project owner explicitly approved this exact MPN-1 candidate on 2026-08-24 after a reconciliation audit passed the locked canon and MPN-1 visual-style gates. This Drive master is the authoritative Sergeant Beran Vask visual anchor. Repository integration completed through PR #53 after `Validate Aramyst Assets` run #126 passed.
