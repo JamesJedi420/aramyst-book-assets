@@ -9,6 +9,8 @@ This guide governs all visual artwork intended for Aramyst books, handouts, card
 
 The full research and production record is mirrored in Google Drive as **Aramyst — Visual Art Style Guide & AI Production Standard v1.0**.
 
+Current per-asset status, approval, master identity, and provenance coverage are intentionally **not enumerated in this style guide**. Read `manifest.json` for current asset state and the validated `provenance/*.json` set for assets in `approved`, `exported`, or `published` status. Dated audits and change-history examples are historical evidence, not live asset inventories.
+
 ## 1. Mandatory Rule
 
 **ONE WORLD, ONE ART LANGUAGE.**
@@ -321,19 +323,22 @@ Before presentation for explicit creative approval, every applicable item must p
 - [ ] Correct Asset ID/version assigned
 - [ ] Review candidate stored separately from rejected generations
 - [ ] Approval status has not been advanced prematurely
-- [ ] Approved master will be stored in Drive, registered in GitHub, hashed, manifested, and reused as the continuity source for derivatives
+- [ ] Approved master will remain in the controlling system declared by `docs/SOURCE_OF_TRUTH.md` and its provenance sidecar (`google_drive` or `github` as applicable), with GitHub registry/path bindings, required hashes, provenance, and continuity-reference identity synchronized in the same controlled change
 
 Failure of any applicable item returns the asset to production. **Do not ask for user approval of a candidate already known to violate the guide.**
 
 ## 16. Application to Existing Work
 
-Effective immediately:
+Apply MPN-1 according to the asset's **current registry state**, not a static list embedded in this guide:
 
-- `AST-CHAR-004` and all currently unapproved narrative visual assets must be generated/regenerated under MPN-1 before approval
-- failed `AST-CHAR-004` generations remain rejected attempts and do not establish Sister Aneth’s appearance
-- an attractive image is not automatically an authoritative master
-- approved symbols, maps, and functional handout graphics retain approval, but future narrative derivatives must harmonize with MPN-1
-- existing narrative art that materially conflicts with MPN-1 must be reviewed before publication-facing reuse
+- read `manifest.json` to determine whether a narrative visual asset is currently planned, in production, under review, or already promoted;
+- every narrative visual asset that has not yet reached `approved`, `exported`, or `published` must satisfy MPN-1 before promotion;
+- rejected generations remain rejected attempts and do not establish a character, location, or other visual identity;
+- approved symbols, maps, and functional handout graphics retain whatever status the current registry grants them, while future narrative derivatives must harmonize with MPN-1;
+- existing narrative art that materially conflicts with MPN-1 must be reviewed before publication-facing reuse;
+- for any promoted asset, use the validated `provenance/*.json` record rather than this guide to determine the current authoritative master and path/hash bindings.
+
+Do not add a per-asset “current approved/unapproved” list to this section. Those states are volatile production data owned by `manifest.json` and the provenance registry.
 
 ## 17. Existing Book-Design System Retained
 
@@ -367,6 +372,7 @@ No individual image, prompt experiment, or external reference may silently chang
 
 | Date | Change | Author |
 |---|---|---|
+| 2026-08-24 | Removed static current-asset assumptions; routed current asset status/master coverage to `manifest.json` and validated provenance; corrected the compliance gate to support both Drive and GitHub authoritative-master topologies. | JamesJedi420 / ChatGPT |
 | 2026-08-18 | Established mandatory MPN-1 Marcher Painterly Naturalism after contemporary TTRPG / image-generation research; added AI-native production method, anti-synthetic quality controls, recurring-visual continuity lock, and mandatory style compliance gate. | JamesJedi420 / ChatGPT |
 | 2026-08-14 | Q-023 continuity synchronization: made publication identity explicitly unresolved and removed obsolete 5e-compatibility claim under standalone `SYS-001`. | JamesJedi420 / ChatGPT |
 | 2026-08-04 | Created canonical visual style guide from approved grim-frontier manuscript direction. | JamesJedi420 / ChatGPT |
